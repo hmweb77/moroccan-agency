@@ -62,7 +62,7 @@ const Expertise = () => {
             NOTRE EXPERTISE
           </h2>
           <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002144] leading-tight max-w-4xl mx-auto">
-          NextDigits MET TOUT SON SAVOIR-FAIRE DANS DES 
+          NEXTDIGITS MET TOUT SON SAVOIR-FAIRE DANS DES 
             CAMPAGNES MULTICANALES.
           </h3>
         </motion.div>
