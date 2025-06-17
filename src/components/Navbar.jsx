@@ -6,6 +6,7 @@ import {
   X, 
   ChevronDown
 } from 'lucide-react';
+import Link from 'next/link'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +36,7 @@ const Navbar = () => {
       href: '/about',
       dropdown: ['Notre équipe', 'Notre histoire', 'Nos valeurs']
     },
-    { name: 'Actualité', href: '/projects' }
+    // { name: 'Actualité', href: '/projects' }
   ];
 
   return (
@@ -74,8 +75,8 @@ const Navbar = () => {
                   href={item.href}
                   className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     isScrolled 
-                      ? 'text-[#002144] hover:text-[#48A9FE]' 
-                      : 'text-white hover:text-[#48A9FE]'
+                      ? 'text-[#002144] hover:text-[#002144]' 
+                      : 'text-white hover:text-[#002144]'
                   }`}
                 >
                   <span>{item.name}</span>
@@ -107,6 +108,7 @@ const Navbar = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
+          <Link href="/devis">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -114,6 +116,7 @@ const Navbar = () => {
             >
               Demandez un devis
             </motion.button>
+            </Link>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -155,10 +158,10 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="pt-4 space-y-2">
-                <button className="w-full px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-full font-medium">
+                <button className="w-full px-4 py-2 bg-[#48A9FE] text-white rounded-full font-medium">
                   Demandez un devis
                 </button>
-                <button className="w-full px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-full font-medium">
+                <button className="w-full px-4 py-2 bg-[#48A9FE] text-white rounded-full font-medium">
                   Contact
                 </button>
               </div>
