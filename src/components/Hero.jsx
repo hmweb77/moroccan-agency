@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 const HeroSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -39,12 +40,13 @@ const HeroSection = () => {
             }}
             transition={{ duration: 1 }}
           >
-            <img
+            <Image
               src={image}
               alt={`Hero background ${index + 1}`}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
-            {/* Overlay to maintain text readability */}
+       
 
           </motion.div>
         ))}

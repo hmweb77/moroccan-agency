@@ -2,31 +2,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
+import Image from 'next/image';
 
 const HowWeWork = () => {
   const steps = [
     {
       number: "01.",
-      title: "SIMULATION",
+      title: "ANALYSE EXPRESS",
       description: "Remplissez le simulateur de devis en quelques secondes.",
+      image:"/process1.png",
       imageAlt: "Person using laptop simulation"
     },
     {
       number: "02.",
-      title: "CONTACT",
-      description: "Un chef de projet prendra contact avec vous dans les 8 heures qui suivent.",
+      title: "DÉMARRAGE PERSONNALISÉ",
+      description: "Un chef de projet vous contacte sous 8h pour valider les objectifs et vous guider vers la meilleure approche.",
+      image:"/process2.png",
       imageAlt: "Smiling person with glasses"
     },
     {
       number: "03.",
-      title: "COMMANDE",
-      description: "Saisissez votre brief et transférez nous vos pièces justificatives.",
+      title: "STRATÉGIE SUR-MESURE",
+      description: "Nous analysons votre besoin en profondeur et concevons une stratégie digitale sur-mesure, centrée sur la performance et vos objectifs business.",
+      image:"/process3.png",
       imageAlt: "Person working on laptop"
     },
     {
       number: "04.",
-      title: "LIVRAISON",
-      description: "Vous recevez votre commande dans moins de 7 jours.",
+      title: "LANCEMENT & CROISSANCE",
+      description: "Votre projet est lancé en moins de 7 jours, avec un suivi continu, des optimisations et des résultats concrets dès les premières semaines.",
+      image:"/process5.png",
       imageAlt: "Delivery completion"
     }
   ];
@@ -66,18 +71,13 @@ const HowWeWork = () => {
               {/* Image Section */}
               <div className={`${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
                 <div className="relative h-[400px] lg:h-[500px] bg-gray-200 rounded-2xl overflow-hidden shadow-xl">
-                  {/* Placeholder for image */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center">
-                    <div className="text-center text-gray-600">
-                      <div className="w-24 h-24 mx-auto mb-4 bg-white/30 rounded-full flex items-center justify-center">
-                        <span className="text-2xl font-bold">{step.number}</span>
-                      </div>
-                      <p className="text-sm">{step.imageAlt}</p>
-                    </div>
-                  </div>
-                  
-                  {/* Overlay gradient for better text readability if needed */}
-                  <div className="absolute inset-0 bg-black/10"></div>
+                  <Image
+                    src={step.image}
+                    alt={step.imageAlt}
+                    fill
+                    className="object-cover"
+                
+                  />
                 </div>
               </div>
 
