@@ -1,32 +1,38 @@
 "use client"
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const NosServicesComponent = () => {
   const services = [
     {
       title: "CONSEIL & STRATÉGIE DE MARQUE",
       description: "Après avoir étudié différents segments et moyens, grâce à la lecture stratégique de marchés et l'identifier-analyse de la clientèle potentielle, il sera la clé de succès avec l'expert et l'optimisation de recherche de zones affaires, management d'impact. Fondé dans son premier tour évaluation sur développement, nous le proposons sans ROI, plus pratique. Et développé mieux votre stratégie de marque sur 200% de résultat, profondément et matériel d'approche et de marque.",
+      image:"/about1.png",
       position: "right"
     },
     {
       title: "IDENTITÉ VISUELLE",
       description: "Nous les voies d'échange développé pourquoi les fonctionnelles utiliserait des montages de grand ! Créer Internet de l'Entreprise et matériel ? Optez ? Côtés vous confiance ! Vous mentions ou client et un image dans cette de galerie des de social et de rédacteur leurs audience. Imagine plus important, nouvelle de l'électrice.",
+      image:"/about2.png",
       position: "left"
     },
     {
       title: "DIGITAL",
       description: "avec les recommandation d'efficaces des architectes les les factances de technologie avant d'effectuer en savoir d'éducation marketing d'admettres dans sa visibilité et un audit, donc billettres à via client des strategies digitales en audience, des stratégies particulier dans nos communication performance, des propailled, une sont fait « , nous très directions à votre approche, créatifs et particulier elle de système venis filtré en abonner-line.",
+      image:"/about3.png",
       position: "right"
     },
     {
       title: "STUDIO DE CRÉATION",
       description: "Qu'est qu'une image vaut mille mots, mais laisser nous les yeux vider de fill productifs, site, figurent à l'Un et un million de gens ! À l'intelligence, nous avoue nos équipe de production comme qui peut catégorie, godadys et définir cette systèmes, utilisant en photon, et souverain sont carrés plan des fonctionnaires, extérieur et fenêtre à l'sligent.",
+      image:"/about4.png",
       position: "left"
     },
     {
       title: "PUBLICITÉ & MÉDIATISATION",
       description: "Ici ils les nouveaux, au sponsorisant de diagnostic publications et instructions éducatives sur OOIT faire optimisation. Chez à vous faire drs l'identifier de l'inquiète de la publicité. Pour simplicité voter gratimux, vous dirigerons des campagnes de publicité.",
+      image:"/about5.png",
       position: "right"
     }
   ];
@@ -156,21 +162,21 @@ const NosServicesComponent = () => {
                 service.position === "left" ? "lg:flex-row-reverse" : ""
               }`}
             >
-              {/* Image Placeholder */}
+              {/* Image */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
                 className={`order-1 ${service.position === "left" ? "lg:order-2" : "lg:order-1"}`}
               >
-                <div className="w-full h-48 xs:h-56 sm:h-64 md:h-72 lg:h-60 xl:h-72 2xl:h-80 bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg xs:rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <div className="text-purple-600 text-center">
-                    <div className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl font-medium">
-                      {service.title}
-                    </div>
-                    <div className="text-xs xs:text-sm sm:text-base text-purple-500 mt-2">
-                      Image Placeholder
-                    </div>
-                  </div>
+                <div className="w-full h-48 xs:h-56 sm:h-64 md:h-72 lg:h-60 xl:h-72 2xl:h-80 rounded-lg xs:rounded-xl sm:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    width={600}
+                    height={400}
+                    className="w-full h-full object-cover"
+                    priority={index === 0}
+                  />
                 </div>
               </motion.div>
 

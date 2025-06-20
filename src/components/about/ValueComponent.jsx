@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const ValueComponent = () => {
   const cardVariants = {
@@ -54,17 +55,17 @@ const ValueComponent = () => {
             <div className="h-1 xs:h-1.5 sm:h-2 bg-gradient-to-r from-blue-500 to-blue-600"></div>
             
             <div className="p-4 xs:p-5 sm:p-6 md:p-7 lg:p-6 xl:p-8 2xl:p-10">
-              {/* Illustration Placeholder */}
+              {/* Mission Image */}
               <div className="mb-4 xs:mb-5 sm:mb-6 md:mb-7 lg:mb-6 xl:mb-8 flex justify-center">
-                <div className="w-32 h-24 xs:w-36 xs:h-28 sm:w-44 sm:h-32 md:w-52 md:h-36 lg:w-40 lg:h-30 xl:w-48 xl:h-36 2xl:w-56 2xl:h-40 bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg xs:rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <div className="text-purple-600 text-center">
-                    <div className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-base xl:text-lg font-medium">
-                      Mission Illustration
-                    </div>
-                    <div className="text-xs xs:text-sm text-purple-500 mt-1">
-                      Placeholder
-                    </div>
-                  </div>
+                <div className="w-32 h-24 xs:w-36 xs:h-28 sm:w-44 sm:h-32 md:w-52 md:h-36 lg:w-40 lg:h-30 xl:w-48 xl:h-36 2xl:w-56 2xl:h-40 rounded-lg xs:rounded-xl overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                  <Image
+                    src="/mission.png"
+                    alt="Notre Mission"
+                    width={424}
+                    height={160}
+                    className="w-full h-full object-cover"
+                    priority
+                  />
                 </div>
               </div>
 
@@ -105,17 +106,16 @@ const ValueComponent = () => {
             <div className="h-1 xs:h-1.5 sm:h-2 bg-gradient-to-r from-blue-500 to-blue-600"></div>
             
             <div className="p-4 xs:p-5 sm:p-6 md:p-7 lg:p-6 xl:p-8 2xl:p-10">
-              {/* Illustration Placeholder */}
+              {/* Values Image */}
               <div className="mb-4 xs:mb-5 sm:mb-6 md:mb-7 lg:mb-6 xl:mb-8 flex justify-center">
-                <div className="w-32 h-24 xs:w-36 xs:h-28 sm:w-44 sm:h-32 md:w-52 md:h-36 lg:w-40 lg:h-30 xl:w-48 xl:h-36 2xl:w-56 2xl:h-40 bg-gradient-to-br from-pink-200 to-purple-200 rounded-lg xs:rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                  <div className="text-purple-600 text-center">
-                    <div className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-base xl:text-lg font-medium">
-                      Values Illustration
-                    </div>
-                    <div className="text-xs xs:text-sm text-purple-500 mt-1">
-                      Placeholder
-                    </div>
-                  </div>
+                <div className="w-32 h-24 xs:w-36 xs:h-28 sm:w-44 sm:h-32 md:w-52 md:h-36 lg:w-40 lg:h-30 xl:w-48 xl:h-36 2xl:w-56 2xl:h-40 rounded-lg xs:rounded-xl overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                  <Image
+                    src="/valeurs.png"
+                    alt="Nos Valeurs"
+                    width={224}
+                    height={160}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
