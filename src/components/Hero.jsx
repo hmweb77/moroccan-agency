@@ -1,27 +1,57 @@
 "use client"
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  
+  // Placeholder images - replace with your actual image paths
+  const backgroundImages = [
+    '/photo_2025-06-19_17-51-52.jpg',
+    '/photo_2025-06-19_17-51-55.jpg', 
+    '/photo_2025-06-19_17-51-58.jpg',
+    '/photo_2025-06-19_17-52-01.jpg'
+  ];
+
+  // Auto-carousel effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 4000); // Change image every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [backgroundImages.length]);
+
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-[#002144] via-purple-900 to-[#002144] overflow-hidden">
-      {/* Background Pattern */}
+      {/* Background Carousel */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source src="/heroWebsite.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        {backgroundImages.map((image, index) => (
+          <motion.div
+            key={index}
+            className="absolute inset-0 w-full h-full"
+            initial={{ opacity: 0 }}
+            animate={{ 
+              opacity: index === currentImageIndex ? 1 : 0 
+            }}
+            transition={{ duration: 1 }}
+          >
+            <img
+              src={image}
+              alt={`Hero background ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
+            {/* Overlay to maintain text readability */}
+
+          </motion.div>
+        ))}
       </div>
 
       <div className="relative z-10 flex items-center min-h-screen">
-        <div className="max-w-7xl  px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-start">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -45,8 +75,6 @@ const HeroSection = () => {
               </span>
             </motion.div>
 
-           
-
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -59,6 +87,21 @@ const HeroSection = () => {
             </motion.div>
           </div>
         </div>
+      </div>
+
+      {/* Carousel Indicators */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex space-x-2">
+        {backgroundImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentImageIndex(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentImageIndex 
+                ? 'bg-white scale-110' 
+                : 'bg-white bg-opacity-50 hover:bg-opacity-75'
+            }`}
+          />
+        ))}
       </div>
 
       {/* Floating Elements */}
