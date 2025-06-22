@@ -27,7 +27,7 @@ const HeroSection = () => {
   }, [backgroundImages.length]);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-[#002144] via-purple-900 to-[#002144] overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-br from-[#002144] via-blue-900 to-[#002144] overflow-hidden">
       {/* Background Carousel */}
       <div className="absolute inset-0 z-0">
         {backgroundImages.map((image, index) => (
@@ -82,7 +82,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.1 }}
             >
-              <button className="group bg-gradient-to-r from-[#48A9FE] to-[#002144] text-white px-8 py-4 rounded-full font-bold text-lg hover:from-[#48A9FE] hover:to-purple-700 transition-all duration-300 flex items-center space-x-2 mx-auto">
+              <button className="group bg-gradient-to-r from-[#48A9FE] to-[#002144] text-white px-8 py-4 rounded-full font-bold text-lg hover:from-[#48A9FE] hover:to-blue-700 transition-all duration-300 flex items-center space-x-2 mx-auto">
                 <span>J'EN PROFITE</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
@@ -117,7 +117,7 @@ const HeroSection = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute top-1/4 left-10 w-20 h-20 bg-gradient-to-br from-[#48A9FE] to-purple-600 rounded-lg opacity-20"
+        className="absolute top-1/4 left-10 w-20 h-20 bg-gradient-to-br from-[#48A9FE] to-blue-600 rounded-lg opacity-20"
       />
 
       <motion.div
@@ -131,7 +131,7 @@ const HeroSection = () => {
           ease: "easeInOut",
           delay: 2
         }}
-        className="absolute bottom-1/4 right-10 w-16 h-16 bg-gradient-to-br from-purple-400 to-[#48A9FE] rounded-full opacity-20"
+        className="absolute bottom-1/4 right-10 w-16 h-16 bg-gradient-to-br from-blue-400 to-[#48A9FE] rounded-full opacity-20"
       />
     </div>
   );

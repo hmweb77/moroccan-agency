@@ -7,6 +7,7 @@ import {
   ChevronDown
 } from 'lucide-react';
 import Link from 'next/link'
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,15 +53,19 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2"
-          >
-           
-            <span className={`font-bold text-xl ${isScrolled ? 'text-[#002144]' : 'text-white'}`}>
-            NEXTDIGITS
-            </span>
-          </motion.div>
+
+<motion.div
+  whileHover={{ scale: 1.05 }}
+  className="flex items-center space-x-2"
+>
+  <Image
+    src="/Next_Digits_V2_48A9FE.png"
+    alt="NEXTDIGITS Logo"
+    width={120} // Adjust as needed
+    height={32} // Adjust as needed
+    className="w-auto h-12 "
+  />
+</motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">

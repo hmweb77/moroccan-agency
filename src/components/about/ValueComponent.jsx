@@ -183,7 +183,7 @@ const ValueComponent = () => {
             ease: "easeInOut",
             delay: 5
           }}
-          className="hidden xl:block absolute top-2/3 left-1/3 w-4 h-4 2xl:w-6 2xl:h-6 bg-purple-300 rounded-full opacity-15"
+          className="hidden xl:block absolute top-2/3 left-1/3 w-4 h-4 2xl:w-6 2xl:h-6 bg-blue-300 rounded-full opacity-15"
         />
       </div>
     </div>

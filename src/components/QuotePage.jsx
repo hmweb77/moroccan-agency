@@ -213,7 +213,7 @@ const QuoteSimulatorPage = () => {
             className="bg-white rounded-lg xs:rounded-xl sm:rounded-2xl lg:rounded-3xl shadow-2xl p-4 xs:p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 relative overflow-hidden"
           >
             {/* Form Background Pattern */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full opacity-50 transform translate-x-16 -translate-y-16"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-100 to-blue-100 rounded-full opacity-50 transform translate-x-16 -translate-y-16"></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-pink-100 to-blue-100 rounded-full opacity-50 transform -translate-x-12 translate-y-12"></div>
 
             <div className="relative z-10">

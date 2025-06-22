@@ -8,7 +8,7 @@ const OurExpertise = () => {
     {
       id: 1,
       alt: "Team collaboration",
-      gradient: "from-blue-400 to-purple-500"
+      gradient: "from-blue-400 to-blue-500"
     },
     {
       id: 2,
@@ -23,7 +23,7 @@ const OurExpertise = () => {
     {
       id: 4,
       alt: "Business presentation",
-      gradient: "from-purple-400 to-pink-500"
+      gradient: "from-blue-400 to-pink-500"
     }
   ];
 
@@ -47,7 +47,7 @@ const OurExpertise = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-lg md:text-xl font-semibold text-purple-600 mb-4 tracking-wider uppercase">
+              <h2 className="text-lg md:text-xl font-semibold text-blue-600 mb-4 tracking-wider uppercase">
                 NOTRE EXPERTISE
               </h2>
               <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002144] leading-tight">
