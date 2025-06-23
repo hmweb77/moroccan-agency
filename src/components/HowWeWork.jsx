@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HowWeWork = () => {
   const steps = [
@@ -109,9 +110,11 @@ const HowWeWork = () => {
                     viewport={{ once: true }}
                     className="pt-8"
                   >
+                    <Link href="/devis">
                     <button className="bg-gradient-to-r from-[#48A9FE] to-[#002144] text-white px-8 py-4 rounded-full font-bold text-lg hover:from-[#002144] hover:to-[#48A9FE] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
                       Lancez-vous
                     </button>
+                    </Link>
                   </motion.div>
                 )}
               </div>

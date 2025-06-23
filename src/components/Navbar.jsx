@@ -1,13 +1,9 @@
-"use client"
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Menu, 
-  X, 
-  ChevronDown
-} from 'lucide-react';
-import Link from 'next/link'
-import Image from 'next/image';
+"use client";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ChevronDown } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,27 +11,26 @@ const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const handleScroll = () => {
         setIsScrolled(window.scrollY > 50);
       };
-      window.addEventListener('scroll', handleScroll);
-      return () => window.removeEventListener('scroll', handleScroll);
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
     }
   }, []);
-  
 
   const navItems = [
-    { name: 'Accueil', href: '/' },
-    { 
-      name: 'Notre Expertise', 
-      href: '/services',
-      dropdown: ['Web Design', 'Digital Marketing', 'SEO', 'Branding']
+    { name: "Accueil", href: "/" },
+    {
+      name: "Notre Expertise",
+      href: "/services",
+      dropdown: ["Web Design", "Digital Marketing", "SEO", "Branding"],
     },
-    { 
-      name: 'À propos', 
-      href: '/about',
-      dropdown: ['Notre équipe', 'Notre histoire', 'Nos valeurs']
+    {
+      name: "À propos",
+      href: "/about",
+      dropdown: ["Notre équipe", "Notre histoire", "Nos valeurs"],
     },
     // { name: 'Actualité', href: '/projects' }
   ];
@@ -45,27 +40,27 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white shadow-lg backdrop-blur-md' 
-          : 'bg-transparent'
+        isScrolled ? "bg-white shadow-lg backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
 
-<motion.div
-  whileHover={{ scale: 1.05 }}
-  className="flex items-center space-x-2"
->
-  <Image
-    src="/Next_Digits_V2_48A9FE.png"
-    alt="NEXTDIGITS Logo"
-    width={120} // Adjust as needed
-    height={32} // Adjust as needed
-    className="w-auto h-12 "
-  />
-</motion.div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="flex items-center space-x-2"
+          >
+            <Link href="/">
+              <Image
+                src="/Next_Digits_V2_48A9FE.png"
+                alt="NEXTDIGITS Logo"
+                width={120} // Adjust as needed
+                height={32} // Adjust as needed
+                className="w-auto h-12 "
+              />
+            </Link>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
@@ -79,15 +74,15 @@ const Navbar = () => {
                 <a
                   href={item.href}
                   className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isScrolled 
-                      ? 'text-[#002144] hover:text-[#002144]' 
-                      : 'text-white hover:text-[#002144]'
+                    isScrolled
+                      ? "text-[#002144] hover:text-[#002144]"
+                      : "text-white hover:text-[#002144]"
                   }`}
                 >
                   <span>{item.name}</span>
                   {item.dropdown && <ChevronDown className="w-4 h-4" />}
                 </a>
-                
+
                 {/* Dropdown */}
                 {item.dropdown && activeDropdown === index && (
                   <motion.div
@@ -113,15 +108,16 @@ const Navbar = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
-          <Link href="/devis">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-6 py-2 bg-[#48A9FE] text-white rounded-full font-medium "
-            >
-              Demandez un devis
-            </motion.button>
+            <Link href="/devis">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-2 bg-[#48A9FE] text-white rounded-full font-medium "
+              >
+                Demandez un devis
+              </motion.button>
             </Link>
+            <Link href="/contact">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -129,15 +125,20 @@ const Navbar = () => {
             >
               Contact
             </motion.button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
           <div className="lg:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`p-2 rounded-md ${isScrolled ? 'text-[#002144]' : 'text-white'}`}
+              className={`p-2 rounded-md ${isScrolled ? "text-[#002144]" : "text-white"}`}
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -148,7 +149,7 @@ const Navbar = () => {
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="lg:hidden bg-white border-t border-gray-200"
           >

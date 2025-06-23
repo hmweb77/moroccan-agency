@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUp } from 'lucide-react';
+import Link from 'next/link';
 
 const AboutCTA = () => {
   return (
@@ -38,6 +39,7 @@ const AboutCTA = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
+            <Link href="/about">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -45,6 +47,7 @@ const AboutCTA = () => {
             >
               À propos de nous
             </motion.button>
+            </Link>
           </motion.div>
         </div>
       </motion.section>
@@ -107,6 +110,7 @@ const AboutCTA = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             viewport={{ once: true }}
           >
+            <Link href="/devis">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -114,6 +118,7 @@ const AboutCTA = () => {
             >
               Rejoignez-nous
             </motion.button>
+            </Link>
           </motion.div>
         </div>
       </motion.section>

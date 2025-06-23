@@ -44,8 +44,8 @@ const Footer = () => {
     { text: "Accueil", href: "/" },
     { text: "Notre Expertise", href: "/services" },
     { text: "À propos", href: "/about" },
-    { text: "Actualité", href: "/projects" },
-    { text: "Demandez un devis", href: "/quote" }
+
+    { text: "Demandez un devis", href: "/devis" }
   ];
 
   return (

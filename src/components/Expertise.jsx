@@ -10,6 +10,7 @@ import {
   ArrowRight,
   ArrowUp
 } from 'lucide-react';
+import Link from 'next/link';
 
 const Expertise = () => {
   const services = [
@@ -131,6 +132,7 @@ const Expertise = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link href="/devis">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -138,7 +140,8 @@ const Expertise = () => {
             >
               Commencer maintenant
             </motion.button>
-            
+            </Link>
+            <Link href="/about">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -146,6 +149,7 @@ const Expertise = () => {
             >
               En savoir plus
             </motion.button>
+            </Link>
           </div>
         </motion.div>
 

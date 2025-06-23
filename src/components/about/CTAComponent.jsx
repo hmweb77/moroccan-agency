@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const CTAComponent = () => {
   return (
@@ -44,6 +45,7 @@ const CTAComponent = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex-shrink-0"
             >
+              <Link href="/devis">
               <motion.button
                 whileHover={{ 
                   scale: 1.05,
@@ -54,6 +56,7 @@ const CTAComponent = () => {
               >
                 OUI
               </motion.button>
+              </Link>
             </motion.div>
           </div>
 

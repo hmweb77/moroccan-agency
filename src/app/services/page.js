@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar'
 import React from 'react'
 import QuoteSimulator from '@/components/Quote'
 import NosServicesComponent from '@/components/services/NosServices'
+import Footer from '@/components/Footer'
 
 export default function page() {
   return (
@@ -14,6 +15,7 @@ export default function page() {
 <QuoteSimulator></QuoteSimulator>
 <OurExpertise></OurExpertise>
 <NosServicesComponent></NosServicesComponent>
+<Footer></Footer>
 </>
   )
 }
