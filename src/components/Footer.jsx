@@ -24,7 +24,7 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: <Twitter className="w-5 h-5" />, href: "#", label: "Twitter" },
+ 
     { icon: <Facebook className="w-5 h-5" />, href: "#", label: "Facebook" },
     { icon: <Linkedin className="w-5 h-5" />, href: "#", label: "LinkedIn" },
     { icon: <Instagram className="w-5 h-5" />, href: "#", label: "Instagram" },
@@ -35,9 +35,9 @@ const Footer = () => {
     { icon: <Facebook className="w-4 h-4" />, text: "Facebook", href: "#" },
     { icon: <Instagram className="w-4 h-4" />, text: "Instagram", href: "#" },
     { icon: <MessageCircle className="w-4 h-4" />, text: "Whatsapp", href: "#" },
-    { icon: <Phone className="w-4 h-4" />, text: "07 08 00 00 18", href: "tel:0708000018" },
-    { icon: <Mail className="w-4 h-4" />, text: "info@medialaoui.com", href: "mailto:info@medialaoui.com" },
-    { icon: <MapPin className="w-4 h-4" />, text: "Magasin 20, Mall des Ambassadeurs, Av. Mohamed VI, Rabat", href: "#" }
+    { icon: <Phone className="w-4 h-4" />, text: "07 08 00 00 18", href: "tel:00000000" },
+    { icon: <Mail className="w-4 h-4" />, text: "contact@nextdigits.com", href: "mailto:contact@nextdigits.com" },
+    { icon: <MapPin className="w-4 h-4" />, text: "Rabat", href: "#" }
   ];
 
   const usefulLinks = [
