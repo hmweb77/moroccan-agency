@@ -4,11 +4,15 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { translations } from '@/translations/translations';
+import { Button } from '@/selector/ui';
 
 const HeroSection = () => {
+  const { language } = useLanguage();
+  const t = translations[language].hero;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
-  // Placeholder images - replace with your actual image paths
   const backgroundImages = [
     '/photo_2025-06-19_17-51-52.jpg',
     '/photo_2025-06-19_17-51-55.jpg', 
@@ -16,13 +20,12 @@ const HeroSection = () => {
     '/photo_2025-06-19_17-52-01.jpg'
   ];
 
-  // Auto-carousel effect
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => 
         prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
       );
-    }, 4000); // Change image every 4 seconds
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [backgroundImages.length]);
@@ -47,8 +50,6 @@ const HeroSection = () => {
               fill
               className="object-cover"
             />
-       
-
           </motion.div>
         ))}
       </div>
@@ -62,9 +63,9 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-4xl md:text-6xl lg:text-6xl font-bold text-white mb-6"
             >
-              LANCEZ VOUS<br />
-              EN PROFITANT
-              DE NOS
+              {t.title1}<br />
+              {t.title2}<br />
+              {t.title3}
             </motion.h1>
 
             <motion.div
@@ -74,7 +75,7 @@ const HeroSection = () => {
               className="relative bg-white inline-block mb-8"
             >
               <span className="text-4xl md:text-6xl lg:text-6xl font-bold bg-gradient-to-r from-[#48A9FE] to-[#002144] bg-clip-text text-transparent">
-              PACKS EXCLUSIFS
+                {t.highlight}
               </span>
             </motion.div>
 
@@ -84,11 +85,14 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 1.1 }}
             >
               <Link href="/devis">
-              
-              <button className="group bg-gradient-to-r from-[#48A9FE] to-[#002144] text-white px-8 py-4 rounded-full font-bold text-lg hover:from-[#48A9FE] hover:to-blue-700 transition-all duration-300 flex items-center space-x-2 ">
-                <span>J'EN PROFITE</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+                <Button 
+                  variant="gradient" 
+                  size="lg"
+                  className="group"
+                >
+                  <span>{t.cta}</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
               </Link>
             </motion.div>
           </div>

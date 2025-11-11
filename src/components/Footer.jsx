@@ -1,30 +1,24 @@
 "use client"
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Facebook, 
   Instagram, 
-  Twitter, 
   Linkedin, 
   MessageCircle,
   Phone,
   Mail,
-  MapPin,
-  ArrowUp
+  MapPin
 } from 'lucide-react';
+import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { translations } from '@/translations/translations';
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
-
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    console.log('Newsletter subscription:', email);
-    setEmail('');
-    // Handle newsletter subscription here
-  };
+  const { language } = useLanguage();
+  const t = translations[language].footer;
 
   const socialLinks = [
- 
     { icon: <Facebook className="w-5 h-5" />, href: "#", label: "Facebook" },
     { icon: <Linkedin className="w-5 h-5" />, href: "#", label: "LinkedIn" },
     { icon: <Instagram className="w-5 h-5" />, href: "#", label: "Instagram" },
@@ -35,17 +29,16 @@ const Footer = () => {
     { icon: <Facebook className="w-4 h-4" />, text: "Facebook", href: "#" },
     { icon: <Instagram className="w-4 h-4" />, text: "Instagram", href: "#" },
     { icon: <MessageCircle className="w-4 h-4" />, text: "Whatsapp", href: "#" },
-    { icon: <Phone className="w-4 h-4" />, text: "07 08 00 00 18", href: "tel:00000000" },
+    { icon: <Phone className="w-4 h-4" />, text: "07 08 00 00 18", href: "tel:0708000018" },
     { icon: <Mail className="w-4 h-4" />, text: "contact@nextdigits.com", href: "mailto:contact@nextdigits.com" },
     { icon: <MapPin className="w-4 h-4" />, text: "Rabat", href: "#" }
   ];
 
   const usefulLinks = [
-    { text: "Accueil", href: "/" },
-    { text: "Notre Expertise", href: "/services" },
-    { text: "À propos", href: "/about" },
-
-    { text: "Demandez un devis", href: "/devis" }
+    { text: t.links.home, href: "/" },
+    { text: t.links.expertise, href: "/services" },
+    { text: t.links.about, href: "/about" },
+    { text: t.links.quote, href: "/devis" }
   ];
 
   return (
@@ -61,17 +54,13 @@ const Footer = () => {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            {/* Logo */}
             <div className="flex items-center space-x-2 mb-6">
-             
               <span className="font-bold text-lg text-[#48A9FE]">NextDigits</span>
             </div>
 
-            {/* Copyright */}
             <div className="space-y-2 text-sm text-gray-600">
               <p>© 2025 <span className="font-semibold text-[#002144]">NextDigits</span></p>
-              <p>Tous les droits sont réservés.</p>
-              
+              <p>{t.copyright}</p>
             </div>
 
             {/* Social Icons */}
@@ -99,7 +88,7 @@ const Footer = () => {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-bold text-[#002144] mb-6">Contactez-Nous</h3>
+            <h3 className="text-lg font-bold text-[#002144] mb-6">{t.contact}</h3>
             <div className="space-y-3">
               {contactInfo.map((contact, index) => (
                 <motion.a
@@ -125,17 +114,19 @@ const Footer = () => {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-bold text-[#002144] mb-6">Liens utiles</h3>
+            <h3 className="text-lg font-bold text-[#002144] mb-6">{t.usefulLinks}</h3>
             <div className="space-y-3">
               {usefulLinks.map((link, index) => (
-                <motion.a
-                  key={index}
-                  href={link.href}
-                  whileHover={{ x: 3 }}
-                  className="block text-gray-600 hover:text-[#48A9FE]  transition-colors text-sm"
-                >
-                  {link.text}
-                </motion.a>
+                <motion.div key={index}>
+                  <Link
+                    href={link.href}
+                    className="block text-gray-600 hover:text-[#48A9FE] transition-colors text-sm"
+                  >
+                    <motion.span whileHover={{ x: 3 }}>
+                      {link.text}
+                    </motion.span>
+                  </Link>
+                </motion.div>
               ))}
             </div>
           </motion.div>

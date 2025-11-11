@@ -7,18 +7,17 @@ import Navbar from "@/components/Navbar";
 import QuoteSimulator from "@/components/Quote";
 import WhyChooseUs from "@/components/WhyUs";
 
-
 export default function Home() {
   return (
     <>
-   <Navbar></Navbar>
-   <HeroSection></HeroSection>
-  <QuoteSimulator></QuoteSimulator>
-  <WhyChooseUs></WhyChooseUs>
-  <HowWeWork></HowWeWork>
-  <Expertise></Expertise>
-  <AboutCTA></AboutCTA>
-  <Footer></Footer>
+      <Navbar />
+      <HeroSection />
+      <QuoteSimulator />
+      <WhyChooseUs />
+      <HowWeWork />
+      <Expertise />
+      <AboutCTA />
+      <Footer />
     </>
   );
 }

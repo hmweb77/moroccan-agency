@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/translations/translations";
+import { Button } from "@/selector/ui";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,7 +27,6 @@ const Navbar = () => {
     }
   }, []);
 
-  // Close mobile menu on resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
@@ -37,7 +37,6 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -197,22 +196,14 @@ const Navbar = () => {
             </div>
 
             <Link href="/devis">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-2 bg-[#48A9FE] text-white rounded-full font-medium hover:bg-[#3890DD] transition-colors shadow-md"
-              >
+              <Button variant="primary" size="md">
                 {t.quote}
-              </motion.button>
+              </Button>
             </Link>
             <Link href="/contact">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-2 bg-[#48A9FE] text-white rounded-full font-medium hover:bg-[#3890DD] transition-colors shadow-md"
-              >
+              <Button variant="primary" size="md">
                 {t.contact}
-              </motion.button>
+              </Button>
             </Link>
           </div>
 
@@ -278,7 +269,6 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -287,7 +277,6 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
-            {/* Menu Content */}
             <motion.div
               initial={{ opacity: 0, x: "100%" }}
               animate={{ opacity: 1, x: 0 }}
@@ -326,17 +315,17 @@ const Navbar = () => {
                     href="/devis"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <button className="w-full px-4 py-3 bg-[#48A9FE] text-white rounded-full font-medium hover:bg-[#3890DD] transition-colors shadow-md">
+                    <Button variant="primary" className="w-full">
                       {t.quote}
-                    </button>
+                    </Button>
                   </Link>
                   <Link
                     href="/contact"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <button className="w-full px-4 py-3 bg-[#48A9FE] text-white rounded-full font-medium hover:bg-[#3890DD] transition-colors shadow-md">
+                    <Button variant="primary" className="w-full">
                       {t.contact}
-                    </button>
+                    </Button>
                   </Link>
                 </div>
               </div>

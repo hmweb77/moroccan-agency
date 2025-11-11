@@ -1,38 +1,38 @@
 "use client"
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Gauge, 
-  Clock, 
-  TrendingUp, 
-  Shuffle
-} from 'lucide-react';
+import { Gauge, Clock, TrendingUp, Shuffle } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { translations } from '@/translations/translations';
+import { Card } from '@/selector/ui';
 
 const WhyChooseUs = () => {
+  const { language } = useLanguage();
+  const t = translations[language].whyUs;
+
   const features = [
     {
       icon: <Gauge className="w-16 h-16 lg:w-12 lg:h-12" />,
-      title: "RAPIDITÉ",
-      description: "Des solutions rapides et efficaces pour vos projets digitaux"
+      title: t.speed.title,
+      description: t.speed.description
     },
     {
       icon: <Clock className="w-16 h-16 lg:w-12 lg:h-12" />,
-      title: "RÉPONSE EN TEMPS RÉEL",
-      description: "Communication instantanée et suivi en continu"
+      title: t.realtime.title,
+      description: t.realtime.description
     },
     {
       icon: <TrendingUp className="w-16 h-16 lg:w-12 lg:h-12" />,
-      title: "EFFICACITÉ",
-      description: "Résultats mesurables et performance optimisée"
+      title: t.efficiency.title,
+      description: t.efficiency.description
     },
     {
       icon: <Shuffle className="w-16 h-16 lg:w-12 lg:h-12" />,
-      title: "FLEXIBILITÉ",
-      description: "Solutions adaptées à vos besoins spécifiques"
+      title: t.flexibility.title,
+      description: t.flexibility.description
     }
   ];
 
-  // Animation variants for better organization
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -52,16 +52,6 @@ const WhyChooseUs = () => {
     }
   };
 
-  const titleVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.8 }
-    }
-  };
-
-  // Mobile Feature Component
   const MobileFeature = ({ feature, index }) => (
     <motion.div
       variants={itemVariants}
@@ -79,7 +69,6 @@ const WhyChooseUs = () => {
     </motion.div>
   );
 
-  // Desktop Feature Component
   const DesktopFeature = ({ feature, index }) => (
     <motion.div
       variants={itemVariants}
@@ -100,7 +89,6 @@ const WhyChooseUs = () => {
     </motion.div>
   );
 
-  // Section Title Component
   const SectionTitle = ({ isMobile = false }) => (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -109,29 +97,26 @@ const WhyChooseUs = () => {
       viewport={{ once: true }}
       className={`${isMobile ? 'text-center text-white' : 'text-white'}`}
     >
-      <h2 className={`font-bold leading-tight ${
+      <h2 className={`font-bold leading-tight whitespace-pre-line ${
         isMobile 
           ? 'text-4xl md:text-5xl' 
           : 'text-4xl md:text-5xl lg:text-6xl'
       }`}>
-        Pourquoi<br />
-        NextDigits?
+        {t.title}
       </h2>
     </motion.div>
   );
 
   return (
     <div className="py-20 overflow-hidden">
-      {/* Mobile Layout - Stacked Vertical */}
+      {/* Mobile Layout */}
       <div className="block lg:hidden">
-        {/* Mobile Header */}
         <div className="bg-[#48A9FE] py-12 mb-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <SectionTitle isMobile={true} />
           </div>
         </div>
 
-        {/* Mobile Features */}
         <div className="bg-gray-50 py-12">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -149,9 +134,8 @@ const WhyChooseUs = () => {
         </div>
       </div>
 
-      {/* Desktop Layout - Horizontal Design */}
+      {/* Desktop Layout */}
       <div className="hidden lg:flex min-h-[500px]">
-        {/* Left Section - Title */}
         <div className="bg-[#48A9FE] flex-1 flex items-center justify-center py-12">
           <div className="max-w-md">
             <motion.div
@@ -165,7 +149,6 @@ const WhyChooseUs = () => {
           </div>
         </div>
 
-        {/* Right Section - Features */}
         <div className="bg-white flex-1 flex items-center justify-center py-12">
           <div className="max-w-4xl mx-auto px-8">
             <motion.div
