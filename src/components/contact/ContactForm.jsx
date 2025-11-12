@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Send, Mail, Phone, MapPin } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Send, Mail, Phone, MapPin, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -13,10 +13,53 @@ const ContactForm = () => {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const [status, setStatus] = useState({
+    loading: false,
+    success: false,
+    error: null
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
+    setStatus({ loading: true, success: false, error: null });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Une erreur est survenue');
+      }
+
+      setStatus({ loading: false, success: true, error: null });
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setFormData({
+          prenom: '',
+          nom: '',
+          email: '',
+          telephone: '',
+          sujet: '',
+          message: ''
+        });
+        setStatus({ loading: false, success: false, error: null });
+      }, 3000);
+
+    } catch (error) {
+      setStatus({ 
+        loading: false, 
+        success: false, 
+        error: error.message || 'Une erreur est survenue. Veuillez réessayer.' 
+      });
+    }
   };
 
   const handleChange = (e) => {
@@ -60,7 +103,9 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-[#002144] mb-2">Email</h4>
-                  <p className="text-gray-600">contact@votre-entreprise.com</p>
+                  <a href="mailto:contact@nextdigits.com" className="text-gray-600 hover:text-[#48A9FE] transition-colors">
+                    contact@nextdigits.com
+                  </a>
                 </div>
               </div>
 
@@ -70,7 +115,9 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-[#002144] mb-2">Téléphone</h4>
-                  <p className="text-gray-600">+33 1 23 45 67 89</p>
+                  <a href="tel:0708000018" className="text-gray-600 hover:text-[#48A9FE] transition-colors">
+                    07 08 00 00 18
+                  </a>
                 </div>
               </div>
 
@@ -80,7 +127,7 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-[#002144] mb-2">Adresse</h4>
-                  <p className="text-gray-600">123 Rue de la Paix<br />75001 Paris, France</p>
+                  <p className="text-gray-600">Rabat, Maroc</p>
                 </div>
               </div>
             </div>
@@ -98,6 +145,36 @@ const ContactForm = () => {
               onSubmit={handleSubmit}
               className="bg-white p-8 rounded-lg shadow-lg"
             >
+              {/* Success Message */}
+              <AnimatePresence>
+                {status.success && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3"
+                  >
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <p className="text-green-800">
+                      Message envoyé avec succès! Nous vous répondrons dans les 24h.
+                    </p>
+                  </motion.div>
+                )}
+
+                {/* Error Message */}
+                {status.error && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3"
+                  >
+                    <AlertCircle className="w-5 h-5 text-red-600" />
+                    <p className="text-red-800">{status.error}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <motion.input
                   whileFocus={{ scale: 1.02 }}
@@ -108,6 +185,7 @@ const ContactForm = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#48A9FE] focus:border-transparent outline-none transition-all"
                   required
+                  disabled={status.loading}
                 />
                 
                 <motion.input
@@ -119,6 +197,7 @@ const ContactForm = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#48A9FE] focus:border-transparent outline-none transition-all"
                   required
+                  disabled={status.loading}
                 />
               </div>
 
@@ -132,6 +211,7 @@ const ContactForm = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#48A9FE] focus:border-transparent outline-none transition-all"
                   required
+                  disabled={status.loading}
                 />
                 
                 <motion.input
@@ -142,6 +222,7 @@ const ContactForm = () => {
                   value={formData.telephone}
                   onChange={handleChange}
                   className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#48A9FE] focus:border-transparent outline-none transition-all"
+                  disabled={status.loading}
                 />
               </div>
 
@@ -155,6 +236,7 @@ const ContactForm = () => {
                   onChange={handleChange}
                   className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#48A9FE] focus:border-transparent outline-none transition-all"
                   required
+                  disabled={status.loading}
                 />
               </div>
 
@@ -168,18 +250,29 @@ const ContactForm = () => {
                   rows="6"
                   className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#48A9FE] focus:border-transparent outline-none transition-all resize-vertical"
                   required
+                  disabled={status.loading}
                 />
               </div>
 
               <div className="text-center">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: status.loading ? 1 : 1.05 }}
+                  whileTap={{ scale: status.loading ? 1 : 0.95 }}
                   type="submit"
-                  className="bg-[#48A9FE] text-white px-12 py-4 rounded-full font-bold text-lg flex items-center space-x-2 mx-auto hover:bg-blue-600 transition-colors"
+                  disabled={status.loading}
+                  className="bg-[#48A9FE] text-white px-12 py-4 rounded-full font-bold text-lg flex items-center space-x-2 mx-auto hover:bg-blue-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <span>Envoyer le message</span>
-                  <Send className="w-5 h-5" />
+                  {status.loading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <span>Envoi en cours...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Envoyer le message</span>
+                      <Send className="w-5 h-5" />
+                    </>
+                  )}
                 </motion.button>
               </div>
             </form>

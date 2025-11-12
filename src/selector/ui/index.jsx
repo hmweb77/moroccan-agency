@@ -1,6 +1,38 @@
 "use client"
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Loader2 } from 'lucide-react';
+
+// ============================================
+// SECTION COMPONENT
+// ============================================
+export const Section = ({ children, bgColor = 'bg-white', className = '', ...props }) => (
+  <section className={`py-20 ${bgColor} ${className}`} {...props}>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {children}
+    </div>
+  </section>
+);
+
+// ============================================
+// SECTION TITLE COMPONENT
+// ============================================
+export const SectionTitle = ({ title, subtitle, className = '' }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+    viewport={{ once: true }}
+    className={`text-center mb-16 ${className}`}
+  >
+    <p className="text-[#48A9FE] text-base md:text-xl font-medium mb-4 tracking-wider uppercase">
+      {title}
+    </p>
+    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002144] leading-tight">
+      {subtitle}
+    </h2>
+  </motion.div>
+);
 
 // ============================================
 // BUTTON COMPONENT
@@ -19,7 +51,8 @@ export const Button = ({
     secondary: 'bg-[#002144] text-white hover:bg-[#003366] disabled:bg-gray-300',
     outline: 'border-2 border-[#48A9FE] text-[#48A9FE] hover:bg-[#48A9FE] hover:text-white disabled:border-gray-300 disabled:text-gray-300',
     ghost: 'text-[#48A9FE] hover:bg-[#48A9FE]/10 disabled:text-gray-300',
-    danger: 'bg-red-500 text-white hover:bg-red-600 disabled:bg-gray-300'
+    danger: 'bg-red-500 text-white hover:bg-red-600 disabled:bg-gray-300',
+    gradient: 'bg-gradient-to-r from-[#48A9FE] to-[#002144] text-white hover:from-[#3890DD] hover:to-[#002144] disabled:from-gray-300 disabled:to-gray-400'
   };
   
   const sizes = {
@@ -108,7 +141,7 @@ export const Select = ({
     )}
     <select
       className={`
-        w-full px-4 py-3 border rounded-lg transition-all appearance-none
+        w-full px-4 py-3 border rounded-lg transition-all appearance-none bg-white
         ${error 
           ? 'border-red-500 focus:ring-red-500 focus:border-red-500' 
           : 'border-gray-300 focus:ring-[#48A9FE] focus:border-[#48A9FE]'
@@ -419,12 +452,12 @@ export const Tooltip = ({
           `}
         >
           {content}
-          <div className="absolute w-2 h-2 bg-gray-900 rotate-45 
+          <div className={`absolute w-2 h-2 bg-gray-900 rotate-45 
             ${position === 'top' ? 'bottom-[-4px] left-1/2 -translate-x-1/2' : ''}
             ${position === 'bottom' ? 'top-[-4px] left-1/2 -translate-x-1/2' : ''}
             ${position === 'left' ? 'right-[-4px] top-1/2 -translate-y-1/2' : ''}
             ${position === 'right' ? 'left-[-4px] top-1/2 -translate-y-1/2' : ''}
-          " />
+          `} />
         </motion.div>
       )}
     </div>

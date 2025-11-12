@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Send } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { translations } from '@/translations/translations';
 import { Input, Select, Button, Section, SectionTitle } from '@/selector/ui';
@@ -19,9 +19,53 @@ const QuoteSimulator = () => {
     businessSize: ''
   });
 
-  const handleSubmit = (e) => {
+  const [status, setStatus] = useState({
+    loading: false,
+    success: false,
+    error: null
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setStatus({ loading: true, success: false, error: null });
+
+    try {
+      const response = await fetch('/api/quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Une erreur est survenue');
+      }
+
+      setStatus({ loading: false, success: true, error: null });
+      
+      // Reset form after 4 seconds
+      setTimeout(() => {
+        setFormData({
+          prenom: '',
+          nom: '',
+          email: '',
+          telephone: '',
+          service: '',
+          businessSize: ''
+        });
+        setStatus({ loading: false, success: false, error: null });
+      }, 4000);
+
+    } catch (error) {
+      setStatus({ 
+        loading: false, 
+        success: false, 
+        error: error.message || 'Une erreur est survenue. Veuillez réessayer.' 
+      });
+    }
   };
 
   const handleChange = (e) => {
@@ -61,6 +105,37 @@ const QuoteSimulator = () => {
         onSubmit={handleSubmit}
         className="max-w-6xl mx-auto"
       >
+        {/* Success Message */}
+        <AnimatePresence>
+          {status.success && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="mb-8 p-6 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3"
+            >
+              <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
+              <div>
+                <p className="text-green-800 font-semibold">Demande envoyée avec succès!</p>
+                <p className="text-green-700 text-sm">Nous vous contacterons dans les 24 heures.</p>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Error Message */}
+          {status.error && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="mb-8 p-6 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3"
+            >
+              <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0" />
+              <p className="text-red-800">{status.error}</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <Input
             type="text"
@@ -69,6 +144,7 @@ const QuoteSimulator = () => {
             value={formData.prenom}
             onChange={handleChange}
             required
+            disabled={status.loading}
           />
           
           <Input
@@ -78,6 +154,7 @@ const QuoteSimulator = () => {
             value={formData.nom}
             onChange={handleChange}
             required
+            disabled={status.loading}
           />
           
           <Input
@@ -87,6 +164,7 @@ const QuoteSimulator = () => {
             value={formData.email}
             onChange={handleChange}
             required
+            disabled={status.loading}
           />
         </div>
 
@@ -98,6 +176,7 @@ const QuoteSimulator = () => {
             value={formData.telephone}
             onChange={handleChange}
             required
+            disabled={status.loading}
           />
           
           <Select
@@ -107,6 +186,7 @@ const QuoteSimulator = () => {
             placeholder={t.service}
             options={serviceOptions}
             required
+            disabled={status.loading}
           />
           
           <Select
@@ -116,6 +196,7 @@ const QuoteSimulator = () => {
             placeholder={t.businessSize}
             options={sizeOptions}
             required
+            disabled={status.loading}
           />
         </div>
 
@@ -124,9 +205,11 @@ const QuoteSimulator = () => {
             type="submit"
             variant="primary"
             size="lg"
+            loading={status.loading}
+            disabled={status.loading}
           >
-            <span>{t.submit}</span>
-            <Send className="w-5 h-5" />
+            <span>{status.loading ? 'Envoi en cours...' : t.submit}</span>
+            {!status.loading && <Send className="w-5 h-5" />}
           </Button>
         </div>
       </motion.form>
