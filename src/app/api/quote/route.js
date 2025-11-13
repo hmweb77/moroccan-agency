@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { sendQuoteNotification } from '@/lib/brevo';
 
 export async function POST(request) {
   try {
@@ -48,13 +49,15 @@ export async function POST(request) {
       'freelance': 'Freelance/Indépendant'
     };
 
-    // Here you would typically:
-    // 1. Send an email notification to your team
-    // 2. Send a confirmation email to the client
-    // 3. Save to CRM/Database
-    // 4. Create a lead in your sales pipeline
-    
-    // Log the submission (replace with actual services)
+    // Send email notifications via Brevo
+    try {
+      await sendQuoteNotification(body);
+    } catch (emailError) {
+      console.error('Email sending failed:', emailError);
+      // Don't fail the request if email fails - log it
+    }
+
+    // Log the submission for backup
     console.log('Quote Request Submission:', {
       prenom,
       nom,
@@ -64,39 +67,6 @@ export async function POST(request) {
       businessSize: businessSizeNames[businessSize] || businessSize,
       timestamp: new Date().toISOString()
     });
-
-    // Simulate email sending
-    // In production, replace this with actual email service:
-    /*
-    // Email to team
-    await sendEmail({
-      to: 'devis@nextdigits.com',
-      subject: `Nouvelle demande de devis - ${serviceNames[service]}`,
-      html: `
-        <h2>Nouvelle demande de devis</h2>
-        <p><strong>Nom:</strong> ${prenom} ${nom}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Téléphone:</strong> ${telephone}</p>
-        <p><strong>Service demandé:</strong> ${serviceNames[service]}</p>
-        <p><strong>Taille de l'entreprise:</strong> ${businessSizeNames[businessSize]}</p>
-        <p><strong>Date de soumission:</strong> ${new Date().toLocaleString('fr-FR')}</p>
-      `
-    });
-
-    // Confirmation email to client
-    await sendEmail({
-      to: email,
-      subject: 'Confirmation de votre demande de devis - NextDigits',
-      html: `
-        <h2>Merci ${prenom}!</h2>
-        <p>Nous avons bien reçu votre demande de devis pour ${serviceNames[service]}.</p>
-        <p>Notre équipe vous contactera dans les 24 heures pour discuter de votre projet.</p>
-        <br>
-        <p>Cordialement,</p>
-        <p>L'équipe NextDigits</p>
-      `
-    });
-    */
 
     return NextResponse.json(
       { 

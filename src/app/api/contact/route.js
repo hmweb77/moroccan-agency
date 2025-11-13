@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { sendContactNotification } from '@/lib/brevo';
 
 export async function POST(request) {
   try {
@@ -23,12 +24,15 @@ export async function POST(request) {
       );
     }
 
-    // Here you would typically:
-    // 1. Send an email using a service like Resend, SendGrid, or Nodemailer
-    // 2. Save to database
-    // 3. Send to CRM
-    
-    // Example with console logging (replace with actual email service)
+    // Send email notifications via Brevo
+    try {
+      await sendContactNotification(body);
+    } catch (emailError) {
+      console.error('Email sending failed:', emailError);
+      // Don't fail the request if email fails - log it
+    }
+
+    // Log the submission for backup
     console.log('Contact Form Submission:', {
       prenom,
       nom,
@@ -38,25 +42,6 @@ export async function POST(request) {
       message,
       timestamp: new Date().toISOString()
     });
-
-    // Simulate email sending
-    // In production, replace this with actual email service:
-    /*
-    await sendEmail({
-      to: 'contact@nextdigits.com',
-      from: email,
-      subject: `Nouveau contact: ${sujet}`,
-      html: `
-        <h2>Nouveau message de contact</h2>
-        <p><strong>Nom:</strong> ${prenom} ${nom}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Téléphone:</strong> ${telephone || 'Non fourni'}</p>
-        <p><strong>Sujet:</strong> ${sujet}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `
-    });
-    */
 
     return NextResponse.json(
       { 

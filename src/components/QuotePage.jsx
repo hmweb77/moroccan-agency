@@ -8,8 +8,8 @@ import {
   Users,
   Zap,
   Shield,
-  ArrowRight,
-  Quote
+  AlertCircle,
+  Loader2
 } from 'lucide-react';
 
 const QuoteSimulatorPage = () => {
@@ -19,28 +19,58 @@ const QuoteSimulatorPage = () => {
     email: '',
     telephone: '',
     service: '',
-    businessSize: ''
+    businessSize: '',
+    note: ''
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [status, setStatus] = useState({
+    loading: false,
+    success: false,
+    error: null
+  });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    
-    // Reset after 3 seconds for demo
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        prenom: '',
-        nom: '',
-        email: '',
-        telephone: '',
-        service: '',
-        businessSize: ''
+    setStatus({ loading: true, success: false, error: null });
+
+    try {
+      const response = await fetch('/api/quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-    }, 3000);
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Une erreur est survenue');
+      }
+
+      setStatus({ loading: false, success: true, error: null });
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setFormData({
+          prenom: '',
+          nom: '',
+          email: '',
+          telephone: '',
+          service: '',
+          businessSize: '',
+          note: ''
+        });
+        setStatus({ loading: false, success: false, error: null });
+      }, 3000);
+
+    } catch (error) {
+      setStatus({ 
+        loading: false, 
+        success: false, 
+        error: error.message || 'Une erreur est survenue. Veuillez réessayer.' 
+      });
+    }
   };
 
   const handleChange = (e) => {
@@ -150,8 +180,6 @@ const QuoteSimulatorPage = () => {
             animate="visible"
             className="text-center mb-8 xs:mb-10 sm:mb-12 md:mb-16 lg:mb-20"
           >
-           
-
             <motion.h1
               variants={itemVariants}
               className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 xs:mb-6 sm:mb-8"
@@ -218,7 +246,7 @@ const QuoteSimulatorPage = () => {
 
             <div className="relative z-10">
               <AnimatePresence mode="wait">
-                {!isSubmitted ? (
+                {!status.success ? (
                   <motion.form
                     key="form"
                     initial={{ opacity: 0 }}
@@ -227,6 +255,18 @@ const QuoteSimulatorPage = () => {
                     onSubmit={handleSubmit}
                     className="max-w-6xl mx-auto"
                   >
+                    {/* Error Message */}
+                    {status.error && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3"
+                      >
+                        <AlertCircle className="w-5 h-5 text-red-600" />
+                        <p className="text-red-800 text-sm">{status.error}</p>
+                      </motion.div>
+                    )}
+
                     <motion.div
                       variants={containerVariants}
                       initial="hidden"
@@ -243,6 +283,7 @@ const QuoteSimulatorPage = () => {
                         onChange={handleChange}
                         className="w-full px-3 xs:px-4 py-3 xs:py-4 border-2 border-gray-200 rounded-lg xs:rounded-xl focus:ring-2 focus:ring-[#48A9FE] focus:border-[#48A9FE] outline-none transition-all text-sm xs:text-base"
                         required
+                        disabled={status.loading}
                       />
                       
                       <motion.input
@@ -255,6 +296,7 @@ const QuoteSimulatorPage = () => {
                         onChange={handleChange}
                         className="w-full px-3 xs:px-4 py-3 xs:py-4 border-2 border-gray-200 rounded-lg xs:rounded-xl focus:ring-2 focus:ring-[#48A9FE] focus:border-[#48A9FE] outline-none transition-all text-sm xs:text-base"
                         required
+                        disabled={status.loading}
                       />
                       
                       <motion.input
@@ -267,6 +309,7 @@ const QuoteSimulatorPage = () => {
                         onChange={handleChange}
                         className="w-full px-3 xs:px-4 py-3 xs:py-4 border-2 border-gray-200 rounded-lg xs:rounded-xl focus:ring-2 focus:ring-[#48A9FE] focus:border-[#48A9FE] outline-none transition-all text-sm xs:text-base"
                         required
+                        disabled={status.loading}
                       />
                     </motion.div>
 
@@ -274,7 +317,7 @@ const QuoteSimulatorPage = () => {
                       variants={containerVariants}
                       initial="hidden"
                       animate="visible"
-                      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-6 sm:gap-8 mb-6 xs:mb-8 sm:mb-10"
+                      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-6 sm:gap-8 mb-6 xs:mb-8"
                     >
                       <motion.input
                         variants={itemVariants}
@@ -286,6 +329,7 @@ const QuoteSimulatorPage = () => {
                         onChange={handleChange}
                         className="w-full px-3 xs:px-4 py-3 xs:py-4 border-2 border-gray-200 rounded-lg xs:rounded-xl focus:ring-2 focus:ring-[#48A9FE] focus:border-[#48A9FE] outline-none transition-all text-sm xs:text-base"
                         required
+                        disabled={status.loading}
                       />
                       
                       <motion.select
@@ -296,6 +340,7 @@ const QuoteSimulatorPage = () => {
                         onChange={handleChange}
                         className="w-full px-3 xs:px-4 py-3 xs:py-4 border-2 border-gray-200 rounded-lg xs:rounded-xl focus:ring-2 focus:ring-[#48A9FE] focus:border-[#48A9FE] outline-none transition-all text-gray-500 text-sm xs:text-base"
                         required
+                        disabled={status.loading}
                       >
                         <option value="">-- Quel service vous intéresse le plus? --</option>
                         <option value="conseil-strategie">Conseil & Stratégie de Marque</option>
@@ -313,6 +358,7 @@ const QuoteSimulatorPage = () => {
                         onChange={handleChange}
                         className="w-full px-3 xs:px-4 py-3 xs:py-4 border-2 border-gray-200 rounded-lg xs:rounded-xl focus:ring-2 focus:ring-[#48A9FE] focus:border-[#48A9FE] outline-none transition-all text-gray-500 text-sm xs:text-base"
                         required
+                        disabled={status.loading}
                       >
                         <option value="">-- Quelle est la taille de votre business? --</option>
                         <option value="startup">Startup (1-10 employés)</option>
@@ -322,20 +368,45 @@ const QuoteSimulatorPage = () => {
                       </motion.select>
                     </motion.div>
 
+                    {/* Note/Message Field */}
+                    <motion.div
+                      variants={itemVariants}
+                      className="mb-6 xs:mb-8 sm:mb-10"
+                    >
+                      <motion.textarea
+                        whileFocus={{ scale: 1.02, borderColor: '#48A9FE' }}
+                        name="note"
+                        placeholder="Parlez-nous de votre projet, vos besoins spécifiques ou toute information utile..."
+                        value={formData.note}
+                        onChange={handleChange}
+                        rows="5"
+                        className="w-full px-3 xs:px-4 py-3 xs:py-4 border-2 border-gray-200 rounded-lg xs:rounded-xl focus:ring-2 focus:ring-[#48A9FE] focus:border-[#48A9FE] outline-none transition-all resize-vertical text-sm xs:text-base"
+                        disabled={status.loading}
+                      />
+                      <p className="text-xs xs:text-sm text-gray-500 mt-2">
+                        Optionnel : Décrivez votre projet pour nous aider à mieux vous servir
+                      </p>
+                    </motion.div>
+
                     <div className="text-center">
                       <motion.button
-                        whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(72, 169, 254, 0.3)" }}
-                        whileTap={{ scale: 0.95 }}
+                        whileHover={{ scale: status.loading ? 1 : 1.05, boxShadow: "0 10px 30px rgba(72, 169, 254, 0.3)" }}
+                        whileTap={{ scale: status.loading ? 1 : 0.95 }}
                         type="submit"
-                        className="bg-[#48A9FE] text-white px-6 xs:px-8 sm:px-12 md:px-16 py-3 xs:py-4 sm:py-5 md:py-6 rounded-full font-bold text-sm xs:text-base sm:text-lg md:text-xl flex items-center space-x-2 xs:space-x-3 mx-auto shadow-lg hover:shadow-xl transition-all duration-300"
+                        disabled={status.loading}
+                        className="bg-[#48A9FE] text-white px-6 xs:px-8 sm:px-12 md:px-16 py-3 xs:py-4 sm:py-5 md:py-6 rounded-full font-bold text-sm xs:text-base sm:text-lg md:text-xl flex items-center space-x-2 xs:space-x-3 mx-auto shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                       >
-                        <span>Envoyer ma demande</span>
-                        <motion.div
-                          animate={{ x: [0, 5, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity }}
-                        >
-                          <Send className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
-                        </motion.div>
+                        {status.loading ? (
+                          <>
+                            <Loader2 className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6 animate-spin" />
+                            <span>Envoi en cours...</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>Envoyer ma demande</span>
+                            <Send className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
+                          </>
+                        )}
                       </motion.button>
                     </div>
                   </motion.form>

@@ -61,6 +61,7 @@ const Navbar = () => {
       href: "/services",
       dropdown: [
         t.services.webDesign,
+        t.services.webdev,
         t.services.digitalMarketing,
         t.services.seo,
         t.services.branding

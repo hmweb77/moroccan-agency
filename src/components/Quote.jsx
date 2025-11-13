@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { translations } from '@/translations/translations';
-import { Input, Select, Button, Section, SectionTitle } from '@/selector/ui';
+import { Input, Select, Button, Section, SectionTitle, Textarea } from '@/selector/ui';
 
 const QuoteSimulator = () => {
   const { language } = useLanguage();
@@ -16,7 +16,8 @@ const QuoteSimulator = () => {
     email: '',
     telephone: '',
     service: '',
-    businessSize: ''
+    businessSize: '',
+    note: ''
   });
 
   const [status, setStatus] = useState({
@@ -54,7 +55,8 @@ const QuoteSimulator = () => {
           email: '',
           telephone: '',
           service: '',
-          businessSize: ''
+          businessSize: '',
+          note: ''
         });
         setStatus({ loading: false, success: false, error: null });
       }, 4000);
@@ -77,6 +79,7 @@ const QuoteSimulator = () => {
 
   const serviceOptions = [
     { value: 'conseil-strategie', label: t.services.webDesign },
+    { value: 'conseil-stra', label: t.services.webdev },
     { value: 'identite-visuelle', label: t.services.digitalMarketing },
     { value: 'digital', label: t.services.seo },
     { value: 'studio-creation', label: t.services.branding },
@@ -198,6 +201,24 @@ const QuoteSimulator = () => {
             required
             disabled={status.loading}
           />
+        </div>
+
+        {/* New Note/Message Field */}
+        <div className="mb-8">
+          <Textarea
+            name="note"
+            placeholder={t.note || "Parlez-nous de votre projet, vos besoins spécifiques ou toute information utile..."}
+            value={formData.note}
+            onChange={handleChange}
+            rows={5}
+            disabled={status.loading}
+            className="w-full"
+          />
+          <p className="text-sm text-gray-500 mt-2">
+            {language === 'fr' && "Optionnel : Décrivez votre projet pour nous aider à mieux vous servir"}
+            {language === 'ar' && "اختياري: صف مشروعك لمساعدتنا على خدمتك بشكل أفضل"}
+            {language === 'en' && "Optional: Describe your project to help us serve you better"}
+          </p>
         </div>
 
         <div className="text-center">

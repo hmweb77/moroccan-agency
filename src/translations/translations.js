@@ -8,6 +8,7 @@ export const translations = {
       quote: "Demandez un devis",
       services: {
         webDesign: "Web Design",
+        webdev: "Développement Web",
         digitalMarketing: "Digital Marketing",
         seo: "SEO",
         branding: "Branding"
@@ -34,8 +35,11 @@ export const translations = {
       phone: "Téléphone",
       service: "-- Quel service vous intéresse le plus? --",
       businessSize: "-- Quelle est la taille de votre business? --",
+      note: "Parlez-nous de votre projet, vos besoins spécifiques ou toute information utile...",
+      noteHelper: "Optionnel : Décrivez votre projet pour nous aider à mieux vous servir",
       submit: "Envoyer",
       services: {
+        webdev:"Développement Web",
         webDesign: "Web Design",
         digitalMarketing: "Digital Marketing",
         seo: "SEO",
@@ -241,6 +245,7 @@ export const translations = {
       quote: "اطلب عرض أسعار",
       services: {
         webDesign: "تصميم المواقع",
+        webdev:" تطوير المواقع ",
         digitalMarketing: "التسويق الرقمي",
         seo: "تحسين محركات البحث",
         branding: "العلامة التجارية"
@@ -266,9 +271,12 @@ export const translations = {
       email: "البريد الإلكتروني",
       phone: "الهاتف",
       service: "-- ما هي الخدمة التي تهمك أكثر؟ --",
+      note: "أخبرنا عن مشروعك، احتياجاتك الخاصة أو أي معلومات مفيدة...",
+      noteHelper: "اختياري: صف مشروعك لمساعدتنا على خدمتك بشكل أفضل",
       businessSize: "-- ما هو حجم عملك؟ --",
       submit: "إرسال",
       services: {
+        webdev:" تطوير المواقع ",
         webDesign: "تصميم المواقع",
         digitalMarketing: "التسويق الرقمي",
         seo: "تحسين محركات البحث",
@@ -474,6 +482,7 @@ export const translations = {
       quote: "Request a Quote",
       services: {
         webDesign: "Web Design",
+        webdev:"Web development",
         digitalMarketing: "Digital Marketing",
         seo: "SEO",
         branding: "Branding"
@@ -498,10 +507,13 @@ export const translations = {
       lastName: "Last Name",
       email: "Email",
       phone: "Phone",
+      note: "Tell us about your project, your specific needs or any useful information...",
+      noteHelper: "Optional: Describe your project to help us serve you better",
       service: "-- Which service interests you most? --",
       businessSize: "-- What is your business size? --",
       submit: "Submit",
       services: {
+        webdev:"Web development",
         webDesign: "Web Design",
         digitalMarketing: "Digital Marketing",
         seo: "SEO",
