@@ -1,120 +1,329 @@
 "use client"
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import {
+  ArrowRight,
+  CheckCircle,
+  Star,
+  Shield,
+  Award,
+  Sparkles,
+  TrendingUp
+} from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '../contexts/LanguageContext';
-import { translations } from '@/translations/translations';
 import { Button } from '@/selector/ui';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AboutCTA = () => {
   const { language } = useLanguage();
-  const t = translations[language].cta;
+  const sectionRef = useRef(null);
+  const logosRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
+  // Client logos - replace with actual client logos
+  const clientLogos = [
+    { name: "Client 1", logo: "🏢" },
+    { name: "Client 2", logo: "🎯" },
+    { name: "Client 3", logo: "🚀" },
+    { name: "Client 4", logo: "💼" },
+    { name: "Client 5", logo: "🏆" },
+    { name: "Client 6", logo: "⭐" },
+    { name: "Client 7", logo: "💎" },
+    { name: "Client 8", logo: "🎨" }
+  ];
+
+  const benefits = [
+    {
+      icon: <CheckCircle className="w-6 h-6" />,
+      text: language === 'fr' ? "Réponse sous 8h garantie" : language === 'ar' ? "رد مضمون خلال 8 ساعات" : "8h guaranteed response"
+    },
+    {
+      icon: <Shield className="w-6 h-6" />,
+      text: language === 'fr' ? "Satisfaction garantie à 100%" : language === 'ar' ? "رضا مضمون 100%" : "100% satisfaction guaranteed"
+    },
+    {
+      icon: <Award className="w-6 h-6" />,
+      text: language === 'fr' ? "Équipe d'experts certifiés" : language === 'ar' ? "فريق خبراء معتمدين" : "Certified expert team"
+    },
+    {
+      icon: <TrendingUp className="w-6 h-6" />,
+      text: language === 'fr' ? "ROI mesurable et optimisé" : language === 'ar' ? "عائد استثمار قابل للقياس" : "Measurable & optimized ROI"
+    }
+  ];
+
+  const stats = [
+    { 
+      value: "80+", 
+      label: language === 'fr' ? "Clients satisfaits" : language === 'ar' ? "عميل راضٍ" : "Happy clients",
+      color: "from-blue-500 to-cyan-500"
+    },
+    { 
+      value: "150+", 
+      label: language === 'fr' ? "Projets réussis" : language === 'ar' ? "مشروع ناجح" : "Successful projects",
+      color: "from-purple-500 to-pink-500"
+    },
+    { 
+      value: "98%", 
+      label: language === 'fr' ? "Taux de satisfaction" : language === 'ar' ? "معدل الرضا" : "Satisfaction rate",
+      color: "from-green-500 to-emerald-500"
+    }
+  ];
+
+  // GSAP Animations
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Infinite scroll animation for logos
+      if (logosRef.current) {
+        const logos = logosRef.current.children;
+        gsap.to(logos, {
+          x: -1000,
+          duration: 20,
+          repeat: -1,
+          ease: "none",
+          modifiers: {
+            x: gsap.utils.unitize(x => parseFloat(x) % 1000)
+          }
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <div className="relative">
-      {/* Purple CTA Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="bg-[#48A9FE] py-16 lg:py-20"
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section ref={sectionRef} className="relative py-24 overflow-hidden">
+      {/* Background with Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#002144] via-[#003366] to-[#002144]">
+        {/* Animated gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#48A9FE]/20 via-purple-500/20 to-[#48A9FE]/20 animate-gradient" />
+      </div>
+
+      {/* Grid Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(#48A9FE 1px, transparent 1px), linear-gradient(90deg, #48A9FE 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }} />
+      </div>
+
+      {/* Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mb-8"
+            key={i}
+            className="absolute w-2 h-2 bg-[#48A9FE] rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.3, 1, 0.3]
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Main CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6"
           >
-            <p className="text-[#002144] text-base md:text-xl font-medium mb-4 tracking-wider uppercase">
-              {t.packs.subtitle}
-            </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight max-w-4xl mx-auto">
-              {t.packs.title}
-            </h2>
+            <Sparkles className="w-4 h-4 text-[#48A9FE]" />
+            <span className="text-white text-sm font-semibold uppercase tracking-wide">
+              {language === 'fr' ? "Commencez Aujourd'hui" : language === 'ar' ? "ابدأ اليوم" : "Start Today"}
+            </span>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <Link href="/about">
-              <Button variant="secondary" size="lg">
-                {t.packs.button}
-              </Button>
-            </Link>
-          </motion.div>
-        </div>
-      </motion.section>
+          {/* Main Heading */}
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            {language === 'fr' ? "Prêt à Transformer" : language === 'ar' ? "جاهز لتحويل" : "Ready to Transform"}
+            <br />
+            <span className="bg-gradient-to-r from-[#48A9FE] via-white to-[#48A9FE] bg-clip-text text-transparent">
+              {language === 'fr' ? "Votre Présence Digitale ?" : language === 'ar' ? "حضورك الرقمي؟" : "Your Digital Presence?"}
+            </span>
+          </h2>
 
-      {/* White About Section */}
-      <motion.section
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="bg-white py-16 lg:py-20 relative"
-      >
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mb-8"
-          >
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#002144] mb-6">
-              {t.ready.title}
-            </h3>
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-              {t.ready.description}
-            </p>
-          </motion.div>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+            {language === 'fr' ? 
+              "Rejoignez plus de 80 entreprises qui ont fait confiance à NextDigits pour leur croissance digitale." :
+             language === 'ar' ?
+              "انضم إلى أكثر من 80 شركة وثقت في NextDigits لنموها الرقمي." :
+              "Join over 80 companies that trusted NextDigits for their digital growth."}
+          </p>
 
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-[#48A9FE] mb-2">80+</div>
-                <p className="text-gray-600 font-medium">{t.ready.stats.clients}</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-[#48A9FE] mb-2">100%</div>
-                <p className="text-gray-600 font-medium">{t.ready.stats.satisfaction}</p>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-[#48A9FE] mb-2">24/7</div>
-                <p className="text-gray-600 font-medium">{t.ready.stats.support}</p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Link href="/devis">
-              <Button variant="gradient" size="lg">
-                {t.ready.button}
+              <Button
+                variant="gradient"
+                size="lg"
+                className="group relative overflow-hidden bg-white hover:bg-gray-100 text-[#002144]"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  {language === 'fr' ? "Obtenir un devis gratuit" : 
+                   language === 'ar' ? "احصل على عرض مجاني" : 
+                   "Get Free Quote"}
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
               </Button>
             </Link>
+
+            <Link href="/contact">
+              <Button
+                variant="outline"
+                size="lg"
+                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#002144]"
+              >
+                {language === 'fr' ? "Planifier un appel" : 
+                 language === 'ar' ? "جدولة مكالمة" : 
+                 "Schedule Call"}
+              </Button>
+            </Link>
+          </div>
+
+          {/* Benefits Grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto"
+          >
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
+              >
+                <div className="text-[#48A9FE]">{benefit.icon}</div>
+                <span className="text-white text-sm font-medium">{benefit.text}</span>
+              </motion.div>
+            ))}
           </motion.div>
-        </div>
-      </motion.section>
-    </div>
+        </motion.div>
+
+        {/* Stats Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
+        >
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 text-center"
+            >
+              <div className={`text-5xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
+                {stat.value}
+              </div>
+              <div className="text-gray-300 font-medium">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* Client Logos Section */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="mb-12"
+        >
+          <p className="text-center text-gray-400 mb-8 text-sm uppercase tracking-wider">
+            {language === 'fr' ? "Ils nous font confiance" : 
+             language === 'ar' ? "يثقون بنا" : 
+             "Trusted by"}
+          </p>
+
+          {/* Infinite Scroll Logos */}
+          <div className="overflow-hidden relative">
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#002144] to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#002144] to-transparent z-10" />
+            
+            <div ref={logosRef} className="flex gap-12 items-center">
+              {[...clientLogos, ...clientLogos, ...clientLogos].map((client, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 w-32 h-32 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 flex items-center justify-center hover:bg-white/20 transition-all duration-300 cursor-pointer"
+                >
+                  <span className="text-5xl">{client.logo}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Social Proof Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="text-center"
+        >
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
+            <div className="flex -space-x-2">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+              ))}
+            </div>
+            <span className="text-white font-semibold">4.9/5</span>
+            <span className="text-gray-300">
+              {language === 'fr' ? "basé sur 80+ avis clients" : 
+               language === 'ar' ? "بناءً على 80+ تقييم" : 
+               "based on 80+ client reviews"}
+            </span>
+          </div>
+        </motion.div>
+
+        {/* Bottom Text */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="text-center text-gray-400 mt-8 text-sm"
+        >
+          {language === 'fr' ? 
+            "🔒 Vos données sont sécurisées. Aucune carte de crédit requise pour commencer." :
+           language === 'ar' ?
+            "🔒 بياناتك آمنة. لا حاجة لبطاقة ائتمان للبدء." :
+            "🔒 Your data is secure. No credit card required to start."}
+        </motion.p>
+      </div>
+
+      <style jsx>{`
+        @keyframes gradient {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: gradient 5s ease infinite;
+        }
+      `}</style>
+    </section>
   );
 };
 
 export default AboutCTA;
+
