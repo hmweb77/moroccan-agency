@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "NextDigits - Agence Digitale au Maroc | Solutions Web & Marketing Digital",
+  title: "NextDigits  Agence Digitale au Maroc | Solutions Web & Marketing Digital",
   description: "NextDigits vous accompagne dans votre transformation digitale. Web design, marketing digital, SEO et stratégie de marque sur-mesure. Plus de 80 clients satisfaits.",
   keywords: "agence digitale, web design, marketing digital, SEO, Maroc, Rabat, développement web, stratégie digitale",
   authors: [{ name: "NextDigits" }],
