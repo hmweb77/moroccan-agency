@@ -11,7 +11,7 @@ import {
   MapPin
 } from 'lucide-react';
 import Link from 'next/link';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '@/translations/translations';
 
 const Footer = () => {

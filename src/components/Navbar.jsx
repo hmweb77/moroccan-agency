@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, Globe } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "@/translations/translations";
 import { Button } from "@/selector/ui";
 
