@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import {
   MessageSquare,
@@ -13,22 +13,16 @@ import {
   Sparkles,
   Play
 } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useLanguage } from '../contexts/LanguageContext';
-import { Button } from '@/selector/ui';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const HowWeWork = () => {
-  const { language } = useLanguage();
   const [activeStep, setActiveStep] = useState(0);
   const sectionRef = useRef(null);
   const timelineRef = useRef(null);
   const stepsRef = useRef([]);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+
+  // Mock language - replace with your actual language context
+  const language = 'en'; // or 'fr' or 'ar'
 
   const steps = [
     {
@@ -41,7 +35,7 @@ const HowWeWork = () => {
         "املأ محاكي العروض بنقرات قليلة. يقوم نظامنا الذكي بتحليل احتياجاتك تلقائياً ويقدم تقديراً مخصصاً." :
         "Fill out our quote simulator in a few clicks. Our intelligent system automatically analyzes your needs and provides a personalized estimate.",
       duration: language === 'fr' ? "2 minutes" : language === 'ar' ? "دقيقتان" : "2 minutes",
-      image: "/process1.png",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
       color: "from-blue-500 to-cyan-500",
       bgColor: "bg-blue-50"
     },
@@ -55,7 +49,7 @@ const HowWeWork = () => {
         "يتصل بك مدير مشروع مخصص في غضون 8 ساعات لفهم أهدافك وجمهورك المستهدف. معاً، نحدد أفضل استراتيجية." :
         "A dedicated project manager contacts you within 8 hours to deeply understand your goals, target audience and constraints. Together, we define the best strategy.",
       duration: language === 'fr' ? "8 heures" : language === 'ar' ? "8 ساعات" : "8 hours",
-      image: "/process2.png",
+      image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop",
       color: "from-purple-500 to-pink-500",
       bgColor: "bg-purple-50"
     },
@@ -69,7 +63,7 @@ const HowWeWork = () => {
         "يبدأ فريق خبرائنا على الفور. منهجية مرنة مع دورات قصيرة ونقاط تحقق منتظمة. تتابع التقدم في الوقت الفعلي." :
         "Our team of experts starts immediately. Agile methodology with short sprints, regular checkpoints and interactive demos. You track progress in real-time.",
       duration: language === 'fr' ? "7 jours" : language === 'ar' ? "7 أيام" : "7 days",
-      image: "/process3.png",
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=600&fit=crop",
       color: "from-green-500 to-emerald-500",
       bgColor: "bg-green-50"
     },
@@ -83,50 +77,11 @@ const HowWeWork = () => {
         "إطلاق مصحوب، تدريب فريقك ومتابعة الأداء. تحسين مستمر قائم على البيانات لتعظيم نتائجك." :
         "Guided launch, team training and performance monitoring. Continuous data-driven optimization to maximize your results.",
       duration: language === 'fr' ? "En continu" : language === 'ar' ? "مستمر" : "Ongoing",
-      image: "/process5.png",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
       color: "from-orange-500 to-red-500",
       bgColor: "bg-orange-50"
     }
   ];
-
-  // GSAP Animations
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animated timeline line
-      gsap.from(timelineRef.current, {
-        scrollTrigger: {
-          trigger: timelineRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none"
-        },
-        scaleY: 0,
-        duration: 1.5,
-        ease: "power2.inOut"
-      });
-
-      // Steps animation
-      stepsRef.current.forEach((step, index) => {
-        if (step) {
-          gsap.from(step, {
-            scrollTrigger: {
-              trigger: step,
-              start: "top 85%",
-              toggleActions: "play none none none",
-              onEnter: () => setActiveStep(index)
-            },
-            opacity: 0,
-            x: index % 2 === 0 ? -100 : 100,
-            duration: 0.8,
-            ease: "power3.out",
-            delay: index * 0.2
-          });
-        }
-      });
-
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section ref={sectionRef} className="relative py-24 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
@@ -148,13 +103,13 @@ const HowWeWork = () => {
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 bg-[#48A9FE]/10 border border-[#48A9FE]/20 rounded-full px-4 py-2 mb-6"
           >
@@ -184,8 +139,11 @@ const HowWeWork = () => {
         {/* Timeline with Steps */}
         <div className="relative">
           {/* Vertical Timeline Line */}
-          <div
+          <motion.div
             ref={timelineRef}
+            initial={{ scaleY: 0 }}
+            animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
             className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#48A9FE] via-purple-500 to-[#48A9FE] transform -translate-x-1/2"
             style={{ transformOrigin: 'top' }}
           />
@@ -196,8 +154,9 @@ const HowWeWork = () => {
               <motion.div
                 key={index}
                 ref={el => stepsRef.current[index] = el}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
                 className="relative"
               >
                 <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
@@ -250,7 +209,7 @@ const HowWeWork = () => {
                         <motion.div
                           key={idx}
                           initial={{ opacity: 0, x: -20 }}
-                          animate={isInView ? { opacity: 1, x: 0 } : {}}
+                          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                           transition={{ delay: 0.5 + idx * 0.1 }}
                           className="flex items-center gap-2"
                         >
@@ -269,12 +228,11 @@ const HowWeWork = () => {
                       className="relative group"
                     >
                       {/* Image Container */}
-                      <div className="relative h-80 lg:h-96 rounded-3xl overflow-hidden shadow-2xl">
-                        <Image
+                      <div className="relative h-80 lg:h-96 rounded-3xl overflow-hidden shadow-2xl bg-gray-200">
+                        <img
                           src={step.image}
                           alt={step.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
                         {/* Gradient Overlay */}
                         <div className={`absolute inset-0 bg-gradient-to-br ${step.color} opacity-20 group-hover:opacity-10 transition-opacity duration-300`} />
@@ -283,7 +241,7 @@ const HowWeWork = () => {
                       {/* Floating Stats Badge */}
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                         transition={{ delay: 0.8 }}
                         className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-2xl p-4 border-4 border-white"
                       >
@@ -318,11 +276,9 @@ const HowWeWork = () => {
                 {/* Timeline Node (Desktop) */}
                 <motion.div
                   initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : {}}
+                  animate={isInView ? { scale: 1 } : { scale: 0 }}
                   transition={{ delay: 0.3 + index * 0.2 }}
-                  className={`hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-gradient-to-br ${step.color} border-4 border-white shadow-xl ${
-                    activeStep === index ? 'ring-4 ring-[#48A9FE]/30 animate-pulse' : ''
-                  }`}
+                  className={`hidden lg:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-gradient-to-br ${step.color} border-4 border-white shadow-xl`}
                 />
               </motion.div>
             ))}
@@ -332,7 +288,7 @@ const HowWeWork = () => {
         {/* Bottom CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1 }}
           className="mt-24 text-center"
         >
@@ -351,23 +307,19 @@ const HowWeWork = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link href="/devis">
-                <Button variant="gradient" size="lg" className="group">
-                  {language === 'fr' ? "Commencer maintenant" : 
-                   language === 'ar' ? "ابدأ الآن" : 
-                   "Start Now"}
-                  <Rocket className="w-5 h-5 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                </Button>
-              </Link>
+              <button className="px-8 py-4 bg-gradient-to-r from-[#48A9FE] to-[#002144] text-white rounded-lg hover:shadow-lg transition-all group">
+                {language === 'fr' ? "Commencer maintenant" : 
+                 language === 'ar' ? "ابدأ الآن" : 
+                 "Start Now"}
+                <Rocket className="w-5 h-5 ml-2 inline group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </button>
 
-              <Link href="/contact">
-                <Button variant="outline" size="lg" className="group">
-                  <Play className="w-5 h-5 mr-2" />
-                  {language === 'fr' ? "Planifier une démo" : 
-                   language === 'ar' ? "جدولة عرض توضيحي" : 
-                   "Schedule Demo"}
-                </Button>
-              </Link>
+              <button className="px-8 py-4 border-2 border-[#48A9FE] text-[#48A9FE] rounded-lg hover:bg-[#48A9FE] hover:text-white transition-all group">
+                <Play className="w-5 h-5 mr-2 inline" />
+                {language === 'fr' ? "Planifier une démo" : 
+                 language === 'ar' ? "جدولة عرض توضيحي" : 
+                 "Schedule Demo"}
+              </button>
             </div>
 
             {/* Trust Indicators */}

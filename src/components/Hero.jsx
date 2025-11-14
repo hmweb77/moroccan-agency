@@ -228,7 +228,7 @@ const HeroSection = () => {
 
               {/* Main Title */}
               <div>
-                <h1 ref={titleRef} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 leading-tight">
+                <h1 ref={titleRef} className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold text-white mb-4 leading-tight">
                   {splitText(language === 'fr' ? "Transformez Votre" : 
                              language === 'ar' ? "حول عملك" : 
                              "Transform Your")}
@@ -276,9 +276,8 @@ const HeroSection = () => {
 
                 <Link href="/contact">
                   <Button
-                    variant="outline"
                     size="lg"
-                    className="group bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white hover:text-[#002144]"
+                    className="group bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white hover:text-blue-900"
                   >
                     <Play className="w-5 h-5 mr-2" />
                     {language === 'fr' ? "Planifier un appel" : 
@@ -308,114 +307,9 @@ const HeroSection = () => {
                   </div>
                 ))}
               </motion.div>
-            </div>
-
-            {/* Right Column - Visual Element */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="relative hidden lg:block"
-            >
-              {/* 3D Card Effect */}
-              <div className="relative w-full h-[600px]">
-                {/* Glowing Orb */}
-                <motion.div
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 180, 360]
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-[#48A9FE] to-[#002144] rounded-full blur-3xl opacity-30"
-                />
-
-                {/* Floating Card */}
-                <motion.div
-                  animate={{
-                    y: [0, -20, 0],
-                    rotateY: [0, 5, 0]
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <div className="relative w-full max-w-md">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#48A9FE]/20 to-[#002144]/20 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl" />
-                    <div className="relative p-8 space-y-6">
-                      {/* Service Icons Grid */}
-                      <div className="grid grid-cols-3 gap-4">
-                        {['🎨', '💻', '📱', '📊', '🎬', '📱'].map((emoji, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ opacity: 0, scale: 0 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 1.5 + i * 0.1 }}
-                            whileHover={{ scale: 1.2, rotate: 10 }}
-                            className="aspect-square bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center text-4xl border border-white/20 cursor-pointer"
-                          >
-                            {emoji}
-                          </motion.div>
-                        ))}
-                      </div>
-
-                      {/* Stats */}
-                      <div className="space-y-3">
-                        {[
-                          { label: language === 'fr' ? "Projets réussis" : "Successful Projects", value: 150 },
-                          { label: language === 'fr' ? "Taux de satisfaction" : "Satisfaction Rate", value: 98 },
-                          { label: language === 'fr' ? "Délai moyen" : "Average Delivery", value: 7 }
-                        ].map((stat, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 2 + i * 0.1 }}
-                            className="flex justify-between items-center"
-                          >
-                            <span className="text-white/80 text-sm">{stat.label}</span>
-                            <span className="text-[#48A9FE] font-bold text-lg">{stat.value}{i === 1 ? '%' : i === 2 ? 'j' : '+'}</span>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
+            </div>   
           </div>
         </div>
-      </motion.div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex flex-col items-center gap-2 cursor-pointer"
-        >
-          <span className="text-white/60 text-sm">
-            {language === 'fr' ? "Découvrir" : language === 'ar' ? "اكتشف" : "Discover"}
-          </span>
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-white rounded-full"
-            />
-          </div>
-        </motion.div>
       </motion.div>
 
       {/* Add gradient animation to CSS */}

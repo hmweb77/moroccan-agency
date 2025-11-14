@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import {
   Palette,
@@ -12,34 +12,23 @@ import {
   Check,
   Sparkles
 } from 'lucide-react';
-import Link from 'next/link';
-import { useLanguage } from '../contexts/LanguageContext';
-import { Button } from '@/selector/ui';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Expertise = () => {
-  const { language } = useLanguage();
   const [activeService, setActiveService] = useState(0);
   const [hoveredCard, setHoveredCard] = useState(null);
   const sectionRef = useRef(null);
-  const titleRef = useRef(null);
-  const servicesRef = useRef(null);
-  const cardsRef = useRef([]);
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
   const services = [
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      title: language === 'fr' ? "Marketing & Stratégie" : language === 'ar' ? "التسويق والاستراتيجية" : "Marketing & Strategy",
-      shortDesc: language === 'fr' ? "Stratégies data-driven pour maximiser votre ROI" : language === 'ar' ? "استراتيجيات قائمة على البيانات" : "Data-driven strategies to maximize ROI",
+      title: "Marketing & Strategy",
+      shortDesc: "Data-driven strategies to maximize ROI",
       features: [
-        language === 'fr' ? "Audit marketing complet" : language === 'ar' ? "تحليل تسويقي شامل" : "Complete marketing audit",
-        language === 'fr' ? "Stratégie digitale sur-mesure" : language === 'ar' ? "استراتيجية رقمية مخصصة" : "Custom digital strategy",
-        language === 'fr' ? "SEO & SEM optimization" : language === 'ar' ? "تحسين محركات البحث" : "SEO & SEM optimization",
-        language === 'fr' ? "Content marketing" : language === 'ar' ? "تسويق المحتوى" : "Content marketing"
+        "Complete marketing audit",
+        "Custom digital strategy",
+        "SEO & SEM optimization",
+        "Content marketing"
       ],
       color: "from-blue-500 to-cyan-500",
       bgColor: "bg-blue-500/10",
@@ -47,13 +36,13 @@ const Expertise = () => {
     },
     {
       icon: <Palette className="w-8 h-8" />,
-      title: language === 'fr' ? "Design & Branding" : language === 'ar' ? "التصميم والعلامة التجارية" : "Design & Branding",
-      shortDesc: language === 'fr' ? "Identité visuelle unique qui marque les esprits" : language === 'ar' ? "هوية بصرية فريدة لا تُنسى" : "Unique visual identity that makes an impact",
+      title: "Design & Branding",
+      shortDesc: "Unique visual identity that makes an impact",
       features: [
-        language === 'fr' ? "Logo & charte graphique" : language === 'ar' ? "شعار ودليل العلامة" : "Logo & brand guidelines",
-        language === 'fr' ? "UI/UX Design" : language === 'ar' ? "تصميم واجهات المستخدم" : "UI/UX Design",
-        language === 'fr' ? "Packaging & print" : language === 'ar' ? "التغليف والطباعة" : "Packaging & print",
-        language === 'fr' ? "Motion design" : language === 'ar' ? "تصميم متحرك" : "Motion design"
+        "Logo & brand guidelines",
+        "UI/UX Design",
+        "Packaging & print",
+        "Motion design"
       ],
       color: "from-purple-500 to-pink-500",
       bgColor: "bg-purple-500/10",
@@ -61,13 +50,13 @@ const Expertise = () => {
     },
     {
       icon: <Code className="w-8 h-8" />,
-      title: language === 'fr' ? "Développement Web" : language === 'ar' ? "تطوير الويب" : "Web Development",
-      shortDesc: language === 'fr' ? "Sites web performants et scalables" : language === 'ar' ? "مواقع ويب عالية الأداء" : "High-performance, scalable websites",
+      title: "Web Development",
+      shortDesc: "High-performance, scalable websites",
       features: [
-        language === 'fr' ? "Sites vitrine & e-commerce" : language === 'ar' ? "مواقع تعريفية ومتاجر" : "Showcase & e-commerce sites",
-        language === 'fr' ? "Applications web sur-mesure" : language === 'ar' ? "تطبيقات ويب مخصصة" : "Custom web applications",
-        language === 'fr' ? "CMS & gestion contenu" : language === 'ar' ? "إدارة المحتوى" : "CMS & content management",
-        language === 'fr' ? "Maintenance & support" : language === 'ar' ? "صيانة ودعم" : "Maintenance & support"
+        "Showcase & e-commerce sites",
+        "Custom web applications",
+        "CMS & content management",
+        "Maintenance & support"
       ],
       color: "from-green-500 to-emerald-500",
       bgColor: "bg-green-500/10",
@@ -75,13 +64,13 @@ const Expertise = () => {
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
-      title: language === 'fr' ? "Développement Mobile" : language === 'ar' ? "تطوير التطبيقات" : "Mobile Development",
-      shortDesc: language === 'fr' ? "Apps iOS & Android natives ou cross-platform" : language === 'ar' ? "تطبيقات أصلية ومتعددة المنصات" : "Native & cross-platform iOS & Android apps",
+      title: "Mobile Development",
+      shortDesc: "Native & cross-platform iOS & Android apps",
       features: [
-        language === 'fr' ? "Applications natives iOS/Android" : language === 'ar' ? "تطبيقات أصلية" : "Native iOS/Android apps",
-        language === 'fr' ? "Apps React Native" : language === 'ar' ? "تطبيقات React Native" : "React Native apps",
-        language === 'fr' ? "PWA (Progressive Web Apps)" : language === 'ar' ? "تطبيقات ويب تقدمية" : "Progressive Web Apps",
-        language === 'fr' ? "API & intégrations" : language === 'ar' ? "واجهات برمجية" : "API & integrations"
+        "Native iOS/Android apps",
+        "React Native apps",
+        "Progressive Web Apps",
+        "API & integrations"
       ],
       color: "from-orange-500 to-red-500",
       bgColor: "bg-orange-500/10",
@@ -89,13 +78,13 @@ const Expertise = () => {
     },
     {
       icon: <Video className="w-8 h-8" />,
-      title: language === 'fr' ? "Vidéo & Production" : language === 'ar' ? "إنتاج الفيديو" : "Video & Production",
-      shortDesc: language === 'fr' ? "Contenus vidéo captivants et professionnels" : language === 'ar' ? "محتوى فيديو احترافي جذاب" : "Captivating professional video content",
+      title: "Video & Production",
+      shortDesc: "Captivating professional video content",
       features: [
-        language === 'fr' ? "Vidéos publicitaires" : language === 'ar' ? "فيديوهات إعلانية" : "Advertising videos",
-        language === 'fr' ? "Vidéos corporate" : language === 'ar' ? "فيديوهات الشركات" : "Corporate videos",
-        language === 'fr' ? "Motion graphics & animation" : language === 'ar' ? "رسوم متحركة" : "Motion graphics & animation",
-        language === 'fr' ? "Montage & post-production" : language === 'ar' ? "مونتاج" : "Editing & post-production"
+        "Advertising videos",
+        "Corporate videos",
+        "Motion graphics & animation",
+        "Editing & post-production"
       ],
       color: "from-pink-500 to-rose-500",
       bgColor: "bg-pink-500/10",
@@ -103,66 +92,19 @@ const Expertise = () => {
     },
     {
       icon: <Share2 className="w-8 h-8" />,
-      title: language === 'fr' ? "Social Media Management" : language === 'ar' ? "إدارة وسائل التواصل" : "Social Media Management",
-      shortDesc: language === 'fr' ? "Présence sociale engageante et stratégique" : language === 'ar' ? "حضور اجتماعي استراتيجي" : "Engaging strategic social presence",
+      title: "Social Media Management",
+      shortDesc: "Engaging strategic social presence",
       features: [
-        language === 'fr' ? "Stratégie réseaux sociaux" : language === 'ar' ? "استراتيجية وسائل التواصل" : "Social media strategy",
-        language === 'fr' ? "Création de contenu" : language === 'ar' ? "إنشاء المحتوى" : "Content creation",
-        language === 'fr' ? "Community management" : language === 'ar' ? "إدارة المجتمع" : "Community management",
-        language === 'fr' ? "Publicité sociale (Ads)" : language === 'ar' ? "إعلانات اجتماعية" : "Social advertising (Ads)"
+        "Social media strategy",
+        "Content creation",
+        "Community management",
+        "Social advertising (Ads)"
       ],
       color: "from-indigo-500 to-blue-500",
       bgColor: "bg-indigo-500/10",
       borderColor: "border-indigo-500/20"
     }
   ];
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Title animation
-      gsap.from(titleRef.current, {
-        scrollTrigger: {
-          trigger: titleRef.current,
-          start: "top 80%",
-          toggleActions: "play none none none"
-        },
-        opacity: 0,
-        y: 50,
-        duration: 0.8,
-        ease: "power3.out"
-      });
-
-      // Service cards stagger animation
-      cardsRef.current.forEach((card, index) => {
-        if (card) {
-          gsap.from(card, {
-            scrollTrigger: {
-              trigger: card,
-              start: "top 90%",
-              toggleActions: "play none none none"
-            },
-            opacity: 0,
-            y: 80,
-            duration: 0.6,
-            delay: index * 0.1,
-            ease: "back.out(1.2)"
-          });
-        }
-      });
-
-      // Floating animation for active card (continuous)
-      gsap.to(`.active-service-card`, {
-        y: -10,
-        duration: 2,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-      });
-
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -194,38 +136,33 @@ const Expertise = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
-          ref={titleRef}
           initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 bg-[#48A9FE]/10 border border-[#48A9FE]/20 rounded-full px-4 py-2 mb-6"
           >
             <Sparkles className="w-4 h-4 text-[#48A9FE]" />
             <span className="text-[#48A9FE] text-sm font-semibold uppercase tracking-wide">
-              {language === 'fr' ? "Nos Services" : language === 'ar' ? "خدماتنا" : "Our Services"}
+              Our Services
             </span>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#002144] mb-6 leading-tight">
-            {language === 'fr' ? "Solutions Complètes" : language === 'ar' ? "حلول شاملة" : "Complete Solutions"}
+            Complete Solutions
             <br />
             <span className="bg-gradient-to-r from-[#48A9FE] to-[#002144] bg-clip-text text-transparent">
-              {language === 'fr' ? "Pour Votre Croissance" : language === 'ar' ? "لنمو أعمالك" : "For Your Growth"}
+              For Your Growth
             </span>
           </h2>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {language === 'fr' ? 
-              "De la stratégie à l'exécution, nous couvrons tous les aspects de votre présence digitale avec expertise et créativité." :
-             language === 'ar' ?
-              "من الاستراتيجية إلى التنفيذ، نغطي جميع جوانب تواجدك الرقمي بخبرة وإبداع." :
-              "From strategy to execution, we cover all aspects of your digital presence with expertise and creativity."}
+            From strategy to execution, we cover all aspects of your digital presence with expertise and creativity.
           </p>
         </motion.div>
 
@@ -279,12 +216,10 @@ const Expertise = () => {
                   <p className="text-lg text-gray-600 mb-6">
                     {services[activeService].shortDesc}
                   </p>
-                  <Link href="/services">
-                    <Button variant="gradient" className="group">
-                      {language === 'fr' ? "En savoir plus" : language === 'ar' ? "اعرف المزيد" : "Learn More"}
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </Link>
+                  <button className="px-6 py-3 bg-gradient-to-r from-[#48A9FE] to-[#002144] text-white rounded-lg hover:shadow-lg transition-all group">
+                    Learn More
+                    <ArrowRight className="w-4 h-4 ml-2 inline group-hover:translate-x-1 transition-transform" />
+                  </button>
                 </div>
 
                 <div className="space-y-3">
@@ -309,13 +244,12 @@ const Expertise = () => {
         </motion.div>
 
         {/* Services Grid */}
-        <div ref={servicesRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              ref={el => cardsRef.current[index] = el}
               initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onMouseEnter={() => setHoveredCard(index)}
               onMouseLeave={() => setHoveredCard(null)}
@@ -323,7 +257,7 @@ const Expertise = () => {
                 hoveredCard === index
                   ? `${service.bgColor} ${service.borderColor} shadow-2xl scale-105`
                   : 'bg-white border-gray-100 hover:shadow-xl'
-              } ${activeService === index ? 'active-service-card' : ''}`}
+              }`}
             >
               {/* Gradient Overlay on Hover */}
               <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
@@ -352,7 +286,7 @@ const Expertise = () => {
                 </div>
 
                 <button className="flex items-center gap-2 text-[#48A9FE] font-semibold group-hover:gap-4 transition-all">
-                  {language === 'fr' ? "Découvrir" : language === 'ar' ? "اكتشف" : "Discover"}
+                  Discover
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -366,22 +300,18 @@ const Expertise = () => {
         {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="mt-16 text-center"
         >
           <div className="inline-flex flex-col sm:flex-row gap-4">
-            <Link href="/devis">
-              <Button variant="gradient" size="lg" className="group">
-                {language === 'fr' ? "Démarrer un projet" : language === 'ar' ? "ابدأ مشروعاً" : "Start a Project"}
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-            <Link href="/services">
-              <Button variant="outline" size="lg">
-                {language === 'fr' ? "Voir tous les services" : language === 'ar' ? "عرض جميع الخدمات" : "View All Services"}
-              </Button>
-            </Link>
+            <button className="px-8 py-4 bg-gradient-to-r from-[#48A9FE] to-[#002144] text-white rounded-lg hover:shadow-lg transition-all group">
+              Start a Project
+              <ArrowRight className="w-5 h-5 ml-2 inline group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button className="px-8 py-4 border-2 border-[#48A9FE] text-[#48A9FE] rounded-lg hover:bg-[#48A9FE] hover:text-white transition-all">
+              View All Services
+            </button>
           </div>
         </motion.div>
       </div>
