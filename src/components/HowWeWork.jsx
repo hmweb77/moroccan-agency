@@ -107,17 +107,7 @@ const HowWeWork = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 bg-[#48A9FE]/10 border border-[#48A9FE]/20 rounded-full px-4 py-2 mb-6"
-          >
-            <Sparkles className="w-4 h-4 text-[#48A9FE]" />
-            <span className="text-[#48A9FE] text-sm font-semibold uppercase tracking-wide">
-              {language === 'fr' ? "Notre Processus" : language === 'ar' ? "عمليتنا" : "Our Process"}
-            </span>
-          </motion.div>
+         
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#002144] mb-6 leading-tight">
             {language === 'fr' ? "Comment Ça Marche ?" : language === 'ar' ? "كيف نعمل؟" : "How It Works?"}
@@ -173,9 +163,9 @@ const HowWeWork = () => {
                     </motion.div>
 
                     {/* Icon */}
-                    <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${step.color} text-white mb-4`}>
+                    {/* <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${step.color} text-white mb-4`}>
                       {step.icon}
-                    </div>
+                    </div> */}
 
                     {/* Title */}
                     <h3 className="text-3xl font-bold text-[#002144] mb-4">
@@ -326,7 +316,6 @@ const HowWeWork = () => {
             <div className="flex flex-wrap justify-center gap-8 mt-8">
               {[
                 { icon: <CheckCircle className="w-5 h-5" />, text: language === 'fr' ? "Sans engagement" : "No commitment" },
-                { icon: <Clock className="w-5 h-5" />, text: language === 'fr' ? "Réponse en 8h" : "8h response" },
                 { icon: <Users className="w-5 h-5" />, text: language === 'fr' ? "80+ clients satisfaits" : "80+ happy clients" }
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-2 text-gray-600">

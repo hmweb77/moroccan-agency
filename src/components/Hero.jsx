@@ -211,21 +211,6 @@ const HeroSection = () => {
             
             {/* Left Column - Text Content */}
             <div className="text-start space-y-8">
-              {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 bg-[#48A9FE]/20 backdrop-blur-sm border border-[#48A9FE]/30 rounded-full px-4 py-2"
-              >
-                <Sparkles className="w-4 h-4 text-[#48A9FE]" />
-                <span className="text-white text-sm font-medium">
-                  {language === 'fr' ? "Votre partenaire digital de confiance" : 
-                   language === 'ar' ? "شريكك الرقمي الموثوق" : 
-                   "Your Trusted Digital Partner"}
-                </span>
-              </motion.div>
-
               {/* Main Title */}
               <div>
                 <h1 ref={titleRef} className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold text-white mb-4 leading-tight">
@@ -233,7 +218,7 @@ const HeroSection = () => {
                              language === 'ar' ? "حول عملك" : 
                              "Transform Your")}
                 </h1>
-                <h1 ref={subtitleRef} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
+                <h1 ref={subtitleRef} className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl font-bold mb-6 leading-tight">
                   <span className="bg-gradient-to-r from-[#48A9FE] via-[#60B0FF] to-[#48A9FE] bg-clip-text text-transparent animate-gradient">
                     {language === 'fr' ? "Vision Digitale" : 
                      language === 'ar' ? "الرقمي" : 

@@ -141,17 +141,7 @@ const Expertise = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 bg-[#48A9FE]/10 border border-[#48A9FE]/20 rounded-full px-4 py-2 mb-6"
-          >
-            <Sparkles className="w-4 h-4 text-[#48A9FE]" />
-            <span className="text-[#48A9FE] text-sm font-semibold uppercase tracking-wide">
-              Our Services
-            </span>
-          </motion.div>
+        
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#002144] mb-6 leading-tight">
             Complete Solutions

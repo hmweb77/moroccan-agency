@@ -132,17 +132,7 @@ const WhyChooseUs = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 bg-[#48A9FE]/10 border border-[#48A9FE]/20 rounded-full px-4 py-2 mb-6"
-          >
-            <Sparkles className="w-4 h-4 text-[#48A9FE]" />
-            <span className="text-[#48A9FE] text-sm font-semibold uppercase tracking-wide">
-              Why Choose Us
-            </span>
-          </motion.div>
+          
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#002144] mb-6 leading-tight">
             Your Partner for
@@ -210,41 +200,7 @@ const WhyChooseUs = () => {
           ))}
         </div>
 
-        {/* Trust Badge Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-20 text-center"
-        >
-          <div className="inline-flex items-center gap-8 bg-gradient-to-r from-[#48A9FE]/10 to-purple-500/10 backdrop-blur-sm border border-[#48A9FE]/20 rounded-2xl px-8 py-6">
-            <div className="flex items-center gap-3">
-              <Shield className="w-8 h-8 text-[#48A9FE]" />
-              <div className="text-left">
-                <div className="font-bold text-[#002144]">
-                  Money-Back Guarantee
-                </div>
-                <div className="text-sm text-gray-600">
-                  30 days risk-free
-                </div>
-              </div>
-            </div>
-
-            <div className="hidden md:block w-px h-12 bg-gray-300" />
-
-            <div className="flex items-center gap-3">
-              <Award className="w-8 h-8 text-purple-500" />
-              <div className="text-left">
-                <div className="font-bold text-[#002144]">
-                  Certified & Licensed
-                </div>
-                <div className="text-sm text-gray-600">
-                  Official partners
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+       
       </div>
     </section>
   );
