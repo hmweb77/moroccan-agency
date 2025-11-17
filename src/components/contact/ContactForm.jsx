@@ -103,8 +103,8 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-[#002144] mb-2">Email</h4>
-                  <a href="mailto:contact@nextdigits.com" className="text-gray-600 hover:text-[#48A9FE] transition-colors">
-                    contact@nextdigits.com
+                  <a href="mailto:contact@nextdigits.ma" className="text-gray-600 hover:text-[#48A9FE] transition-colors">
+                    contact@nextdigits.ma
                   </a>
                 </div>
               </div>

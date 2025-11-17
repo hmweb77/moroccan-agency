@@ -23,7 +23,7 @@ export const metadata = {
     description: "Solutions digitales sur-mesure pour votre entreprise",
     type: "website",
     locale: "fr_FR",
-    url: "https://nextdigits.com",
+    url: "https://nextdigits.ma",
     siteName: "NextDigits",
   },
   twitter: {

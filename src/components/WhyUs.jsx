@@ -11,168 +11,8 @@ import {
   Target,
   Heart
 } from 'lucide-react';
-
-// Mock context for demo
-const useLanguage = () => {
-  const [language, setLanguage] = useState('en');
-  return { language, changeLanguage: (lang) => setLanguage(lang) };
-};
-
-const translations = {
-  en: {
-    whyUs: {
-      subtitle: "YOUR PARTNER FOR",
-      title: "Digital Success",
-      description: "A unique approach combining speed, expertise and personalized support to guarantee your success.",
-      features: {
-        fast: {
-          title: "Fast Execution",
-          description: "Projects delivered in 7 days on average. Our agile methodology ensures fast results without compromising quality.",
-          stat: "7d",
-          statLabel: "Average Time"
-        },
-        support: {
-          title: "Full Support",
-          description: "360° service from strategy to maintenance. A dedicated contact for each project, available 24/7.",
-          stat: "24/7",
-          statLabel: "Support"
-        },
-        roi: {
-          title: "Guaranteed ROI",
-          description: "Results-oriented strategies. We continuously measure and optimize to maximize your return on investment.",
-          stat: "+150%",
-          statLabel: "Average ROI"
-        },
-        expertise: {
-          title: "Proven Expertise",
-          description: "Certified team with +10 years of experience. Specialists in each field to guarantee excellence.",
-          stat: "10+",
-          statLabel: "Years Expertise"
-        }
-      },
-      stats: {
-        clients: {
-          value: "80+",
-          label: "Happy Clients"
-        },
-        projects: {
-          value: "150+",
-          label: "Successful Projects"
-        },
-        satisfaction: {
-          value: "98%",
-          label: "Satisfaction Rate"
-        },
-        returning: {
-          value: "100%",
-          label: "Returning Clients"
-        }
-      }
-    }
-  },
-  fr: {
-    whyUs: {
-      subtitle: "VOTRE PARTENAIRE POUR",
-      title: "Le Succès Digital",
-      description: "Une approche unique combinant rapidité, expertise et accompagnement personnalisé pour garantir votre succès.",
-      features: {
-        fast: {
-          title: "Exécution Rapide",
-          description: "Projets livrés en 7 jours en moyenne. Notre méthodologie agile assure des résultats rapides sans compromettre la qualité.",
-          stat: "7j",
-          statLabel: "Temps Moyen"
-        },
-        support: {
-          title: "Support Complet",
-          description: "Service 360° de la stratégie à la maintenance. Un contact dédié pour chaque projet, disponible 24/7.",
-          stat: "24/7",
-          statLabel: "Support"
-        },
-        roi: {
-          title: "ROI Garanti",
-          description: "Stratégies axées sur les résultats. Nous mesurons et optimisons en continu pour maximiser votre retour sur investissement.",
-          stat: "+150%",
-          statLabel: "ROI Moyen"
-        },
-        expertise: {
-          title: "Expertise Prouvée",
-          description: "Équipe certifiée avec +10 ans d'expérience. Des spécialistes dans chaque domaine pour garantir l'excellence.",
-          stat: "10+",
-          statLabel: "Années d'Expertise"
-        }
-      },
-      stats: {
-        clients: {
-          value: "80+",
-          label: "Clients Satisfaits"
-        },
-        projects: {
-          value: "150+",
-          label: "Projets Réussis"
-        },
-        satisfaction: {
-          value: "98%",
-          label: "Taux de Satisfaction"
-        },
-        returning: {
-          value: "100%",
-          label: "Clients Fidèles"
-        }
-      }
-    }
-  },
-  ar: {
-    whyUs: {
-      subtitle: "شريكك من أجل",
-      title: "النجاح الرقمي",
-      description: "نهج فريد يجمع بين السرعة والخبرة والدعم الشخصي لضمان نجاحك.",
-      features: {
-        fast: {
-          title: "تنفيذ سريع",
-          description: "مشاريع يتم تسليمها في 7 أيام في المتوسط. منهجيتنا المرنة تضمن نتائج سريعة دون المساس بالجودة.",
-          stat: "7 أيام",
-          statLabel: "الوقت المتوسط"
-        },
-        support: {
-          title: "دعم كامل",
-          description: "خدمة 360 درجة من الاستراتيجية إلى الصيانة. جهة اتصال مخصصة لكل مشروع، متاحة 24/7.",
-          stat: "24/7",
-          statLabel: "الدعم"
-        },
-        roi: {
-          title: "عائد استثمار مضمون",
-          description: "استراتيجيات موجهة نحو النتائج. نقيس ونحسن باستمرار لتعظيم عائد استثمارك.",
-          stat: "+150%",
-          statLabel: "متوسط العائد"
-        },
-        expertise: {
-          title: "خبرة مثبتة",
-          description: "فريق معتمد مع أكثر من 10 سنوات من الخبرة. متخصصون في كل مجال لضمان التميز.",
-          stat: "+10",
-          statLabel: "سنوات خبرة"
-        }
-      },
-      stats: {
-        clients: {
-          value: "+80",
-          label: "عميل سعيد"
-        },
-        projects: {
-          value: "+150",
-          label: "مشروع ناجح"
-        },
-        satisfaction: {
-          value: "98%",
-          label: "معدل الرضا"
-        },
-        returning: {
-          value: "100%",
-          label: "عملاء عائدون"
-        }
-      }
-    }
-  }
-};
+import { useLanguage } from '../contexts/LanguageContext';
+import { translations } from '@/translations/translations';
 
 const WhyChooseUs = () => {
   const { language } = useLanguage();
@@ -186,22 +26,50 @@ const WhyChooseUs = () => {
   const features = [
     {
       icon: <Zap className="w-8 h-8" />,
-      ...t.features.fast,
+      title: language === 'fr' ? "Exécution Rapide" : language === 'ar' ? "تنفيذ سريع" : "Fast Execution",
+      description: language === 'fr' ? 
+        "Projets livrés en 7 jours en moyenne. Notre méthodologie agile assure des résultats rapides sans compromettre la qualité." :
+        language === 'ar' ?
+        "مشاريع يتم تسليمها في 7 أيام في المتوسط. منهجيتنا المرنة تضمن نتائج سريعة دون المساس بالجودة." :
+        "Projects delivered in 7 days on average. Our agile methodology ensures fast results without compromising quality.",
+      stat: language === 'fr' ? "7j" : language === 'ar' ? "7 أيام" : "7d",
+      statLabel: language === 'fr' ? "Temps Moyen" : language === 'ar' ? "الوقت المتوسط" : "Average Time",
       color: "from-yellow-400 to-orange-500"
     },
     {
       icon: <Shield className="w-8 h-8" />,
-      ...t.features.support,
+      title: language === 'fr' ? "Support Complet" : language === 'ar' ? "دعم كامل" : "Full Support",
+      description: language === 'fr' ? 
+        "Service 360° de la stratégie à la maintenance. Un contact dédié pour chaque projet, disponible 24/7." :
+        language === 'ar' ?
+        "خدمة 360 درجة من الاستراتيجية إلى الصيانة. جهة اتصال مخصصة لكل مشروع، متاحة 24/7." :
+        "360° service from strategy to maintenance. A dedicated contact for each project, available 24/7.",
+      stat: "24/7",
+      statLabel: language === 'fr' ? "Support" : language === 'ar' ? "الدعم" : "Support",
       color: "from-blue-400 to-cyan-500"
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      ...t.features.roi,
+      title: language === 'fr' ? "ROI Garanti" : language === 'ar' ? "عائد استثمار مضمون" : "Guaranteed ROI",
+      description: language === 'fr' ? 
+        "Stratégies axées sur les résultats. Nous mesurons et optimisons en continu pour maximiser votre retour sur investissement." :
+        language === 'ar' ?
+        "استراتيجيات موجهة نحو النتائج. نقيس ونحسن باستمرار لتعظيم عائد استثمارك." :
+        "Results-oriented strategies. We continuously measure and optimize to maximize your return on investment.",
+      stat: "+150%",
+      statLabel: language === 'fr' ? "ROI Moyen" : language === 'ar' ? "متوسط العائد" : "Average ROI",
       color: "from-green-400 to-emerald-500"
     },
     {
       icon: <Award className="w-8 h-8" />,
-      ...t.features.expertise,
+      title: language === 'fr' ? "Expertise Prouvée" : language === 'ar' ? "خبرة مثبتة" : "Proven Expertise",
+      description: language === 'fr' ? 
+        "Équipe certifiée avec +10 ans d'expérience. Des spécialistes dans chaque domaine pour garantir l'excellence." :
+        language === 'ar' ?
+        "فريق معتمد مع أكثر من 10 سنوات من الخبرة. متخصصون في كل مجال لضمان التميز." :
+        "Certified team with +10 years of experience. Specialists in each field to guarantee excellence.",
+      stat: language === 'ar' ? "+10" : "10+",
+      statLabel: language === 'fr' ? "Années d'Expertise" : language === 'ar' ? "سنوات خبرة" : "Years Expertise",
       color: "from-purple-400 to-pink-500"
     }
   ];
@@ -209,22 +77,26 @@ const WhyChooseUs = () => {
   const stats = [
     {
       icon: <Users className="w-6 h-6" />,
-      ...t.stats.clients,
+      value: language === 'ar' ? "+80" : "80+",
+      label: language === 'fr' ? "Clients Satisfaits" : language === 'ar' ? "عميل سعيد" : "Happy Clients",
       color: "text-blue-500"
     },
     {
       icon: <Target className="w-6 h-6" />,
-      ...t.stats.projects,
+      value: language === 'ar' ? "+150" : "150+",
+      label: language === 'fr' ? "Projets Réussis" : language === 'ar' ? "مشروع ناجح" : "Successful Projects",
       color: "text-green-500"
     },
     {
       icon: <Award className="w-6 h-6" />,
-      ...t.stats.satisfaction,
+      value: "98%",
+      label: language === 'fr' ? "Taux de Satisfaction" : language === 'ar' ? "معدل الرضا" : "Satisfaction Rate",
       color: "text-purple-500"
     },
     {
       icon: <Heart className="w-6 h-6" />,
-      ...t.stats.returning,
+      value: "100%",
+      label: language === 'fr' ? "Clients Fidèles" : language === 'ar' ? "عملاء عائدون" : "Returning Clients",
       color: "text-pink-500"
     }
   ];
@@ -255,17 +127,21 @@ const WhyChooseUs = () => {
           className="text-center mb-16"
         >
           <p className="text-[#48A9FE] text-lg md:text-xl font-medium mb-4 tracking-wider uppercase">
-            {t.subtitle}
+            {language === 'fr' ? "VOTRE PARTENAIRE POUR" : language === 'ar' ? "شريكك من أجل" : "YOUR PARTNER FOR"}
           </p>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#002144] mb-6 leading-tight">
             <span className="bg-gradient-to-r from-[#48A9FE] to-purple-600 bg-clip-text text-transparent">
-              {t.title}
+              {language === 'fr' ? "Le Succès Digital" : language === 'ar' ? "النجاح الرقمي" : "Digital Success"}
             </span>
           </h2>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {t.description}
+            {language === 'fr' ? 
+              "Une approche unique combinant rapidité, expertise et accompagnement personnalisé pour garantir votre succès." :
+              language === 'ar' ?
+              "نهج فريد يجمع بين السرعة والخبرة والدعم الشخصي لضمان نجاحك." :
+              "A unique approach combining speed, expertise and personalized support to guarantee your success."}
           </p>
         </motion.div>
 

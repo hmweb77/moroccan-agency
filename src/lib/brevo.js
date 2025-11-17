@@ -18,7 +18,7 @@ export async function sendEmail({ to, subject, htmlContent, replyTo }) {
       body: JSON.stringify({
         sender: {
           name: 'NextDigits',
-          email: process.env.BREVO_SENDER_EMAIL || 'contact@nextdigits.com'
+          email: process.env.BREVO_SENDER_EMAIL || 'contact@nextdigits.ma'
         },
         to: Array.isArray(to) ? to : [{ email: to }],
         subject,
@@ -59,7 +59,7 @@ export async function sendQuoteNotification(formData) {
 
   // Email to team
   await sendEmail({
-    to: process.env.ADMIN_EMAIL || 'contact@nextdigits.com',
+    to: process.env.ADMIN_EMAIL || 'contact@nextdigits.ma',
     subject: `Nouvelle demande de devis - ${serviceNames[service] || service}`,
     htmlContent: `
       <!DOCTYPE html>
@@ -156,7 +156,7 @@ export async function sendQuoteNotification(formData) {
             <hr style="border: 1px solid #eee; margin: 20px 0;">
             
             <p style="font-size: 12px; color: #888;">
-              📧 contact@nextdigits.com | 📱 +212 7 08 14 06 17 | 📍 Casablanca, Maroc
+              📧 contact@nextdigits.ma | 📱 +212 7 08 14 06 17 | 📍 Casablanca, Maroc
             </p>
           </div>
         </div>
@@ -171,7 +171,7 @@ export async function sendContactNotification(formData) {
 
   // Email to team
   await sendEmail({
-    to: process.env.ADMIN_EMAIL || 'contact@nextdigits.com',
+    to: process.env.ADMIN_EMAIL || 'contact@nextdigits.ma',
     subject: `Nouveau contact: ${sujet}`,
     htmlContent: `
       <!DOCTYPE html>
@@ -256,7 +256,7 @@ export async function sendContactNotification(formData) {
             <hr style="border: 1px solid #eee; margin: 20px 0;">
             
             <p style="font-size: 12px; color: #888;">
-              📧 contact@nextdigits.com | 📱 +212 7 08 14 06 17 | 📍 Casablanca, Maroc
+              📧 contact@nextdigits.ma | 📱 +212 7 08 14 06 17 | 📍 Casablanca, Maroc
             </p>
           </div>
         </div>

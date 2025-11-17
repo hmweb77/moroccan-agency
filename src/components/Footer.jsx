@@ -30,7 +30,7 @@ const Footer = () => {
     { icon: <Instagram className="w-4 h-4" />, text: "Instagram", href: "#" },
     { icon: <MessageCircle className="w-4 h-4" />, text: "Whatsapp", href: "#" },
     { icon: <Phone className="w-4 h-4" />, text: "+212 7 08 14 06 17", href: "tel:0708000018" },
-    { icon: <Mail className="w-4 h-4" />, text: "contact@nextdigits.com", href: "mailto:contact@nextdigits.com" },
+    { icon: <Mail className="w-4 h-4" />, text: "contact@nextdigits.ma", href: "mailto:contact@nextdigits.ma" },
     { icon: <MapPin className="w-4 h-4" />, text: "Casablanca", href: "#" }
   ];
 
