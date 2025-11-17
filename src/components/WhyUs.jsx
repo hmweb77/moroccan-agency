@@ -9,13 +9,176 @@ import {
   Award,
   Users,
   Target,
-  Heart,
-  Sparkles
+  Heart
 } from 'lucide-react';
 
+// Mock context for demo
+const useLanguage = () => {
+  const [language, setLanguage] = useState('en');
+  return { language, changeLanguage: (lang) => setLanguage(lang) };
+};
+
+const translations = {
+  en: {
+    whyUs: {
+      subtitle: "YOUR PARTNER FOR",
+      title: "Digital Success",
+      description: "A unique approach combining speed, expertise and personalized support to guarantee your success.",
+      features: {
+        fast: {
+          title: "Fast Execution",
+          description: "Projects delivered in 7 days on average. Our agile methodology ensures fast results without compromising quality.",
+          stat: "7d",
+          statLabel: "Average Time"
+        },
+        support: {
+          title: "Full Support",
+          description: "360° service from strategy to maintenance. A dedicated contact for each project, available 24/7.",
+          stat: "24/7",
+          statLabel: "Support"
+        },
+        roi: {
+          title: "Guaranteed ROI",
+          description: "Results-oriented strategies. We continuously measure and optimize to maximize your return on investment.",
+          stat: "+150%",
+          statLabel: "Average ROI"
+        },
+        expertise: {
+          title: "Proven Expertise",
+          description: "Certified team with +10 years of experience. Specialists in each field to guarantee excellence.",
+          stat: "10+",
+          statLabel: "Years Expertise"
+        }
+      },
+      stats: {
+        clients: {
+          value: "80+",
+          label: "Happy Clients"
+        },
+        projects: {
+          value: "150+",
+          label: "Successful Projects"
+        },
+        satisfaction: {
+          value: "98%",
+          label: "Satisfaction Rate"
+        },
+        returning: {
+          value: "100%",
+          label: "Returning Clients"
+        }
+      }
+    }
+  },
+  fr: {
+    whyUs: {
+      subtitle: "VOTRE PARTENAIRE POUR",
+      title: "Le Succès Digital",
+      description: "Une approche unique combinant rapidité, expertise et accompagnement personnalisé pour garantir votre succès.",
+      features: {
+        fast: {
+          title: "Exécution Rapide",
+          description: "Projets livrés en 7 jours en moyenne. Notre méthodologie agile assure des résultats rapides sans compromettre la qualité.",
+          stat: "7j",
+          statLabel: "Temps Moyen"
+        },
+        support: {
+          title: "Support Complet",
+          description: "Service 360° de la stratégie à la maintenance. Un contact dédié pour chaque projet, disponible 24/7.",
+          stat: "24/7",
+          statLabel: "Support"
+        },
+        roi: {
+          title: "ROI Garanti",
+          description: "Stratégies axées sur les résultats. Nous mesurons et optimisons en continu pour maximiser votre retour sur investissement.",
+          stat: "+150%",
+          statLabel: "ROI Moyen"
+        },
+        expertise: {
+          title: "Expertise Prouvée",
+          description: "Équipe certifiée avec +10 ans d'expérience. Des spécialistes dans chaque domaine pour garantir l'excellence.",
+          stat: "10+",
+          statLabel: "Années d'Expertise"
+        }
+      },
+      stats: {
+        clients: {
+          value: "80+",
+          label: "Clients Satisfaits"
+        },
+        projects: {
+          value: "150+",
+          label: "Projets Réussis"
+        },
+        satisfaction: {
+          value: "98%",
+          label: "Taux de Satisfaction"
+        },
+        returning: {
+          value: "100%",
+          label: "Clients Fidèles"
+        }
+      }
+    }
+  },
+  ar: {
+    whyUs: {
+      subtitle: "شريكك من أجل",
+      title: "النجاح الرقمي",
+      description: "نهج فريد يجمع بين السرعة والخبرة والدعم الشخصي لضمان نجاحك.",
+      features: {
+        fast: {
+          title: "تنفيذ سريع",
+          description: "مشاريع يتم تسليمها في 7 أيام في المتوسط. منهجيتنا المرنة تضمن نتائج سريعة دون المساس بالجودة.",
+          stat: "7 أيام",
+          statLabel: "الوقت المتوسط"
+        },
+        support: {
+          title: "دعم كامل",
+          description: "خدمة 360 درجة من الاستراتيجية إلى الصيانة. جهة اتصال مخصصة لكل مشروع، متاحة 24/7.",
+          stat: "24/7",
+          statLabel: "الدعم"
+        },
+        roi: {
+          title: "عائد استثمار مضمون",
+          description: "استراتيجيات موجهة نحو النتائج. نقيس ونحسن باستمرار لتعظيم عائد استثمارك.",
+          stat: "+150%",
+          statLabel: "متوسط العائد"
+        },
+        expertise: {
+          title: "خبرة مثبتة",
+          description: "فريق معتمد مع أكثر من 10 سنوات من الخبرة. متخصصون في كل مجال لضمان التميز.",
+          stat: "+10",
+          statLabel: "سنوات خبرة"
+        }
+      },
+      stats: {
+        clients: {
+          value: "+80",
+          label: "عميل سعيد"
+        },
+        projects: {
+          value: "+150",
+          label: "مشروع ناجح"
+        },
+        satisfaction: {
+          value: "98%",
+          label: "معدل الرضا"
+        },
+        returning: {
+          value: "100%",
+          label: "عملاء عائدون"
+        }
+      }
+    }
+  }
+};
+
 const WhyChooseUs = () => {
+  const { language } = useLanguage();
+  const t = translations[language].whyUs;
+  
   const sectionRef = useRef(null);
-  const statsRef = useRef(null);
   const featuresRef = useRef([]);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -23,89 +186,48 @@ const WhyChooseUs = () => {
   const features = [
     {
       icon: <Zap className="w-8 h-8" />,
-      title: "Fast Execution",
-      description: "Projects delivered in 7 days on average. Our agile methodology ensures fast results without compromising quality.",
-      color: "from-yellow-400 to-orange-500",
-      stat: "7d",
-      statLabel: "Average Time"
+      ...t.features.fast,
+      color: "from-yellow-400 to-orange-500"
     },
     {
       icon: <Shield className="w-8 h-8" />,
-      title: "Full Support",
-      description: "360° service from strategy to maintenance. A dedicated contact for each project, available 24/7.",
-      color: "from-blue-400 to-cyan-500",
-      stat: "24/7",
-      statLabel: "Support"
+      ...t.features.support,
+      color: "from-blue-400 to-cyan-500"
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      title: "Guaranteed ROI",
-      description: "Results-oriented strategies. We continuously measure and optimize to maximize your return on investment.",
-      color: "from-green-400 to-emerald-500",
-      stat: "+150%",
-      statLabel: "Average ROI"
+      ...t.features.roi,
+      color: "from-green-400 to-emerald-500"
     },
     {
       icon: <Award className="w-8 h-8" />,
-      title: "Proven Expertise",
-      description: "Certified team with +10 years of experience. Specialists in each field to guarantee excellence.",
-      color: "from-purple-400 to-pink-500",
-      stat: "10+",
-      statLabel: "Years Expertise"
+      ...t.features.expertise,
+      color: "from-purple-400 to-pink-500"
     }
   ];
 
   const stats = [
     {
       icon: <Users className="w-6 h-6" />,
-      value: 80,
-      suffix: "+",
-      label: "Happy Clients",
+      ...t.stats.clients,
       color: "text-blue-500"
     },
     {
       icon: <Target className="w-6 h-6" />,
-      value: 150,
-      suffix: "+",
-      label: "Successful Projects",
+      ...t.stats.projects,
       color: "text-green-500"
     },
     {
       icon: <Award className="w-6 h-6" />,
-      value: 98,
-      suffix: "%",
-      label: "Satisfaction Rate",
+      ...t.stats.satisfaction,
       color: "text-purple-500"
     },
     {
       icon: <Heart className="w-6 h-6" />,
-      value: 100,
-      suffix: "%",
-      label: "Returning Clients",
+      ...t.stats.returning,
       color: "text-pink-500"
     }
   ];
-
-  // Animated Counter Component
-  const AnimatedCounter = ({ value, suffix }) => {
-    const count = useMotionValue(0);
-    const rounded = useTransform(count, (latest) => Math.round(latest));
-    const springCount = useSpring(count, { stiffness: 50, damping: 30 });
-
-    useEffect(() => {
-      if (isInView && !hasAnimated) {
-        count.set(value);
-        setHasAnimated(true);
-      }
-    }, [isInView, value, count, hasAnimated]);
-
-    return (
-      <motion.span>
-        {rounded.get()}
-        {suffix}
-      </motion.span>
-    );
-  };
 
   return (
     <section ref={sectionRef} className="relative py-24 overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white">
@@ -132,23 +254,23 @@ const WhyChooseUs = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          
+          <p className="text-[#48A9FE] text-lg md:text-xl font-medium mb-4 tracking-wider uppercase">
+            {t.subtitle}
+          </p>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#002144] mb-6 leading-tight">
-            Your Partner for
-            <br />
             <span className="bg-gradient-to-r from-[#48A9FE] to-purple-600 bg-clip-text text-transparent">
-              Digital Success
+              {t.title}
             </span>
           </h2>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            A unique approach combining speed, expertise and personalized support to guarantee your success.
+            {t.description}
           </p>
         </motion.div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -200,7 +322,34 @@ const WhyChooseUs = () => {
           ))}
         </div>
 
-       
+        {/* Stats Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6"
+        >
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+              className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 text-center hover:shadow-xl transition-all duration-300"
+            >
+              <div className={`${stat.color} mb-3 flex justify-center`}>
+                {stat.icon}
+              </div>
+              <div className="text-3xl md:text-4xl font-bold text-[#002144] mb-2">
+                {stat.value}
+              </div>
+              <div className="text-sm text-gray-600 font-medium">
+                {stat.label}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

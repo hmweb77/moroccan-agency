@@ -1,32 +1,86 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Globe } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useLanguage } from "../contexts/LanguageContext";
-import { translations } from "@/translations/translations";
-import { Button } from "@/selector/ui";
+
+// Mock context for demo - replace with your actual context
+const useLanguage = () => {
+  const [language, setLanguage] = useState('fr');
+  return {
+    language,
+    changeLanguage: (lang) => setLanguage(lang)
+  };
+};
+
+const translations = {
+  en: {
+    nav: {
+      home: "Home",
+      expertise: "Our Expertise",
+      about: "About",
+      contact: "Contact",
+      quote: "Request Quote"
+    }
+  },
+  fr: {
+    nav: {
+      home: "Accueil",
+      expertise: "Notre Expertise",
+      about: "À propos",
+      contact: "Contact",
+      quote: "Demander un devis"
+    }
+  },
+  ar: {
+    nav: {
+      home: "الرئيسية",
+      expertise: "خبرتنا",
+      about: "من نحن",
+      contact: "اتصل بنا",
+      quote: "اطلب عرض أسعار"
+    }
+  }
+};
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
   const [languageDropdownOpen, setLanguageDropdownOpen] = useState(false);
   const { language, changeLanguage } = useLanguage();
+  const dropdownRef = useRef(null);
+  const mobileDropdownRef = useRef(null);
 
   const t = translations[language].nav;
 
+  // Handle scroll
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleScroll = () => {
-        setIsScrolled(window.scrollY > 50);
-      };
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setLanguageDropdownOpen(false);
+      }
+    };
+
+    if (languageDropdownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [languageDropdownOpen]);
+
+  // Close mobile menu on resize
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
@@ -37,6 +91,7 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -56,27 +111,14 @@ const Navbar = () => {
 
   const navItems = [
     { name: t.home, href: "/" },
-    {
-      name: t.expertise,
-      href: "/services",
-      dropdown: [
-        t.services.webDesign,
-        t.services.webdev,
-        t.services.digitalMarketing,
-        t.services.seo,
-        t.services.branding
-      ],
-    },
-    {
-      name: t.about,
-      href: "/about",
-      dropdown: [
-        t.aboutDropdown.team,
-        t.aboutDropdown.history,
-        t.aboutDropdown.values
-      ],
-    },
+    { name: t.expertise, href: "/services" },
+    { name: t.about, href: "/about" },
   ];
+
+  const handleLanguageChange = (langCode) => {
+    changeLanguage(langCode);
+    setLanguageDropdownOpen(false);
+  };
 
   return (
     <motion.nav
@@ -94,70 +136,35 @@ const Navbar = () => {
             className="flex items-center space-x-2 z-50"
           >
             <Link href="/">
-              <Image
-                src="/Next_Digits_V2_48A9FE.png"
-                alt="NEXTDIGITS Logo"
-                width={120}
-                height={32}
-                className="w-auto h-10 lg:h-12"
-                priority
-              />
+              <div className="font-bold text-xl" style={{ color: isScrolled ? '#48A9FE' : '#fff' }}>
+                NextDigits
+              </div>
             </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navItems.map((item, index) => (
-              <div
+              <Link
                 key={index}
-                className="relative"
-                // onMouseEnter={() => item.dropdown && setActiveDropdown(index)}
-                onMouseLeave={() => setActiveDropdown(null)}
+                href={item.href}
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isScrolled
+                    ? "text-[#002144] hover:text-[#48A9FE]"
+                    : "text-white hover:text-[#48A9FE]"
+                }`}
               >
-                <Link
-                  href={item.href}
-                  className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    isScrolled
-                      ? "text-[#002144] hover:text-[#48A9FE]"
-                      : "text-white hover:text-[#48A9FE]"
-                  }`}
-                >
-                  <span>{item.name}</span>
-                  {/* {item.dropdown && <ChevronDown className="w-4 h-4" />} */}
-                </Link>
-
-                {/* Dropdown */}
-                {/* {item.dropdown && activeDropdown === index && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg border border-gray-100"
-                  >
-                    {item.dropdown.map((subItem, subIndex) => (
-                      <a
-                        key={subIndex}
-                        href="#"
-                        className="block px-4 py-2 text-sm text-[#002144] hover:bg-gray-50 hover:text-[#48A9FE] first:rounded-t-md last:rounded-b-md transition-colors"
-                      >
-                        {subItem}
-                      </a>
-                    ))}
-                  </motion.div>
-                )} */}
-              </div>
+                {item.name}
+              </Link>
             ))}
           </div>
 
-          {/* CTA Buttons & Language Selector */}
+          {/* Desktop CTA & Language */}
           <div className="hidden lg:flex items-center space-x-4">
             {/* Language Selector */}
-            <div
-              className="relative"
-              onMouseEnter={() => setLanguageDropdownOpen(true)}
-              onMouseLeave={() => setLanguageDropdownOpen(false)}
-            >
+            <div className="relative" ref={dropdownRef}>
               <button
+                onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
                 className={`flex items-center space-x-2 px-3 py-2 rounded-md transition-colors ${
                   isScrolled
                     ? "text-[#002144] hover:text-[#48A9FE]"
@@ -168,50 +175,61 @@ const Navbar = () => {
                 <span className="text-sm font-medium">
                   {languages.find(l => l.code === language)?.flag}
                 </span>
-                <ChevronDown className="w-4 h-4" />
               </button>
 
-              {languageDropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="absolute top-full right-0 mt-2 w-40 bg-white rounded-md shadow-lg border border-gray-100"
-                >
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => changeLanguage(lang.code)}
-                      className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 first:rounded-t-md last:rounded-b-md transition-colors flex items-center space-x-2 ${
-                        language === lang.code
-                          ? "bg-blue-50 text-[#48A9FE] font-medium"
-                          : "text-[#002144]"
-                      }`}
-                    >
-                      <span>{lang.flag}</span>
-                      <span>{lang.name}</span>
-                    </button>
-                  ))}
-                </motion.div>
-              )}
+              <AnimatePresence>
+                {languageDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full right-0 mt-2 w-40 bg-white rounded-md shadow-lg border border-gray-100 overflow-hidden"
+                  >
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => handleLanguageChange(lang.code)}
+                        className={`w-full text-left px-4 py-2 text-sm transition-colors flex items-center space-x-2 ${
+                          language === lang.code
+                            ? "bg-blue-50 text-[#48A9FE] font-medium"
+                            : "text-[#002144] hover:bg-gray-50"
+                        }`}
+                      >
+                        <span>{lang.flag}</span>
+                        <span>{lang.name}</span>
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <Link href="/devis">
-              <Button variant="primary" size="md">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#48A9FE] text-white px-6 py-2 rounded-full font-medium hover:bg-[#3890DD] transition-colors"
+              >
                 {t.quote}
-              </Button>
+              </motion.button>
             </Link>
+            
             <Link href="/contact">
-              <Button variant="primary" size="md">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#002144] text-white px-6 py-2 rounded-full font-medium hover:bg-[#003366] transition-colors"
+              >
                 {t.contact}
-              </Button>
+              </motion.button>
             </Link>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile Controls */}
           <div className="lg:hidden flex items-center space-x-3">
-            {/* Mobile Language Selector */}
-            <div className="relative">
+            {/* Mobile Language */}
+            <div className="relative" ref={mobileDropdownRef}>
               <button
                 onClick={() => setLanguageDropdownOpen(!languageDropdownOpen)}
                 className={`p-2 rounded-md ${
@@ -221,32 +239,31 @@ const Navbar = () => {
                 <Globe className="w-5 h-5" />
               </button>
 
-              {languageDropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  className="absolute top-full right-0 mt-2 w-32 bg-white rounded-md shadow-lg border border-gray-100"
-                >
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        changeLanguage(lang.code);
-                        setLanguageDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-50 first:rounded-t-md last:rounded-b-md transition-colors flex items-center space-x-2 ${
-                        language === lang.code
-                          ? "bg-blue-50 text-[#48A9FE] font-medium"
-                          : "text-[#002144]"
-                      }`}
-                    >
-                      <span>{lang.flag}</span>
-                      <span className="text-xs">{lang.name}</span>
-                    </button>
-                  ))}
-                </motion.div>
-              )}
+              <AnimatePresence>
+                {languageDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    className="absolute top-full right-0 mt-2 w-32 bg-white rounded-md shadow-lg border border-gray-100 overflow-hidden"
+                  >
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => handleLanguageChange(lang.code)}
+                        className={`w-full text-left px-3 py-2 text-sm transition-colors flex items-center space-x-2 ${
+                          language === lang.code
+                            ? "bg-blue-50 text-[#48A9FE] font-medium"
+                            : "text-[#002144] hover:bg-gray-50"
+                        }`}
+                      >
+                        <span>{lang.flag}</span>
+                        <span className="text-xs">{lang.name}</span>
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <button
@@ -254,13 +271,8 @@ const Navbar = () => {
               className={`p-2 rounded-md ${
                 isScrolled ? "text-[#002144]" : "text-white"
               }`}
-              aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -287,46 +299,27 @@ const Navbar = () => {
             >
               <div className="px-4 py-6 space-y-4">
                 {navItems.map((item, index) => (
-                  <div key={index}>
-                    <Link
-                      href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="block px-3 py-3 text-[#002144] hover:text-[#48A9FE] hover:bg-gray-50 rounded-md font-medium transition-colors"
-                    >
-                      {item.name}
-                    </Link>
-                    {/* {item.dropdown && (
-                      <div className="ml-4 mt-2 space-y-2">
-                        {item.dropdown.map((subItem, subIndex) => (
-                          <a
-                            key={subIndex}
-                            href="#"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="block px-3 py-2 text-sm text-gray-600 hover:text-[#48A9FE] hover:bg-gray-50 rounded-md transition-colors"
-                          >
-                            {subItem}
-                          </a>
-                        ))}
-                      </div>
-                    )} */}
-                  </div>
-                ))}
-                <div className="pt-4 space-y-3 border-t my-4 border-gray-200">
                   <Link
-                    href="/devis"
+                    key={index}
+                    href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-3 py-3 text-[#002144] hover:text-[#48A9FE] hover:bg-gray-50 rounded-md font-medium transition-colors"
                   >
-                    <Button variant="primary" className="w-full">
-                      {t.quote}
-                    </Button>
+                    {item.name}
                   </Link>
-                  <Link
-                    href="/contact"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <Button variant="primary" className=" my-4 w-full">
+                ))}
+                
+                <div className="pt-4 space-y-3 border-t border-gray-200">
+                  <Link href="/devis" onClick={() => setIsMobileMenuOpen(false)}>
+                    <button className="w-full bg-[#48A9FE] text-white px-6 py-3 rounded-full font-medium hover:bg-[#3890DD] transition-colors">
+                      {t.quote}
+                    </button>
+                  </Link>
+                  
+                  <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                    <button className="w-full bg-[#002144] text-white px-6 py-3 rounded-full font-medium hover:bg-[#003366] transition-colors">
                       {t.contact}
-                    </Button>
+                    </button>
                   </Link>
                 </div>
               </div>

@@ -1,30 +1,153 @@
 "use client"
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import {
   ArrowRight,
   CheckCircle,
-  Star,
   Shield,
   Award,
-  Sparkles,
   TrendingUp
 } from 'lucide-react';
-import Link from 'next/link';
-import { useLanguage } from '../contexts/LanguageContext';
-import { Button } from '@/selector/ui';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+// Mock context for demo
+const useLanguage = () => {
+  const [language, setLanguage] = useState('en');
+  return { language, changeLanguage: (lang) => setLanguage(lang) };
+};
+
+const translations = {
+  en: {
+    cta: {
+      ready: {
+        subtitle: "READY TO",
+        title: "Transform Your Digital Presence?",
+        description: "Join over 80 companies that trusted NextDigits for their digital growth.",
+        benefits: [
+          {
+            text: "8h guaranteed response"
+          },
+          {
+            text: "100% satisfaction guaranteed"
+          },
+          {
+            text: "Certified expert team"
+          },
+          {
+            text: "Measurable & optimized ROI"
+          }
+        ],
+        stats: [
+          {
+            value: "80+",
+            label: "Happy clients"
+          },
+          {
+            value: "150+",
+            label: "Successful projects"
+          },
+          {
+            value: "98%",
+            label: "Satisfaction rate"
+          }
+        ],
+        cta1: "Get Free Quote",
+        cta2: "Schedule Call",
+        trustText: "Trusted by"
+      }
+    }
+  },
+  fr: {
+    cta: {
+      ready: {
+        subtitle: "PRÊT À",
+        title: "Transformer Votre Présence Digitale ?",
+        description: "Rejoignez plus de 80 entreprises qui ont fait confiance à NextDigits pour leur croissance digitale.",
+        benefits: [
+          {
+            text: "Réponse sous 8h garantie"
+          },
+          {
+            text: "Satisfaction garantie à 100%"
+          },
+          {
+            text: "Équipe d'experts certifiés"
+          },
+          {
+            text: "ROI mesurable et optimisé"
+          }
+        ],
+        stats: [
+          {
+            value: "80+",
+            label: "Clients satisfaits"
+          },
+          {
+            value: "150+",
+            label: "Projets réussis"
+          },
+          {
+            value: "98%",
+            label: "Taux de satisfaction"
+          }
+        ],
+        cta1: "Obtenir un devis gratuit",
+        cta2: "Planifier un appel",
+        trustText: "Ils nous font confiance"
+      }
+    }
+  },
+  ar: {
+    cta: {
+      ready: {
+        subtitle: "جاهز لـ",
+        title: "تحويل حضورك الرقمي؟",
+        description: "انضم إلى أكثر من 80 شركة وثقت في NextDigits لنموها الرقمي.",
+        benefits: [
+          {
+            text: "رد مضمون خلال 8 ساعات"
+          },
+          {
+            text: "رضا مضمون 100%"
+          },
+          {
+            text: "فريق خبراء معتمدين"
+          },
+          {
+            text: "عائد استثمار قابل للقياس"
+          }
+        ],
+        stats: [
+          {
+            value: "+80",
+            label: "عميل راضٍ"
+          },
+          {
+            value: "+150",
+            label: "مشروع ناجح"
+          },
+          {
+            value: "98%",
+            label: "معدل الرضا"
+          }
+        ],
+        cta1: "احصل على عرض مجاني",
+        cta2: "جدولة مكالمة",
+        trustText: "يثقون بنا"
+      }
+    }
+  }
+};
 
 const AboutCTA = () => {
   const { language } = useLanguage();
+  const t = translations[language].cta.ready;
+  
   const sectionRef = useRef(null);
   const logosRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
-  // Client logos - replace with actual client logos
+  // Client logos
   const clientLogos = [
     { name: "Client 1", logo: "🏢" },
     { name: "Client 2", logo: "🎯" },
@@ -39,36 +162,36 @@ const AboutCTA = () => {
   const benefits = [
     {
       icon: <CheckCircle className="w-6 h-6" />,
-      text: language === 'fr' ? "Réponse sous 8h garantie" : language === 'ar' ? "رد مضمون خلال 8 ساعات" : "8h guaranteed response"
+      text: t.benefits[0].text
     },
     {
       icon: <Shield className="w-6 h-6" />,
-      text: language === 'fr' ? "Satisfaction garantie à 100%" : language === 'ar' ? "رضا مضمون 100%" : "100% satisfaction guaranteed"
+      text: t.benefits[1].text
     },
     {
       icon: <Award className="w-6 h-6" />,
-      text: language === 'fr' ? "Équipe d'experts certifiés" : language === 'ar' ? "فريق خبراء معتمدين" : "Certified expert team"
+      text: t.benefits[2].text
     },
     {
       icon: <TrendingUp className="w-6 h-6" />,
-      text: language === 'fr' ? "ROI mesurable et optimisé" : language === 'ar' ? "عائد استثمار قابل للقياس" : "Measurable & optimized ROI"
+      text: t.benefits[3].text
     }
   ];
 
   const stats = [
     { 
-      value: "80+", 
-      label: language === 'fr' ? "Clients satisfaits" : language === 'ar' ? "عميل راضٍ" : "Happy clients",
+      value: t.stats[0].value,
+      label: t.stats[0].label,
       color: "from-blue-500 to-cyan-500"
     },
     { 
-      value: "150+", 
-      label: language === 'fr' ? "Projets réussis" : language === 'ar' ? "مشروع ناجح" : "Successful projects",
+      value: t.stats[1].value,
+      label: t.stats[1].label,
       color: "from-purple-500 to-pink-500"
     },
     { 
-      value: "98%", 
-      label: language === 'fr' ? "Taux de satisfaction" : language === 'ar' ? "معدل الرضا" : "Satisfaction rate",
+      value: t.stats[2].value,
+      label: t.stats[2].label,
       color: "from-green-500 to-emerald-500"
     }
   ];
@@ -76,7 +199,6 @@ const AboutCTA = () => {
   // GSAP Animations
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Infinite scroll animation for logos
       if (logosRef.current) {
         const logos = logosRef.current.children;
         gsap.to(logos, {
@@ -98,7 +220,6 @@ const AboutCTA = () => {
     <section ref={sectionRef} className="relative py-24 overflow-hidden">
       {/* Background with Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#002144] via-[#003366] to-[#002144]">
-        {/* Animated gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#48A9FE]/20 via-purple-500/20 to-[#48A9FE]/20 animate-gradient" />
       </div>
 
@@ -141,53 +262,38 @@ const AboutCTA = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          
+          <p className="text-[#48A9FE] text-lg md:text-xl font-medium mb-4 tracking-wider uppercase">
+            {t.subtitle}
+          </p>
 
-          {/* Main Heading */}
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            {language === 'fr' ? "Prêt à Transformer" : language === 'ar' ? "جاهز لتحويل" : "Ready to Transform"}
-            <br />
-            <span className="bg-gradient-to-r from-[#48A9FE] via-white to-[#48A9FE] bg-clip-text text-transparent">
-              {language === 'fr' ? "Votre Présence Digitale ?" : language === 'ar' ? "حضورك الرقمي؟" : "Your Digital Presence?"}
-            </span>
+            {t.title}
           </h2>
 
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
-            {language === 'fr' ? 
-              "Rejoignez plus de 80 entreprises qui ont fait confiance à NextDigits pour leur croissance digitale." :
-             language === 'ar' ?
-              "انضم إلى أكثر من 80 شركة وثقت في NextDigits لنموها الرقمي." :
-              "Join over 80 companies that trusted NextDigits for their digital growth."}
+            {t.description}
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Link href="/devis">
-              <Button
-                variant="gradient"
-                size="lg"
-                className="group relative overflow-hidden bg-white hover:bg-gray-100 text-[#002144]"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  {language === 'fr' ? "Obtenir un devis gratuit" : 
-                   language === 'ar' ? "احصل على عرض مجاني" : 
-                   "Get Free Quote"}
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </Button>
-            </Link>
+            <motion.a
+              href="/devis"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative overflow-hidden bg-white hover:bg-gray-100 text-[#002144] px-8 py-4 rounded-full font-bold text-lg transition-all inline-flex items-center gap-2"
+            >
+              <span>{t.cta1}</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </motion.a>
 
-            <Link href="/contact">
-              <Button
-                variant="outline"
-                size="lg"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#002144]"
-              >
-                {language === 'fr' ? "Planifier un appel" : 
-                 language === 'ar' ? "جدولة مكالمة" : 
-                 "Schedule Call"}
-              </Button>
-            </Link>
+            <motion.a
+              href="/contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#002144] px-8 py-4 rounded-full font-bold text-lg transition-all"
+            >
+              {t.cta2}
+            </motion.a>
           </div>
 
           {/* Benefits Grid */}
@@ -240,9 +346,7 @@ const AboutCTA = () => {
           className="mb-12"
         >
           <p className="text-center text-gray-400 mb-8 text-sm uppercase tracking-wider">
-            {language === 'fr' ? "Ils nous font confiance" : 
-             language === 'ar' ? "يثقون بنا" : 
-             "Trusted by"}
+            {t.trustText}
           </p>
 
           {/* Infinite Scroll Logos */}
@@ -262,7 +366,6 @@ const AboutCTA = () => {
             </div>
           </div>
         </motion.div>
-       
       </div>
 
       <style jsx>{`
@@ -280,4 +383,3 @@ const AboutCTA = () => {
 };
 
 export default AboutCTA;
-
