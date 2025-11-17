@@ -231,61 +231,7 @@ const Expertise = () => {
               </div>
             </motion.div>
           </AnimatePresence>
-        </motion.div>
-
-        {/* Services Grid */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              onMouseEnter={() => setHoveredCard(index)}
-              onMouseLeave={() => setHoveredCard(null)}
-              className={`group relative p-8 rounded-2xl border-2 transition-all duration-300 cursor-pointer ${
-                hoveredCard === index
-                  ? `${service.bgColor} ${service.borderColor} shadow-2xl scale-105`
-                  : 'bg-white border-gray-100 hover:shadow-xl'
-              }`}
-            >
-            
-              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
-
-       
-              <div className="relative z-10">
-                <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${service.color} text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  {service.icon}
-                </div>
-
-                <h3 className="text-2xl font-bold text-[#002144] mb-3 group-hover:text-[#48A9FE] transition-colors">
-                  {service.title}
-                </h3>
-
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {service.shortDesc}
-                </p>
-
-                <div className="space-y-2 mb-6">
-                  {service.features.slice(0, 3).map((feature, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-sm text-gray-500">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#48A9FE]" />
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <button className="flex items-center gap-2 text-[#48A9FE] font-semibold group-hover:gap-4 transition-all">
-                  Discover
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-
-           
-              <div className={`absolute top-4 right-4 w-20 h-20 bg-gradient-to-br ${service.color} rounded-full opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-300`} />
-            </motion.div>
-          ))}
-        </div> */}
+        </motion.div>   
 
         {/* Bottom CTA */}
         <motion.div
