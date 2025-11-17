@@ -111,7 +111,7 @@ const Navbar = () => {
               <div
                 key={index}
                 className="relative"
-                onMouseEnter={() => item.dropdown && setActiveDropdown(index)}
+                // onMouseEnter={() => item.dropdown && setActiveDropdown(index)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 <Link
@@ -123,11 +123,11 @@ const Navbar = () => {
                   }`}
                 >
                   <span>{item.name}</span>
-                  {item.dropdown && <ChevronDown className="w-4 h-4" />}
+                  {/* {item.dropdown && <ChevronDown className="w-4 h-4" />} */}
                 </Link>
 
                 {/* Dropdown */}
-                {item.dropdown && activeDropdown === index && (
+                {/* {item.dropdown && activeDropdown === index && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -144,7 +144,7 @@ const Navbar = () => {
                       </a>
                     ))}
                   </motion.div>
-                )}
+                )} */}
               </div>
             ))}
           </div>
@@ -295,7 +295,7 @@ const Navbar = () => {
                     >
                       {item.name}
                     </Link>
-                    {item.dropdown && (
+                    {/* {item.dropdown && (
                       <div className="ml-4 mt-2 space-y-2">
                         {item.dropdown.map((subItem, subIndex) => (
                           <a
@@ -308,10 +308,10 @@ const Navbar = () => {
                           </a>
                         ))}
                       </div>
-                    )}
+                    )} */}
                   </div>
                 ))}
-                <div className="pt-4 space-y-3 border-t border-gray-200">
+                <div className="pt-4 space-y-3 border-t my-4 border-gray-200">
                   <Link
                     href="/devis"
                     onClick={() => setIsMobileMenuOpen(false)}
@@ -324,7 +324,7 @@ const Navbar = () => {
                     href="/contact"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <Button variant="primary" className="w-full">
+                    <Button variant="primary" className=" my-4 w-full">
                       {t.contact}
                     </Button>
                   </Link>

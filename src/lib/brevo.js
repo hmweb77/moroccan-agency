@@ -18,7 +18,7 @@ export async function sendEmail({ to, subject, htmlContent, replyTo }) {
       body: JSON.stringify({
         sender: {
           name: 'NextDigits',
-          email: process.env.BREVO_SENDER_EMAIL || 'contact@hmwebs.com'
+          email: process.env.BREVO_SENDER_EMAIL || 'contact@nextdigits.com'
         },
         to: Array.isArray(to) ? to : [{ email: to }],
         subject,
@@ -156,7 +156,7 @@ export async function sendQuoteNotification(formData) {
             <hr style="border: 1px solid #eee; margin: 20px 0;">
             
             <p style="font-size: 12px; color: #888;">
-              📧 contact@nextdigits.com | 📱 07 08 00 00 18 | 📍 Rabat, Maroc
+              📧 contact@nextdigits.com | 📱 +212 7 08 14 06 17 | 📍 Casablanca, Maroc
             </p>
           </div>
         </div>
@@ -256,7 +256,7 @@ export async function sendContactNotification(formData) {
             <hr style="border: 1px solid #eee; margin: 20px 0;">
             
             <p style="font-size: 12px; color: #888;">
-              📧 contact@nextdigits.com | 📱 07 08 00 00 18 | 📍 Rabat, Maroc
+              📧 contact@nextdigits.com | 📱 +212 7 08 14 06 17 | 📍 Casablanca, Maroc
             </p>
           </div>
         </div>

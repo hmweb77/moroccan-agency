@@ -195,7 +195,7 @@ export const translations = {
         email: "Email",
         phone: "Téléphone",
         address: "Adresse",
-        addressText: "Rabat"
+        addressText: "Casablanca"
       }
     },
     services: {
@@ -669,7 +669,7 @@ export const translations = {
         email: "Email",
         phone: "Phone",
         address: "Address",
-        addressText: "Rabat"
+        addressText: "Casablanca"
       }
     },
     services: {

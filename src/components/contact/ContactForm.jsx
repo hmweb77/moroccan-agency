@@ -115,8 +115,8 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-[#002144] mb-2">Téléphone</h4>
-                  <a href="tel:0708000018" className="text-gray-600 hover:text-[#48A9FE] transition-colors">
-                    07 08 00 00 18
+                  <a href="tel:+212 7 08 14 06 178" className="text-gray-600 hover:text-[#48A9FE] transition-colors">
+                  +212 7 08 14 06 17
                   </a>
                 </div>
               </div>
@@ -127,7 +127,7 @@ const ContactForm = () => {
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-[#002144] mb-2">Adresse</h4>
-                  <p className="text-gray-600">Rabat, Maroc</p>
+                  <p className="text-gray-600">Casablanca, Maroc</p>
                 </div>
               </div>
             </div>

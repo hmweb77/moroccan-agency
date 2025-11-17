@@ -29,9 +29,9 @@ const Footer = () => {
     { icon: <Facebook className="w-4 h-4" />, text: "Facebook", href: "#" },
     { icon: <Instagram className="w-4 h-4" />, text: "Instagram", href: "#" },
     { icon: <MessageCircle className="w-4 h-4" />, text: "Whatsapp", href: "#" },
-    { icon: <Phone className="w-4 h-4" />, text: "07 08 00 00 18", href: "tel:0708000018" },
+    { icon: <Phone className="w-4 h-4" />, text: "+212 7 08 14 06 17", href: "tel:0708000018" },
     { icon: <Mail className="w-4 h-4" />, text: "contact@nextdigits.com", href: "mailto:contact@nextdigits.com" },
-    { icon: <MapPin className="w-4 h-4" />, text: "Rabat", href: "#" }
+    { icon: <MapPin className="w-4 h-4" />, text: "Casablanca", href: "#" }
   ];
 
   const usefulLinks = [

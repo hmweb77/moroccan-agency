@@ -450,32 +450,7 @@ const QuoteSimulatorPage = () => {
             </div>
           </motion.div>
 
-          {/* Trust Indicators */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-center mt-8 xs:mt-10 sm:mt-12 md:mt-16"
-          >
-            <p className="text-xs xs:text-sm sm:text-base text-gray-500 mb-4 xs:mb-6">
-              Rejoignez plus de 80 entreprises qui nous font confiance
-            </p>
-            <div className="flex items-center justify-center space-x-4 xs:space-x-6 sm:space-x-8">
-              <div className="flex items-center space-x-1">
-                <span className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-[#48A9FE]">4.9</span>
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 xs:w-4 xs:h-4 text-yellow-400 fill-current" />
-                  ))}
-                </div>
-              </div>
-              <div className="w-px h-6 xs:h-8 bg-gray-300"></div>
-              <div className="text-xs xs:text-sm sm:text-base text-gray-600">
-                <span className="font-bold">24h</span> de délai de réponse
-              </div>
-            </div>
-          </motion.div>
+         
         </div>
       </div>
     </div>

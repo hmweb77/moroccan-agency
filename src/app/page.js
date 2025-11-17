@@ -14,8 +14,8 @@ export default function Home() {
       <HeroSection />
       <QuoteSimulator />
       <WhyChooseUs />
-      <HowWeWork />
-      <Expertise />
+      {/* <HowWeWork /> */}
+      {/* <Expertise /> */}
       <AboutCTA />
       <Footer />
     </>
