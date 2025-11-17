@@ -234,7 +234,7 @@ const Expertise = () => {
         </motion.div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -249,10 +249,10 @@ const Expertise = () => {
                   : 'bg-white border-gray-100 hover:shadow-xl'
               }`}
             >
-              {/* Gradient Overlay on Hover */}
+            
               <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
 
-              {/* Content */}
+       
               <div className="relative z-10">
                 <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${service.color} text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   {service.icon}
@@ -281,11 +281,11 @@ const Expertise = () => {
                 </button>
               </div>
 
-              {/* Corner Decoration */}
+           
               <div className={`absolute top-4 right-4 w-20 h-20 bg-gradient-to-br ${service.color} rounded-full opacity-0 group-hover:opacity-10 blur-2xl transition-opacity duration-300`} />
             </motion.div>
           ))}
-        </div>
+        </div> */}
 
         {/* Bottom CTA */}
         <motion.div
