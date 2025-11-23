@@ -5,6 +5,7 @@ import { ArrowRight, Play, Sparkles, TrendingUp, Users, Zap } from 'lucide-react
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLanguage } from '../contexts/LanguageContext';
+
 import { translations } from '@/translations/translations';
 import { Button } from '@/selector/ui';
 import { gsap } from 'gsap';

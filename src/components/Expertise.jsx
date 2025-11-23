@@ -12,8 +12,14 @@ import {
   Check,
   Sparkles
 } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
+import { translations } from '@/translations/translations';
+import Link from 'next/link';
 
 const Expertise = () => {
+  const { language } = useLanguage();
+  const t = translations[language].expertise;
+  
   const [activeService, setActiveService] = useState(0);
   const [hoveredCard, setHoveredCard] = useState(null);
   const sectionRef = useRef(null);
@@ -22,84 +28,54 @@ const Expertise = () => {
   const services = [
     {
       icon: <TrendingUp className="w-8 h-8" />,
-      title: "Marketing & Strategy",
-      shortDesc: "Data-driven strategies to maximize ROI",
-      features: [
-        "Complete marketing audit",
-        "Custom digital strategy",
-        "SEO & SEM optimization",
-        "Content marketing"
-      ],
+      title: t.services.marketing.title,
+      shortDesc: t.services.marketing.shortDesc,
+      features: t.services.marketing.features,
       color: "from-blue-500 to-cyan-500",
       bgColor: "bg-blue-500/10",
       borderColor: "border-blue-500/20"
     },
     {
       icon: <Palette className="w-8 h-8" />,
-      title: "Design & Branding",
-      shortDesc: "Unique visual identity that makes an impact",
-      features: [
-        "Logo & brand guidelines",
-        "UI/UX Design",
-        "Packaging & print",
-        "Motion design"
-      ],
+      title: t.services.design.title,
+      shortDesc: t.services.design.shortDesc,
+      features: t.services.design.features,
       color: "from-purple-500 to-pink-500",
       bgColor: "bg-purple-500/10",
       borderColor: "border-purple-500/20"
     },
     {
       icon: <Code className="w-8 h-8" />,
-      title: "Web Development",
-      shortDesc: "High-performance, scalable websites",
-      features: [
-        "Showcase & e-commerce sites",
-        "Custom web applications",
-        "CMS & content management",
-        "Maintenance & support"
-      ],
+      title: t.services.webDev.title,
+      shortDesc: t.services.webDev.shortDesc,
+      features: t.services.webDev.features,
       color: "from-green-500 to-emerald-500",
       bgColor: "bg-green-500/10",
       borderColor: "border-green-500/20"
     },
     {
       icon: <Smartphone className="w-8 h-8" />,
-      title: "Mobile Development",
-      shortDesc: "Native & cross-platform iOS & Android apps",
-      features: [
-        "Native iOS/Android apps",
-        "React Native apps",
-        "Progressive Web Apps",
-        "API & integrations"
-      ],
+      title: t.services.mobileDev.title,
+      shortDesc: t.services.mobileDev.shortDesc,
+      features: t.services.mobileDev.features,
       color: "from-orange-500 to-red-500",
       bgColor: "bg-orange-500/10",
       borderColor: "border-orange-500/20"
     },
     {
       icon: <Video className="w-8 h-8" />,
-      title: "Video & Production",
-      shortDesc: "Captivating professional video content",
-      features: [
-        "Advertising videos",
-        "Corporate videos",
-        "Motion graphics & animation",
-        "Editing & post-production"
-      ],
+      title: t.services.video.title,
+      shortDesc: t.services.video.shortDesc,
+      features: t.services.video.features,
       color: "from-pink-500 to-rose-500",
       bgColor: "bg-pink-500/10",
       borderColor: "border-pink-500/20"
     },
     {
       icon: <Share2 className="w-8 h-8" />,
-      title: "Social Media Management",
-      shortDesc: "Engaging strategic social presence",
-      features: [
-        "Social media strategy",
-        "Content creation",
-        "Community management",
-        "Social advertising (Ads)"
-      ],
+      title: t.services.social.title,
+      shortDesc: t.services.social.shortDesc,
+      features: t.services.social.features,
       color: "from-indigo-500 to-blue-500",
       bgColor: "bg-indigo-500/10",
       borderColor: "border-indigo-500/20"
@@ -141,18 +117,20 @@ const Expertise = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-        
+          <p className="text-[#48A9FE] text-lg md:text-xl font-medium mb-4 tracking-wider uppercase">
+            {t.sectionTitle}
+          </p>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#002144] mb-6 leading-tight">
-            Complete Solutions
+            {t.title}
             <br />
             <span className="bg-gradient-to-r from-[#48A9FE] to-[#002144] bg-clip-text text-transparent">
-              For Your Growth
+              {t.subtitle}
             </span>
           </h2>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            From strategy to execution, we cover all aspects of your digital presence with expertise and creativity.
+            {t.description}
           </p>
         </motion.div>
 
@@ -206,10 +184,12 @@ const Expertise = () => {
                   <p className="text-lg text-gray-600 mb-6">
                     {services[activeService].shortDesc}
                   </p>
-                  <button className="px-6 py-3 bg-gradient-to-r from-[#48A9FE] to-[#002144] text-white rounded-lg hover:shadow-lg transition-all group">
-                    Learn More
-                    <ArrowRight className="w-4 h-4 ml-2 inline group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  <Link href="/services">
+                    <button className="px-6 py-3 bg-gradient-to-r from-[#48A9FE] to-[#002144] text-white rounded-lg hover:shadow-lg transition-all group">
+                      {t.learnMore}
+                      <ArrowRight className="w-4 h-4 ml-2 inline group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </Link>
                 </div>
 
                 <div className="space-y-3">
@@ -241,13 +221,17 @@ const Expertise = () => {
           className="mt-16 text-center"
         >
           <div className="inline-flex flex-col sm:flex-row gap-4">
-            <button className="px-8 py-4 bg-gradient-to-r from-[#48A9FE] to-[#002144] text-white rounded-lg hover:shadow-lg transition-all group">
-              Start a Project
-              <ArrowRight className="w-5 h-5 ml-2 inline group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="px-8 py-4 border-2 border-[#48A9FE] text-[#48A9FE] rounded-lg hover:bg-[#48A9FE] hover:text-white transition-all">
-              View All Services
-            </button>
+            <Link href="/devis">
+              <button className="px-8 py-4 bg-gradient-to-r from-[#48A9FE] to-[#002144] text-white rounded-lg hover:shadow-lg transition-all group">
+                {t.ctaStart}
+                <ArrowRight className="w-5 h-5 ml-2 inline group-hover:translate-x-1 transition-transform" />
+              </button>
+            </Link>
+            <Link href="/services">
+              <button className="px-8 py-4 border-2 border-[#48A9FE] text-[#48A9FE] rounded-lg hover:bg-[#48A9FE] hover:text-white transition-all">
+                {t.ctaServices}
+              </button>
+            </Link>
           </div>
         </motion.div>
       </div>
@@ -256,5 +240,3 @@ const Expertise = () => {
 };
 
 export default Expertise;
-
-

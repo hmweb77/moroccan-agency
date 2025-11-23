@@ -2,8 +2,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, Mail, Phone, MapPin, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { useLanguage } from '../../contexts/LanguageContext';
+import { translations } from '@/translations/translations';
 
 const ContactForm = () => {
+  const { language } = useLanguage();
+  const t = translations[language].contact;
+
   const [formData, setFormData] = useState({
     prenom: '',
     nom: '',
@@ -35,12 +40,11 @@ const ContactForm = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Une erreur est survenue');
+        throw new Error(data.error || t.form.errorMessage);
       }
 
       setStatus({ loading: false, success: true, error: null });
       
-      // Reset form after 3 seconds
       setTimeout(() => {
         setFormData({
           prenom: '',
@@ -57,7 +61,7 @@ const ContactForm = () => {
       setStatus({ 
         loading: false, 
         success: false, 
-        error: error.message || 'Une erreur est survenue. Veuillez réessayer.' 
+        error: error.message || t.form.errorMessage
       });
     }
   };
@@ -80,10 +84,10 @@ const ContactForm = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-[#48A9FE] mb-4">
-            NOUS CONTACTER
+            {t.form.title}
           </h2>
           <h3 className="text-3xl md:text-4xl font-bold text-[#002144]">
-            PARLONS DE VOTRE PROJET
+            {t.form.subtitle}
           </h3>
         </motion.div>
 
@@ -102,7 +106,7 @@ const ContactForm = () => {
                   <Mail className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-[#002144] mb-2">Email</h4>
+                  <h4 className="text-xl font-bold text-[#002144] mb-2">{t.info.email}</h4>
                   <a href="mailto:contact@nextdigits.ma" className="text-gray-600 hover:text-[#48A9FE] transition-colors">
                     contact@nextdigits.ma
                   </a>
@@ -114,9 +118,9 @@ const ContactForm = () => {
                   <Phone className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-[#002144] mb-2">Téléphone</h4>
-                  <a href="tel:+212 7 08 14 06 178" className="text-gray-600 hover:text-[#48A9FE] transition-colors">
-                  +212 7 08 14 06 17
+                  <h4 className="text-xl font-bold text-[#002144] mb-2">{t.info.phone}</h4>
+                  <a href="tel:+212708140617" className="text-gray-600 hover:text-[#48A9FE] transition-colors">
+                    +212 7 08 14 06 17
                   </a>
                 </div>
               </div>
@@ -126,8 +130,8 @@ const ContactForm = () => {
                   <MapPin className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-[#002144] mb-2">Adresse</h4>
-                  <p className="text-gray-600">Casablanca, Maroc</p>
+                  <h4 className="text-xl font-bold text-[#002144] mb-2">{t.info.address}</h4>
+                  <p className="text-gray-600">{t.info.location}</p>
                 </div>
               </div>
             </div>
@@ -155,9 +159,10 @@ const ContactForm = () => {
                     className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3"
                   >
                     <CheckCircle className="w-5 h-5 text-green-600" />
-                    <p className="text-green-800">
-                      Message envoyé avec succès! Nous vous répondrons dans les 24h.
-                    </p>
+                    <div>
+                      <p className="text-green-800 font-semibold">{t.form.successTitle}</p>
+                      <p className="text-green-700 text-sm">{t.form.successMessage}</p>
+                    </div>
                   </motion.div>
                 )}
 
@@ -180,7 +185,7 @@ const ContactForm = () => {
                   whileFocus={{ scale: 1.02 }}
                   type="text"
                   name="prenom"
-                  placeholder="Prénom *"
+                  placeholder={`${t.form.firstName} *`}
                   value={formData.prenom}
                   onChange={handleChange}
                   className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#48A9FE] focus:border-transparent outline-none transition-all"
@@ -192,7 +197,7 @@ const ContactForm = () => {
                   whileFocus={{ scale: 1.02 }}
                   type="text"
                   name="nom"
-                  placeholder="Nom *"
+                  placeholder={`${t.form.lastName} *`}
                   value={formData.nom}
                   onChange={handleChange}
                   className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#48A9FE] focus:border-transparent outline-none transition-all"
@@ -206,7 +211,7 @@ const ContactForm = () => {
                   whileFocus={{ scale: 1.02 }}
                   type="email"
                   name="email"
-                  placeholder="Email *"
+                  placeholder={`${t.form.email} *`}
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#48A9FE] focus:border-transparent outline-none transition-all"
@@ -218,7 +223,7 @@ const ContactForm = () => {
                   whileFocus={{ scale: 1.02 }}
                   type="tel"
                   name="telephone"
-                  placeholder="Téléphone"
+                  placeholder={t.form.phone}
                   value={formData.telephone}
                   onChange={handleChange}
                   className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#48A9FE] focus:border-transparent outline-none transition-all"
@@ -231,7 +236,7 @@ const ContactForm = () => {
                   whileFocus={{ scale: 1.02 }}
                   type="text"
                   name="sujet"
-                  placeholder="Sujet *"
+                  placeholder={`${t.form.subject} *`}
                   value={formData.sujet}
                   onChange={handleChange}
                   className="w-full px-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#48A9FE] focus:border-transparent outline-none transition-all"
@@ -244,7 +249,7 @@ const ContactForm = () => {
                 <motion.textarea
                   whileFocus={{ scale: 1.02 }}
                   name="message"
-                  placeholder="Votre message *"
+                  placeholder={`${t.form.message} *`}
                   value={formData.message}
                   onChange={handleChange}
                   rows="6"
@@ -265,11 +270,11 @@ const ContactForm = () => {
                   {status.loading ? (
                     <>
                       <Loader2 className="w-5 h-5 animate-spin" />
-                      <span>Envoi en cours...</span>
+                      <span>{t.form.sending}</span>
                     </>
                   ) : (
                     <>
-                      <span>Envoyer le message</span>
+                      <span>{t.form.submit}</span>
                       <Send className="w-5 h-5" />
                     </>
                   )}

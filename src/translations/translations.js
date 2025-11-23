@@ -5,26 +5,21 @@ export const translations = {
       expertise: "Notre Expertise",
       about: "À propos",
       contact: "Contact",
-      quote: "Demandez un devis",
-      services: {
-        webDesign: "Web Design",
-        webdev: "Développement Web",
-        digitalMarketing: "Digital Marketing",
-        seo: "SEO",
-        branding: "Branding"
-      },
-      aboutDropdown: {
-        team: "Notre équipe",
-        history: "Notre histoire",
-        values: "Nos valeurs"
-      }
+      quote: "Demandez un devis"
     },
     hero: {
-      title1: "LANCEZ VOUS",
-      title2: "EN PROFITANT",
-      title3: "DE NOS",
-      highlight: "PACKS EXCLUSIFS",
-      cta: "J'EN PROFITE"
+      title: "Transformez Votre",
+      highlight: "Vision Digitale",
+      description: "Solutions complètes en marketing, design, développement web & mobile. Nous créons des expériences digitales qui génèrent des résultats concrets pour votre entreprise.",
+      cta1: "Demander un devis",
+      cta2: "Planifier un appel",
+      stats: {
+        clients: "Clients",
+        responseTime: "24h",
+        response: "Réponse",
+        satisfactionRate: "100%",
+        satisfaction: "Satisfaction"
+      }
     },
     quote: {
       title: "SIMULATEUR DEVIS",
@@ -33,122 +28,122 @@ export const translations = {
       lastName: "Nom",
       email: "Email",
       phone: "Téléphone",
-      service: "-- Quel service vous intéresse le plus? --",
-      businessSize: "-- Quelle est la taille de votre business? --",
+      servicePlaceholder: "-- Quel service vous intéresse le plus? --",
+      sizePlaceholder: "-- Quelle est la taille de votre business? --",
       note: "Parlez-nous de votre projet, vos besoins spécifiques ou toute information utile...",
       noteHelper: "Optionnel : Décrivez votre projet pour nous aider à mieux vous servir",
-      submit: "Envoyer",
+      submit: "Envoyer ma demande",
+      sending: "Envoi en cours...",
+      successTitle: "Demande envoyée avec succès!",
+      successMessage: "Nous vous contacterons dans les 24 heures.",
+      errorMessage: "Une erreur est survenue. Veuillez réessayer.",
       services: {
-        webdev:"Développement Web",
-        webDesign: "Web Design",
-        digitalMarketing: "Digital Marketing",
-        seo: "SEO",
-        branding: "Branding",
-        ecommerce: "E-commerce"
+        consulting: "Conseil & Stratégie de Marque",
+        identity: "Identité Visuelle",
+        digital: "Digital",
+        studio: "Studio de Création",
+        advertising: "Publicité & Médiatisation"
       },
       sizes: {
-        startup: "Startup",
-        sme: "PME",
-        large: "Grande entreprise",
-        freelance: "Freelance"
+        startup: "Startup (1-10 employés)",
+        sme: "PME (10-250 employés)",
+        large: "Grande entreprise (250+ employés)",
+        freelance: "Freelance/Indépendant"
       }
-    },
-    whyUs: {
-      title: "Pourquoi\nNextDigits?",
-      speed: {
-        title: "RAPIDITÉ",
-        description: "Des solutions rapides et efficaces pour vos projets digitaux"
-      },
-      realtime: {
-        title: "RÉPONSE EN TEMPS RÉEL",
-        description: "Communication instantanée et suivi en continu"
-      },
-      efficiency: {
-        title: "EFFICACITÉ",
-        description: "Résultats mesurables et performance optimisée"
-      },
-      flexibility: {
-        title: "FLEXIBILITÉ",
-        description: "Solutions adaptées à vos besoins spécifiques"
-      }
-    },
-    howWeWork: {
-      title: "COMMENT ÇA MARCHE ?",
-      subtitle: "Recevoir une réponse immédiate en suivant les 3 étapes ci-dessous",
-      steps: {
-        step1: {
-          number: "01.",
-          title: "ANALYSE EXPRESS",
-          description: "Remplissez le simulateur de devis en quelques secondes."
-        },
-        step2: {
-          number: "02.",
-          title: "DÉMARRAGE PERSONNALISÉ",
-          description: "Un chef de projet vous contacte sous 8h pour valider les objectifs et vous guider vers la meilleure approche."
-        },
-        step3: {
-          number: "03.",
-          title: "STRATÉGIE SUR-MESURE",
-          description: "Nous analysons votre besoin en profondeur et concevons une stratégie digitale sur-mesure, centrée sur la performance et vos objectifs business."
-        },
-        step4: {
-          number: "04.",
-          title: "LANCEMENT & CROISSANCE",
-          description: "Votre projet est lancé en moins de 7 jours, avec un suivi continu, des optimisations et des résultats concrets dès les premières semaines."
-        }
-      },
-      cta: "Lancez-vous"
     },
     expertise: {
-      title: "NOTRE EXPERTISE",
-      subtitle: "NEXTDIGITS MET TOUT SON SAVOIR-FAIRE DANS DES CAMPAGNES MULTICANALES.",
+      sectionTitle: "NOS SERVICES",
+      title: "Solutions Complètes",
+      subtitle: "Pour Votre Croissance",
+      description: "De la stratégie à l'exécution, nous couvrons tous les aspects de votre présence digitale avec expertise et créativité.",
+      learnMore: "En savoir plus",
+      ctaStart: "Démarrer un projet",
+      ctaServices: "Voir tous les services",
       services: {
-        consulting: {
-          title: "Conseil & Stratégie de marque",
-          description: "Apple gagne 9316 dollars chaque seconde, grâce à sa bonne stratégie de marque et la notoriété qu'elle a pu acquérir sur le marché..."
+        marketing: {
+          title: "Marketing & Stratégie",
+          shortDesc: "Stratégies basées sur les données pour maximiser le ROI",
+          features: [
+            "Audit marketing complet",
+            "Stratégie digitale sur-mesure",
+            "Optimisation SEO & SEM",
+            "Marketing de contenu"
+          ]
         },
-        identity: {
-          title: "Identité visuelle",
-          description: "Vous ne vous êtes jamais demandé pourquoi les restaurants utilisaient par exemple le jaune?"
+        design: {
+          title: "Design & Branding",
+          shortDesc: "Identité visuelle unique qui fait impact",
+          features: [
+            "Logo & charte graphique",
+            "Design UI/UX",
+            "Packaging & print",
+            "Motion design"
+          ]
         },
-        digital: {
-          title: "Digital",
-          description: "89% des consommateurs effectuent des recherches sur les moteurs de recherche avant d'effectuer un achat."
+        webDev: {
+          title: "Développement Web",
+          shortDesc: "Sites web performants et évolutifs",
+          features: [
+            "Sites vitrine & e-commerce",
+            "Applications web sur-mesure",
+            "CMS & gestion de contenu",
+            "Maintenance & support"
+          ]
         },
-        studio: {
-          title: "Studio de création",
-          description: "On dit qu'une image vaut mille mots, mais saviez-vous qu'une vidéo de 60 secondes."
+        mobileDev: {
+          title: "Développement Mobile",
+          shortDesc: "Applications iOS & Android natives et multiplateformes",
+          features: [
+            "Applications natives iOS/Android",
+            "Applications React Native",
+            "Progressive Web Apps",
+            "API & intégrations"
+          ]
         },
-        advertising: {
-          title: "Publicité & Médiatisation",
-          description: "60 % des exposés se souviennent du dispositif publicitaire d'opérations spéciales."
+        video: {
+          title: "Vidéo & Production",
+          shortDesc: "Contenu vidéo professionnel captivant",
+          features: [
+            "Vidéos publicitaires",
+            "Vidéos corporate",
+            "Motion graphics & animation",
+            "Montage & post-production"
+          ]
+        },
+        social: {
+          title: "Gestion des Réseaux Sociaux",
+          shortDesc: "Présence sociale engageante et stratégique",
+          features: [
+            "Stratégie réseaux sociaux",
+            "Création de contenu",
+            "Gestion de communauté",
+            "Publicité sociale (Ads)"
+          ]
         }
-      },
-      readMore: "Lire plus",
-      ctaTitle: "Prêt à développer votre business ?",
-      ctaDescription: "Découvrez comment nos solutions peuvent transformer votre présence digitale et booster vos performances.",
-      ctaStart: "Commencer maintenant",
-      ctaLearn: "En savoir plus"
+      }
     },
     cta: {
-      packs: {
-        subtitle: "NOS PACKS SUR MESURE",
-        title: "CHOISISSEZ LA SOLUTION DIGITALE LA MIEUX ADAPTÉE À VOTRE PROJET ET À VOTRE BUDGET",
-        button: "À propos de nous"
-      },
       ready: {
-        title: "EST-CE QUE VOUS ÊTES PRÊTS ?",
-        description: "Plus de 80 clients nous font confiance. Rejoignez-les en utilisant nos services et développez votre entreprise.",
+        title: "Prêt à Transformer",
+        subtitle: "Votre Présence Digitale ?",
+        description: "Rejoignez plus de 80 entreprises qui ont fait confiance à NextDigits pour leur croissance digitale.",
+        cta1: "Obtenir un devis gratuit",
+        cta2: "Planifier un appel",
         stats: {
-          clients: "Clients satisfaits",
-          satisfaction: "Satisfaction garantie",
-          support: "Support disponible"
+          clients: "80+",
+          clientsLabel: "Clients satisfaits",
+          projects: "150+",
+          projectsLabel: "Projets réussis",
+          satisfaction: "98%",
+          satisfactionLabel: "Taux de satisfaction"
         },
-        button: "Rejoignez-nous"
-      },
-      business: {
-        title: "BESOIN D'UN COUP DE POUCE POUR VOTRE BUSINESS?",
-        button: "OUI"
+        benefits: [
+          "Réponse sous 8h garantie",
+          "Satisfaction garantie à 100%",
+          "Équipe d'experts certifiés",
+          "ROI mesurable et optimisé"
+        ],
+        trustedBy: "Ils nous font confiance"
       }
     },
     about: {
@@ -157,7 +152,7 @@ export const translations = {
         description: "Nous voulons comprendre vos objectifs et vos envies pour vous proposer les solutions qui vous apporteront croissance et sérénité.",
         cta: "Découvrir nos services"
       },
-      stats: {
+      numbers: {
         title: "PLUS DE 80+ CLIENTS NOUS FONT CONFIANCE. REJOIGNEZ-LES MAINTENANT ET DÉVELOPPEZ VOTRE ENTREPRISE.",
         partners: "Partenaires Créatifs",
         clients: "Plus de 80 clients",
@@ -171,6 +166,10 @@ export const translations = {
       values: {
         title: "NOS VALEURS",
         description: "Éthique, transparence, pédagogie, rigueur, créativité...Voici quelques-unes des valeurs clés de notre agence. Ajoutez de la convivialité, de la compassion, de la considération et de la compréhension à la liste, et vous avez ce groupe d'individus qui travaillent dur pour vous satisfaire et répondre à vos besoins."
+      },
+      cta: {
+        title: "BESOIN D'UN COUP DE POUCE POUR VOTRE BUSINESS?",
+        button: "OUI"
       }
     },
     contact: {
@@ -189,13 +188,17 @@ export const translations = {
         phone: "Téléphone",
         subject: "Sujet",
         message: "Votre message",
-        submit: "Envoyer le message"
+        submit: "Envoyer le message",
+        sending: "Envoi en cours...",
+        successTitle: "Message envoyé avec succès!",
+        successMessage: "Nous vous répondrons dans les 24h.",
+        errorMessage: "Une erreur est survenue. Veuillez réessayer."
       },
       info: {
         email: "Email",
         phone: "Téléphone",
         address: "Adresse",
-        addressText: "Casablanca"
+        location: "Casablanca, Maroc"
       }
     },
     services: {
@@ -206,22 +209,18 @@ export const translations = {
         cta2: "Parler à un expert"
       },
       expertise: {
-        title: "NOTRE EXPERTISE",
-        subtitle: "ENTREPRISE QUI CROIT AU POUVOIR DE LA STRATÉGIE CRÉATIVE.",
-        description: "De la publicité DOOH, au digital en passant par le marketing d'influence, Medialaoui met tout son savoir-faire dans des campagnes multicanales. À l'aide de nos solutions clé-en-main et d'une équipe dédiée à vos problématiques, nous saurons développer votre business et faire grimper vos ventes. Notre agence dispose de 5 pôles d'expertise pour vous assurer un accompagnement global.",
+        sectionTitle: "NOTRE EXPERTISE",
+        title: "ENTREPRISE QUI CROIT AU POUVOIR DE LA STRATÉGIE CRÉATIVE.",
+        description: "De la publicité DOOH, au digital en passant par le marketing d'influence, NextDigits met tout son savoir-faire dans des campagnes multicanales. À l'aide de nos solutions clé-en-main et d'une équipe dédiée à vos problématiques, nous saurons développer votre business et faire grimper vos ventes. Notre agence dispose de 5 pôles d'expertise pour vous assurer un accompagnement global.",
         cta: "Découvrir nos services",
         stats: {
-          poles: "Pôles d'expertise",
-          support: "Accompagnement global",
-          solutions: "Solutions clé-en-main"
+          poles: "5",
+          polesLabel: "Pôles d'expertise",
+          support: "360°",
+          supportLabel: "Accompagnement global",
+          solutions: "100%",
+          solutionsLabel: "Solutions clé-en-main"
         }
-      },
-      list: {
-        consulting: "CONSEIL & STRATÉGIE DE MARQUE",
-        identity: "IDENTITÉ VISUELLE",
-        digital: "DIGITAL",
-        studio: "STUDIO DE CRÉATION",
-        advertising: "PUBLICITÉ & MÉDIATISATION"
       }
     },
     footer: {
@@ -242,26 +241,21 @@ export const translations = {
       expertise: "خبرتنا",
       about: "من نحن",
       contact: "اتصل بنا",
-      quote: "اطلب عرض أسعار",
-      services: {
-        webDesign: "تصميم المواقع",
-        webdev:" تطوير المواقع ",
-        digitalMarketing: "التسويق الرقمي",
-        seo: "تحسين محركات البحث",
-        branding: "العلامة التجارية"
-      },
-      aboutDropdown: {
-        team: "فريقنا",
-        history: "قصتنا",
-        values: "قيمنا"
-      }
+      quote: "اطلب عرض أسعار"
     },
     hero: {
-      title1: "ابدأ الآن",
-      title2: "واستفد من",
-      title3: "عروضنا",
-      highlight: "الحصرية",
-      cta: "سأستفيد"
+      title: "حول عملك",
+      highlight: "الرقمي",
+      description: "حلول شاملة في التسويق والتصميم والتطوير. نصنع تجارب رقمية تحقق نتائج ملموسة لعملك.",
+      cta1: "اطلب عرض أسعار",
+      cta2: "جدولة مكالمة",
+      stats: {
+        clients: "عميل",
+        responseTime: "24 ساعة",
+        response: "استجابة",
+        satisfactionRate: "100%",
+        satisfaction: "رضا"
+      }
     },
     quote: {
       title: "محاكي الأسعار",
@@ -270,122 +264,122 @@ export const translations = {
       lastName: "اسم العائلة",
       email: "البريد الإلكتروني",
       phone: "الهاتف",
-      service: "-- ما هي الخدمة التي تهمك أكثر؟ --",
+      servicePlaceholder: "-- ما هي الخدمة التي تهمك أكثر؟ --",
+      sizePlaceholder: "-- ما هو حجم عملك؟ --",
       note: "أخبرنا عن مشروعك، احتياجاتك الخاصة أو أي معلومات مفيدة...",
       noteHelper: "اختياري: صف مشروعك لمساعدتنا على خدمتك بشكل أفضل",
-      businessSize: "-- ما هو حجم عملك؟ --",
-      submit: "إرسال",
+      submit: "إرسال طلبي",
+      sending: "جاري الإرسال...",
+      successTitle: "تم إرسال الطلب بنجاح!",
+      successMessage: "سنتصل بك في غضون 24 ساعة.",
+      errorMessage: "حدث خطأ. يرجى المحاولة مرة أخرى.",
       services: {
-        webdev:" تطوير المواقع ",
-        webDesign: "تصميم المواقع",
-        digitalMarketing: "التسويق الرقمي",
-        seo: "تحسين محركات البحث",
-        branding: "العلامة التجارية",
-        ecommerce: "التجارة الإلكترونية"
+        consulting: "الاستشارة واستراتيجية العلامة التجارية",
+        identity: "الهوية البصرية",
+        digital: "الرقمية",
+        studio: "استوديو الإبداع",
+        advertising: "الإعلان والإعلام"
       },
       sizes: {
-        startup: "شركة ناشئة",
-        sme: "شركة صغيرة ومتوسطة",
-        large: "شركة كبيرة",
+        startup: "شركة ناشئة (1-10 موظفين)",
+        sme: "شركة صغيرة ومتوسطة (10-250 موظف)",
+        large: "شركة كبيرة (250+ موظف)",
         freelance: "مستقل"
       }
     },
-    whyUs: {
-      title: "لماذا\nNextDigits؟",
-      speed: {
-        title: "السرعة",
-        description: "حلول سريعة وفعالة لمشاريعك الرقمية"
-      },
-      realtime: {
-        title: "استجابة فورية",
-        description: "تواصل فوري ومتابعة مستمرة"
-      },
-      efficiency: {
-        title: "الكفاءة",
-        description: "نتائج قابلة للقياس وأداء محسّن"
-      },
-      flexibility: {
-        title: "المرونة",
-        description: "حلول مخصصة لاحتياجاتك الخاصة"
+    expertise: {
+      sectionTitle: "خدماتنا",
+      title: "حلول شاملة",
+      subtitle: "لنموك",
+      description: "من الاستراتيجية إلى التنفيذ، نغطي جميع جوانب حضورك الرقمي بخبرة وإبداع.",
+      learnMore: "اعرف المزيد",
+      ctaStart: "ابدأ مشروع",
+      ctaServices: "عرض جميع الخدمات",
+      services: {
+        marketing: {
+          title: "التسويق والاستراتيجية",
+          shortDesc: "استراتيجيات قائمة على البيانات لتعظيم العائد",
+          features: [
+            "تدقيق تسويقي كامل",
+            "استراتيجية رقمية مخصصة",
+            "تحسين SEO وSEM",
+            "تسويق المحتوى"
+          ]
+        },
+        design: {
+          title: "التصميم والعلامة التجارية",
+          shortDesc: "هوية بصرية فريدة تترك أثراً",
+          features: [
+            "شعار ودليل العلامة التجارية",
+            "تصميم واجهة المستخدم",
+            "التغليف والطباعة",
+            "تصميم الحركة"
+          ]
+        },
+        webDev: {
+          title: "تطوير الويب",
+          shortDesc: "مواقع ويب عالية الأداء وقابلة للتوسع",
+          features: [
+            "مواقع عرض وتجارة إلكترونية",
+            "تطبيقات ويب مخصصة",
+            "نظام إدارة المحتوى",
+            "الصيانة والدعم"
+          ]
+        },
+        mobileDev: {
+          title: "تطوير تطبيقات الجوال",
+          shortDesc: "تطبيقات iOS وAndroid أصلية ومتعددة المنصات",
+          features: [
+            "تطبيقات iOS/Android أصلية",
+            "تطبيقات React Native",
+            "تطبيقات الويب التقدمية",
+            "واجهات برمجة التطبيقات والتكاملات"
+          ]
+        },
+        video: {
+          title: "الفيديو والإنتاج",
+          shortDesc: "محتوى فيديو احترافي جذاب",
+          features: [
+            "مقاطع فيديو إعلانية",
+            "مقاطع فيديو للشركات",
+            "رسومات متحركة",
+            "المونتاج وما بعد الإنتاج"
+          ]
+        },
+        social: {
+          title: "إدارة وسائل التواصل الاجتماعي",
+          shortDesc: "حضور اجتماعي جذاب واستراتيجي",
+          features: [
+            "استراتيجية وسائل التواصل",
+            "إنشاء المحتوى",
+            "إدارة المجتمع",
+            "الإعلانات الاجتماعية"
+          ]
+        }
       }
     },
-    howWeWork: {
-      title: "كيف نعمل؟",
-      subtitle: "احصل على إجابة فورية باتباع الخطوات الثلاث أدناه",
-      steps: {
-        step1: {
-          number: "01.",
-          title: "تحليل سريع",
-          description: "املأ محاكي الأسعار في ثوانٍ معدودة."
-        },
-        step2: {
-          number: "02.",
-          title: "بداية مخصصة",
-          description: "يتصل بك مدير المشروع خلال 8 ساعات للتحقق من الأهداف وإرشادك نحو أفضل نهج."
-        },
-        step3: {
-          number: "03.",
-          title: "استراتيجية مخصصة",
-          description: "نحلل احتياجاتك بعمق ونصمم استراتيجية رقمية مخصصة تركز على الأداء وأهداف عملك."
-        },
-        step4: {
-          number: "04.",
-          title: "الإطلاق والنمو",
-          description: "يتم إطلاق مشروعك في أقل من 7 أيام، مع متابعة مستمرة وتحسينات ونتائج ملموسة من الأسابيع الأولى."
-        }
-      },
-      cta: "ابدأ الآن"
-    },
-    expertise: {
-      title: "خبرتنا",
-      subtitle: "تضع NEXTDIGITS كل خبرتها في حملات متعددة القنوات.",
-      services: {
-        consulting: {
-          title: "الاستشارة واستراتيجية العلامة التجارية",
-          description: "تكسب شركة Apple 9316 دولارًا كل ثانية، بفضل استراتيجية علامتها التجارية الجيدة والشهرة التي اكتسبتها في السوق..."
-        },
-        identity: {
-          title: "الهوية البصرية",
-          description: "هل تساءلت يومًا لماذا تستخدم المطاعم اللون الأصفر على سبيل المثال؟"
-        },
-        digital: {
-          title: "الرقمية",
-          description: "يجري 89٪ من المستهلكين بحثًا على محركات البحث قبل إجراء عملية شراء."
-        },
-        studio: {
-          title: "استوديو الإبداع",
-          description: "يقال أن الصورة تساوي ألف كلمة، لكن هل تعلم أن فيديو مدته 60 ثانية."
-        },
-        advertising: {
-          title: "الإعلان والإعلام",
-          description: "يتذكر 60٪ من الجمهور الإعلانات الخاصة بالعمليات الخاصة."
-        }
-      },
-      readMore: "اقرأ المزيد",
-      ctaTitle: "هل أنت مستعد لتطوير عملك؟",
-      ctaDescription: "اكتشف كيف يمكن لحلولنا تحويل تواجدك الرقمي وتعزيز أدائك.",
-      ctaStart: "ابدأ الآن",
-      ctaLearn: "اعرف المزيد"
-    },
     cta: {
-      packs: {
-        subtitle: "باقاتنا المخصصة",
-        title: "اختر الحل الرقمي الأنسب لمشروعك وميزانيتك",
-        button: "من نحن"
-      },
       ready: {
-        title: "هل أنتم مستعدون؟",
-        description: "أكثر من 80 عميلاً يثقون بنا. انضم إليهم باستخدام خدماتنا وقم بتطوير شركتك.",
+        title: "جاهز لتحويل",
+        subtitle: "حضورك الرقمي؟",
+        description: "انضم إلى أكثر من 80 شركة وثقت في NextDigits لنموها الرقمي.",
+        cta1: "احصل على عرض مجاني",
+        cta2: "جدولة مكالمة",
         stats: {
-          clients: "عملاء راضون",
-          satisfaction: "رضا مضمون",
-          support: "دعم متاح"
+          clients: "+80",
+          clientsLabel: "عميل راضٍ",
+          projects: "+150",
+          projectsLabel: "مشروع ناجح",
+          satisfaction: "98%",
+          satisfactionLabel: "معدل الرضا"
         },
-        button: "انضم إلينا"
-      },
-      business: {
-        title: "هل تحتاج إلى مساعدة في عملك؟",
-        button: "نعم"
+        benefits: [
+          "رد مضمون خلال 8 ساعات",
+          "رضا مضمون 100%",
+          "فريق خبراء معتمدين",
+          "عائد استثمار قابل للقياس"
+        ],
+        trustedBy: "يثقون بنا"
       }
     },
     about: {
@@ -394,7 +388,7 @@ export const translations = {
         description: "نريد أن نفهم أهدافك ورغباتك لنقترح عليك الحلول التي ستجلب لك النمو والطمأنينة.",
         cta: "اكتشف خدماتنا"
       },
-      stats: {
+      numbers: {
         title: "أكثر من 80 عميلاً يثقون بنا. انضم إليهم الآن وقم بتطوير شركتك.",
         partners: "شركاء مبدعون",
         clients: "أكثر من 80 عميل",
@@ -408,6 +402,10 @@ export const translations = {
       values: {
         title: "قيمنا",
         description: "الأخلاق والشفافية والتربية والصرامة والإبداع...هذه بعض القيم الأساسية لوكالتنا. أضف الود والرحمة والاعتبار والفهم إلى القائمة، وسيكون لديك هذه المجموعة من الأفراد الذين يعملون بجد لإرضائك وتلبية احتياجاتك."
+      },
+      cta: {
+        title: "هل تحتاج إلى مساعدة في عملك؟",
+        button: "نعم"
       }
     },
     contact: {
@@ -426,13 +424,17 @@ export const translations = {
         phone: "الهاتف",
         subject: "الموضوع",
         message: "رسالتك",
-        submit: "إرسال الرسالة"
+        submit: "إرسال الرسالة",
+        sending: "جاري الإرسال...",
+        successTitle: "تم إرسال الرسالة بنجاح!",
+        successMessage: "سنرد عليك في غضون 24 ساعة.",
+        errorMessage: "حدث خطأ. يرجى المحاولة مرة أخرى."
       },
       info: {
         email: "البريد الإلكتروني",
         phone: "الهاتف",
         address: "العنوان",
-        addressText: "الرباط"
+        location: "الدار البيضاء، المغرب"
       }
     },
     services: {
@@ -443,22 +445,18 @@ export const translations = {
         cta2: "تحدث إلى خبير"
       },
       expertise: {
-        title: "خبرتنا",
-        subtitle: "شركة تؤمن بقوة الاستراتيجية الإبداعية.",
-        description: "من الإعلان DOOH إلى الرقمي من خلال التسويق عبر المؤثرين، تضع Medialaoui كل خبرتها في حملات متعددة القنوات. بمساعدة حلولنا الجاهزة وفريق مخصص لقضاياك، سنعرف كيفية تطوير عملك وزيادة مبيعاتك. تمتلك وكالتنا 5 مراكز خبرة لضمان مرافقة شاملة لك.",
+        sectionTitle: "خبرتنا",
+        title: "شركة تؤمن بقوة الاستراتيجية الإبداعية.",
+        description: "من الإعلان DOOH إلى الرقمي من خلال التسويق عبر المؤثرين، تضع NextDigits كل خبرتها في حملات متعددة القنوات. بمساعدة حلولنا الجاهزة وفريق مخصص لقضاياك، سنعرف كيفية تطوير عملك وزيادة مبيعاتك. تمتلك وكالتنا 5 مراكز خبرة لضمان مرافقة شاملة لك.",
         cta: "اكتشف خدماتنا",
         stats: {
-          poles: "مراكز الخبرة",
-          support: "مرافقة شاملة",
-          solutions: "حلول جاهزة"
+          poles: "5",
+          polesLabel: "مراكز الخبرة",
+          support: "360°",
+          supportLabel: "مرافقة شاملة",
+          solutions: "100%",
+          solutionsLabel: "حلول جاهزة"
         }
-      },
-      list: {
-        consulting: "الاستشارة واستراتيجية العلامة التجارية",
-        identity: "الهوية البصرية",
-        digital: "الرقمية",
-        studio: "استوديو الإبداع",
-        advertising: "الإعلان والإعلام"
       }
     },
     footer: {
@@ -479,26 +477,21 @@ export const translations = {
       expertise: "Our Expertise",
       about: "About",
       contact: "Contact",
-      quote: "Request a Quote",
-      services: {
-        webDesign: "Web Design",
-        webdev:"Web development",
-        digitalMarketing: "Digital Marketing",
-        seo: "SEO",
-        branding: "Branding"
-      },
-      aboutDropdown: {
-        team: "Our team",
-        history: "Our story",
-        values: "Our values"
-      }
+      quote: "Request a Quote"
     },
     hero: {
-      title1: "GET STARTED",
-      title2: "AND BENEFIT FROM",
-      title3: "OUR",
-      highlight: "EXCLUSIVE PACKAGES",
-      cta: "I WANT IT"
+      title: "Transform Your",
+      highlight: "Digital Vision",
+      description: "Complete solutions in marketing, design, web & mobile development. We create digital experiences that generate real results for your business.",
+      cta1: "Request Quote",
+      cta2: "Schedule Call",
+      stats: {
+        clients: "Clients",
+        responseTime: "24h",
+        response: "Response",
+        satisfactionRate: "100%",
+        satisfaction: "Satisfaction"
+      }
     },
     quote: {
       title: "QUOTE SIMULATOR",
@@ -507,122 +500,122 @@ export const translations = {
       lastName: "Last Name",
       email: "Email",
       phone: "Phone",
+      servicePlaceholder: "-- Which service interests you most? --",
+      sizePlaceholder: "-- What is your business size? --",
       note: "Tell us about your project, your specific needs or any useful information...",
       noteHelper: "Optional: Describe your project to help us serve you better",
-      service: "-- Which service interests you most? --",
-      businessSize: "-- What is your business size? --",
-      submit: "Submit",
+      submit: "Send my request",
+      sending: "Sending...",
+      successTitle: "Request sent successfully!",
+      successMessage: "We will contact you within 24 hours.",
+      errorMessage: "An error occurred. Please try again.",
       services: {
-        webdev:"Web development",
-        webDesign: "Web Design",
-        digitalMarketing: "Digital Marketing",
-        seo: "SEO",
-        branding: "Branding",
-        ecommerce: "E-commerce"
+        consulting: "Consulting & Brand Strategy",
+        identity: "Visual Identity",
+        digital: "Digital",
+        studio: "Creative Studio",
+        advertising: "Advertising & Media"
       },
       sizes: {
-        startup: "Startup",
-        sme: "SME",
-        large: "Large Enterprise",
-        freelance: "Freelance"
+        startup: "Startup (1-10 employees)",
+        sme: "SME (10-250 employees)",
+        large: "Large Enterprise (250+ employees)",
+        freelance: "Freelance/Independent"
       }
-    },
-    whyUs: {
-      title: "Why\nNextDigits?",
-      speed: {
-        title: "SPEED",
-        description: "Fast and efficient solutions for your digital projects"
-      },
-      realtime: {
-        title: "REAL-TIME RESPONSE",
-        description: "Instant communication and continuous monitoring"
-      },
-      efficiency: {
-        title: "EFFICIENCY",
-        description: "Measurable results and optimized performance"
-      },
-      flexibility: {
-        title: "FLEXIBILITY",
-        description: "Solutions tailored to your specific needs"
-      }
-    },
-    howWeWork: {
-      title: "HOW IT WORKS?",
-      subtitle: "Get an immediate response by following the 3 steps below",
-      steps: {
-        step1: {
-          number: "01.",
-          title: "EXPRESS ANALYSIS",
-          description: "Fill out the quote simulator in seconds."
-        },
-        step2: {
-          number: "02.",
-          title: "PERSONALIZED START",
-          description: "A project manager contacts you within 8 hours to validate objectives and guide you to the best approach."
-        },
-        step3: {
-          number: "03.",
-          title: "CUSTOM STRATEGY",
-          description: "We analyze your needs in depth and design a custom digital strategy focused on performance and your business objectives."
-        },
-        step4: {
-          number: "04.",
-          title: "LAUNCH & GROWTH",
-          description: "Your project is launched in less than 7 days, with continuous monitoring, optimizations, and concrete results from the first weeks."
-        }
-      },
-      cta: "Get Started"
     },
     expertise: {
-      title: "OUR EXPERTISE",
-      subtitle: "NEXTDIGITS APPLIES ALL ITS KNOW-HOW TO MULTICHANNEL CAMPAIGNS.",
+      sectionTitle: "OUR SERVICES",
+      title: "Complete Solutions",
+      subtitle: "For Your Growth",
+      description: "From strategy to execution, we cover all aspects of your digital presence with expertise and creativity.",
+      learnMore: "Learn More",
+      ctaStart: "Start a Project",
+      ctaServices: "View All Services",
       services: {
-        consulting: {
-          title: "Consulting & Brand Strategy",
-          description: "Apple earns $9,316 every second, thanks to its good brand strategy and the reputation it has gained in the market..."
+        marketing: {
+          title: "Marketing & Strategy",
+          shortDesc: "Data-driven strategies to maximize ROI",
+          features: [
+            "Complete marketing audit",
+            "Custom digital strategy",
+            "SEO & SEM optimization",
+            "Content marketing"
+          ]
         },
-        identity: {
-          title: "Visual Identity",
-          description: "Have you ever wondered why restaurants use yellow, for example?"
+        design: {
+          title: "Design & Branding",
+          shortDesc: "Unique visual identity that makes an impact",
+          features: [
+            "Logo & brand guidelines",
+            "UI/UX Design",
+            "Packaging & print",
+            "Motion design"
+          ]
         },
-        digital: {
-          title: "Digital",
-          description: "89% of consumers conduct research on search engines before making a purchase."
+        webDev: {
+          title: "Web Development",
+          shortDesc: "High-performance, scalable websites",
+          features: [
+            "Showcase & e-commerce sites",
+            "Custom web applications",
+            "CMS & content management",
+            "Maintenance & support"
+          ]
         },
-        studio: {
-          title: "Creative Studio",
-          description: "They say a picture is worth a thousand words, but did you know that a 60-second video."
+        mobileDev: {
+          title: "Mobile Development",
+          shortDesc: "Native & cross-platform iOS & Android apps",
+          features: [
+            "Native iOS/Android apps",
+            "React Native apps",
+            "Progressive Web Apps",
+            "API & integrations"
+          ]
         },
-        advertising: {
-          title: "Advertising & Media",
-          description: "60% of the audience remembers advertising from special operations."
+        video: {
+          title: "Video & Production",
+          shortDesc: "Captivating professional video content",
+          features: [
+            "Advertising videos",
+            "Corporate videos",
+            "Motion graphics & animation",
+            "Editing & post-production"
+          ]
+        },
+        social: {
+          title: "Social Media Management",
+          shortDesc: "Engaging strategic social presence",
+          features: [
+            "Social media strategy",
+            "Content creation",
+            "Community management",
+            "Social advertising (Ads)"
+          ]
         }
-      },
-      readMore: "Read more",
-      ctaTitle: "Ready to grow your business?",
-      ctaDescription: "Discover how our solutions can transform your digital presence and boost your performance.",
-      ctaStart: "Start Now",
-      ctaLearn: "Learn More"
+      }
     },
     cta: {
-      packs: {
-        subtitle: "OUR CUSTOM PACKAGES",
-        title: "CHOOSE THE DIGITAL SOLUTION BEST SUITED TO YOUR PROJECT AND BUDGET",
-        button: "About Us"
-      },
       ready: {
-        title: "ARE YOU READY?",
-        description: "Over 80 clients trust us. Join them by using our services and grow your business.",
+        title: "Ready to Transform",
+        subtitle: "Your Digital Presence?",
+        description: "Join over 80 companies that trusted NextDigits for their digital growth.",
+        cta1: "Get Free Quote",
+        cta2: "Schedule Call",
         stats: {
-          clients: "Satisfied Clients",
-          satisfaction: "Guaranteed Satisfaction",
-          support: "Available Support"
+          clients: "80+",
+          clientsLabel: "Happy Clients",
+          projects: "150+",
+          projectsLabel: "Successful Projects",
+          satisfaction: "98%",
+          satisfactionLabel: "Satisfaction Rate"
         },
-        button: "Join Us"
-      },
-      business: {
-        title: "NEED A BOOST FOR YOUR BUSINESS?",
-        button: "YES"
+        benefits: [
+          "8h guaranteed response",
+          "100% satisfaction guaranteed",
+          "Certified expert team",
+          "Measurable & optimized ROI"
+        ],
+        trustedBy: "Trusted by"
       }
     },
     about: {
@@ -631,7 +624,7 @@ export const translations = {
         description: "We want to understand your goals and desires to offer you solutions that will bring you growth and peace of mind.",
         cta: "Discover our services"
       },
-      stats: {
+      numbers: {
         title: "OVER 80+ CLIENTS TRUST US. JOIN THEM NOW AND GROW YOUR BUSINESS.",
         partners: "Creative Partners",
         clients: "Over 80 clients",
@@ -645,6 +638,10 @@ export const translations = {
       values: {
         title: "OUR VALUES",
         description: "Ethics, transparency, pedagogy, rigor, creativity...Here are some of our agency's key values. Add friendliness, compassion, consideration and understanding to the list, and you have this group of individuals who work hard to satisfy you and meet your needs."
+      },
+      cta: {
+        title: "NEED A BOOST FOR YOUR BUSINESS?",
+        button: "YES"
       }
     },
     contact: {
@@ -663,13 +660,17 @@ export const translations = {
         phone: "Phone",
         subject: "Subject",
         message: "Your message",
-        submit: "Send message"
+        submit: "Send message",
+        sending: "Sending...",
+        successTitle: "Message sent successfully!",
+        successMessage: "We will respond within 24h.",
+        errorMessage: "An error occurred. Please try again."
       },
       info: {
         email: "Email",
         phone: "Phone",
         address: "Address",
-        addressText: "Casablanca"
+        location: "Casablanca, Morocco"
       }
     },
     services: {
@@ -680,22 +681,18 @@ export const translations = {
         cta2: "Talk to an expert"
       },
       expertise: {
-        title: "OUR EXPERTISE",
-        subtitle: "A COMPANY THAT BELIEVES IN THE POWER OF CREATIVE STRATEGY.",
-        description: "From DOOH advertising to digital through influencer marketing, Medialaoui applies all its expertise in multichannel campaigns. With our turnkey solutions and a team dedicated to your issues, we will know how to develop your business and boost your sales. Our agency has 5 areas of expertise to ensure comprehensive support.",
+        sectionTitle: "OUR EXPERTISE",
+        title: "A COMPANY THAT BELIEVES IN THE POWER OF CREATIVE STRATEGY.",
+        description: "From DOOH advertising to digital through influencer marketing, NextDigits applies all its expertise in multichannel campaigns. With our turnkey solutions and a team dedicated to your issues, we will know how to develop your business and boost your sales. Our agency has 5 areas of expertise to ensure comprehensive support.",
         cta: "Discover our services",
         stats: {
-          poles: "Areas of expertise",
-          support: "Comprehensive support",
-          solutions: "Turnkey solutions"
+          poles: "5",
+          polesLabel: "Areas of expertise",
+          support: "360°",
+          supportLabel: "Comprehensive support",
+          solutions: "100%",
+          solutionsLabel: "Turnkey solutions"
         }
-      },
-      list: {
-        consulting: "CONSULTING & BRAND STRATEGY",
-        identity: "VISUAL IDENTITY",
-        digital: "DIGITAL",
-        studio: "CREATIVE STUDIO",
-        advertising: "ADVERTISING & MEDIA"
       }
     },
     footer: {

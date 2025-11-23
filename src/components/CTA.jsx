@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '../contexts/LanguageContext';
+import { translations } from '@/translations/translations';
 import { Button } from '@/selector/ui';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -18,11 +19,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const AboutCTA = () => {
   const { language } = useLanguage();
+  const t = translations[language].cta.ready;
+  
   const sectionRef = useRef(null);
   const logosRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
-  // Client logos - replace with actual client logos
   const clientLogos = [
     { name: "Client 1", logo: "🏢" },
     { name: "Client 2", logo: "🎯" },
@@ -34,47 +36,31 @@ const AboutCTA = () => {
     { name: "Client 8", logo: "🎨" }
   ];
 
-  const benefits = [
-    {
-      icon: <CheckCircle className="w-6 h-6" />,
-      text: language === 'fr' ? "Réponse sous 8h garantie" : language === 'ar' ? "رد مضمون خلال 8 ساعات" : "8h guaranteed response"
-    },
-    {
-      icon: <Shield className="w-6 h-6" />,
-      text: language === 'fr' ? "Satisfaction garantie à 100%" : language === 'ar' ? "رضا مضمون 100%" : "100% satisfaction guaranteed"
-    },
-    {
-      icon: <Award className="w-6 h-6" />,
-      text: language === 'fr' ? "Équipe d'experts certifiés" : language === 'ar' ? "فريق خبراء معتمدين" : "Certified expert team"
-    },
-    {
-      icon: <TrendingUp className="w-6 h-6" />,
-      text: language === 'fr' ? "ROI mesurable et optimisé" : language === 'ar' ? "عائد استثمار قابل للقياس" : "Measurable & optimized ROI"
-    }
-  ];
+  const benefits = t.benefits.map((text, index) => ({
+    icon: [<CheckCircle />, <Shield />, <Award />, <TrendingUp />][index],
+    text
+  }));
 
   const stats = [
     { 
-      value: language === 'ar' ? "+80" : "80+", 
-      label: language === 'fr' ? "Clients satisfaits" : language === 'ar' ? "عميل راضٍ" : "Happy clients",
+      value: t.stats.clients, 
+      label: t.stats.clientsLabel,
       color: "from-blue-500 to-cyan-500"
     },
     { 
-      value: language === 'ar' ? "+150" : "150+", 
-      label: language === 'fr' ? "Projets réussis" : language === 'ar' ? "مشروع ناجح" : "Successful projects",
+      value: t.stats.projects, 
+      label: t.stats.projectsLabel,
       color: "from-purple-500 to-pink-500"
     },
     { 
-      value: "98%", 
-      label: language === 'fr' ? "Taux de satisfaction" : language === 'ar' ? "معدل الرضا" : "Satisfaction rate",
+      value: t.stats.satisfaction, 
+      label: t.stats.satisfactionLabel,
       color: "from-green-500 to-emerald-500"
     }
   ];
 
-  // GSAP Animations
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Infinite scroll animation for logos
       if (logosRef.current) {
         const logos = logosRef.current.children;
         gsap.to(logos, {
@@ -96,7 +82,6 @@ const AboutCTA = () => {
     <section ref={sectionRef} className="relative py-24 overflow-hidden">
       {/* Background with Gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#002144] via-[#003366] to-[#002144]">
-        {/* Animated gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#48A9FE]/20 via-purple-500/20 to-[#48A9FE]/20 animate-gradient" />
       </div>
 
@@ -139,21 +124,16 @@ const AboutCTA = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          {/* Main Heading */}
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-            {language === 'fr' ? "Prêt à Transformer" : language === 'ar' ? "جاهز لتحويل" : "Ready to Transform"}
+            {t.title}
             <br />
             <span className="bg-gradient-to-r from-[#48A9FE] via-white to-[#48A9FE] bg-clip-text text-transparent">
-              {language === 'fr' ? "Votre Présence Digitale ?" : language === 'ar' ? "حضورك الرقمي؟" : "Your Digital Presence?"}
+              {t.subtitle}
             </span>
           </h2>
 
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
-            {language === 'fr' ? 
-              "Rejoignez plus de 80 entreprises qui ont fait confiance à NextDigits pour leur croissance digitale." :
-             language === 'ar' ?
-              "انضم إلى أكثر من 80 شركة وثقت في NextDigits لنموها الرقمي." :
-              "Join over 80 companies that trusted NextDigits for their digital growth."}
+            {t.description}
           </p>
 
           {/* CTA Buttons */}
@@ -165,9 +145,7 @@ const AboutCTA = () => {
                 className="group relative overflow-hidden bg-white hover:bg-gray-100 text-[#002144]"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  {language === 'fr' ? "Obtenir un devis gratuit" : 
-                   language === 'ar' ? "احصل على عرض مجاني" : 
-                   "Get Free Quote"}
+                  {t.cta1}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Button>
@@ -179,9 +157,7 @@ const AboutCTA = () => {
                 size="lg"
                 className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#002144]"
               >
-                {language === 'fr' ? "Planifier un appel" : 
-                 language === 'ar' ? "جدولة مكالمة" : 
-                 "Schedule Call"}
+                {t.cta2}
               </Button>
             </Link>
           </div>
@@ -201,7 +177,7 @@ const AboutCTA = () => {
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                 className="flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20"
               >
-                <div className="text-[#48A9FE]">{benefit.icon}</div>
+                <div className="text-[#48A9FE] w-6 h-6">{benefit.icon}</div>
                 <span className="text-white text-sm font-medium">{benefit.text}</span>
               </motion.div>
             ))}
@@ -236,9 +212,7 @@ const AboutCTA = () => {
           className="mb-12"
         >
           <p className="text-center text-gray-400 mb-8 text-sm uppercase tracking-wider">
-            {language === 'fr' ? "Ils nous font confiance" : 
-             language === 'ar' ? "يثقون بنا" : 
-             "Trusted by"}
+            {t.trustedBy}
           </p>
 
           {/* Infinite Scroll Logos */}
@@ -258,7 +232,6 @@ const AboutCTA = () => {
             </div>
           </div>
         </motion.div>
-       
       </div>
 
       <style jsx>{`

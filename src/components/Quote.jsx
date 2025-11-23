@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { translations } from '@/translations/translations';
 import { Input, Select, Button, Section, SectionTitle, Textarea } from '@/selector/ui';
@@ -42,12 +42,11 @@ const QuoteSimulator = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Une erreur est survenue');
+        throw new Error(data.error || t.errorMessage || 'Une erreur est survenue');
       }
 
       setStatus({ loading: false, success: true, error: null });
       
-      // Reset form after 4 seconds
       setTimeout(() => {
         setFormData({
           prenom: '',
@@ -65,7 +64,7 @@ const QuoteSimulator = () => {
       setStatus({ 
         loading: false, 
         success: false, 
-        error: error.message || 'Une erreur est survenue. Veuillez réessayer.' 
+        error: error.message || t.errorMessage || 'Une erreur est survenue. Veuillez réessayer.' 
       });
     }
   };
@@ -78,12 +77,11 @@ const QuoteSimulator = () => {
   };
 
   const serviceOptions = [
-    { value: 'conseil-strategie', label: t.services.webDesign },
-    { value: 'conseil-stra', label: t.services.webdev },
-    { value: 'identite-visuelle', label: t.services.digitalMarketing },
-    { value: 'digital', label: t.services.seo },
-    { value: 'studio-creation', label: t.services.branding },
-    { value: 'publicite', label: t.services.ecommerce }
+    { value: 'conseil-strategie', label: t.services.consulting },
+    { value: 'identite-visuelle', label: t.services.identity },
+    { value: 'digital', label: t.services.digital },
+    { value: 'studio-creation', label: t.services.studio },
+    { value: 'publicite', label: t.services.advertising }
   ];
 
   const sizeOptions = [
@@ -96,8 +94,8 @@ const QuoteSimulator = () => {
   return (
     <Section bgColor="bg-gray-50">
       <SectionTitle
-        title={t.subtitle}
-        subtitle={t.title}
+        title={t.title}
+        subtitle={t.subtitle}
       />
 
       <motion.form
@@ -119,8 +117,8 @@ const QuoteSimulator = () => {
             >
               <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
               <div>
-                <p className="text-green-800 font-semibold">Demande envoyée avec succès!</p>
-                <p className="text-green-700 text-sm">Nous vous contacterons dans les 24 heures.</p>
+                <p className="text-green-800 font-semibold">{t.successTitle}</p>
+                <p className="text-green-700 text-sm">{t.successMessage}</p>
               </div>
             </motion.div>
           )}
@@ -186,7 +184,7 @@ const QuoteSimulator = () => {
             name="service"
             value={formData.service}
             onChange={handleChange}
-            placeholder={t.service}
+            placeholder={t.servicePlaceholder}
             options={serviceOptions}
             required
             disabled={status.loading}
@@ -196,18 +194,17 @@ const QuoteSimulator = () => {
             name="businessSize"
             value={formData.businessSize}
             onChange={handleChange}
-            placeholder={t.businessSize}
+            placeholder={t.sizePlaceholder}
             options={sizeOptions}
             required
             disabled={status.loading}
           />
         </div>
 
-        {/* New Note/Message Field */}
         <div className="mb-8">
           <Textarea
             name="note"
-            placeholder={t.note || "Parlez-nous de votre projet, vos besoins spécifiques ou toute information utile..."}
+            placeholder={t.note}
             value={formData.note}
             onChange={handleChange}
             rows={5}
@@ -215,9 +212,7 @@ const QuoteSimulator = () => {
             className="w-full"
           />
           <p className="text-sm text-gray-500 mt-2">
-            {language === 'fr' && "Optionnel : Décrivez votre projet pour nous aider à mieux vous servir"}
-            {language === 'ar' && "اختياري: صف مشروعك لمساعدتنا على خدمتك بشكل أفضل"}
-            {language === 'en' && "Optional: Describe your project to help us serve you better"}
+            {t.noteHelper}
           </p>
         </div>
 
@@ -229,7 +224,7 @@ const QuoteSimulator = () => {
             loading={status.loading}
             disabled={status.loading}
           >
-            <span>{status.loading ? 'Envoi en cours...' : t.submit}</span>
+            <span>{status.loading ? t.sending : t.submit}</span>
             {!status.loading && <Send className="w-5 h-5" />}
           </Button>
         </div>
